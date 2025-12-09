@@ -28,11 +28,8 @@ export default function Home() {
       >
         <div className="max-w-4xl text-center">
           <h1 className="text-6xl font-bold text-gray-900 mb-6">
-            Hello, I'm THMM
+            안녕하세요, 개발자 신성무입니다
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
-            Building web applications with modern technologies
-          </p>
           <div className="flex gap-4 justify-center">
             <a
               href="#projects"
