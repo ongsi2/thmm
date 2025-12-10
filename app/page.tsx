@@ -10,14 +10,14 @@ export default function Home() {
             <a href="#home" className="text-slate-600 hover:text-slate-900 transition">
               Home
             </a>
+            <a href="#experience" className="text-slate-600 hover:text-slate-900 transition">
+              Experience
+            </a>
             <a href="#projects" className="text-slate-600 hover:text-slate-900 transition">
               Projects
             </a>
             <a href="#about" className="text-slate-600 hover:text-slate-900 transition">
               About
-            </a>
-            <a href="#contact" className="text-slate-600 hover:text-slate-900 transition">
-              Contact
             </a>
           </div>
         </div>
@@ -28,104 +28,257 @@ export default function Home() {
         id="home"
         className="min-h-screen flex items-center px-6 pt-24"
       >
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[1.2fr,1fr] gap-12 items-center">
-          <div className="space-y-6">
-            <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold shadow-sm">
-              Portfolio 2024
-              <span className="text-slate-200">Developer · Builder · Problem Solver</span>
-            </p>
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-              안녕하세요 개발자 신성무입니다.
-            </h1>
-            <p className="text-lg text-slate-600 leading-relaxed">
-              실서비스 운영을 염두에 둔 백엔드/프론트엔드 개발을 좋아합니다.
-              빠르게 실험하고, 안정적으로 배포하며, 데이터로 개선점을 찾는 과정을 즐깁니다.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#projects"
-                className="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold shadow-md hover:-translate-y-0.5 transition"
-              >
-                프로젝트 보기
-              </a>
-              <a
-                href="#contact"
-                className="px-5 py-3 rounded-xl border border-slate-300 font-semibold hover:border-slate-900 hover:-translate-y-0.5 transition"
-              >
-                함께 이야기하기
-              </a>
-            </div>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {[
-                { label: '실서비스 구축', value: '3+' },
-                { label: '주요 스택', value: 'NestJS · Next.js' },
-                { label: '관심사', value: '분산 처리 · DX' },
-                { label: '배포 경험', value: 'Docker · Nginx' },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-2xl bg-white/80 shadow-sm border border-slate-200/60 p-4"
+        <div className="max-w-5xl mx-auto">
+          <div className="space-y-8">
+            {/* Profile Header with Avatar */}
+            <div className="flex items-center gap-4">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden shadow-lg ring-4 ring-white">
+                <img
+                  src="/ssm_photo.jpg"
+                  alt="신성무"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900">신성무</h2>
+                <p className="text-slate-600">Backend Developer · PL/AA</p>
+                <a
+                  href="mailto:ongsya@gmail.com"
+                  className="text-sm text-slate-500 hover:text-slate-900 transition inline-flex items-center gap-1 mt-1"
                 >
-                  <div className="text-2xl font-bold">{item.value}</div>
-                  <div className="text-xs text-slate-500 mt-1">{item.label}</div>
-                </div>
-              ))}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  ongsya@gmail.com
+                </a>
+              </div>
             </div>
-          </div>
 
-          <div className="relative">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-slate-200 to-white blur-2xl opacity-80" />
-            <div className="relative rounded-3xl bg-white shadow-xl border border-slate-100 p-8 space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-slate-500">대표 프로젝트</p>
-                  <p className="text-xl font-bold">Flash Coupon</p>
-                </div>
-                <span className="px-3 py-1 text-xs rounded-full bg-emerald-50 text-emerald-700 font-semibold">
-                  Live
-                </span>
-              </div>
-              <div className="space-y-3 text-sm text-slate-600">
-                <div className="flex items-start gap-2">
-                  <span className="mt-0.5">⚡</span>
-                  <p>동시 다발 쿠폰 발급/사용 트래픽을 견디도록 Redis + MySQL 기반으로 설계</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="mt-0.5">🧭</span>
-                  <p>쿠폰 발급/사용 플로우를 명확히 시각화하고 관리 UI 제공</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="mt-0.5">🛠️</span>
-                  <p>Docker · Nginx로 멀티 서비스 배포, Swagger로 API 문서화</p>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {['NestJS', 'Redis', 'MySQL', 'Next.js', 'Docker'].map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 font-semibold"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+            {/* Main Content */}
+            <div className="space-y-6">
+              <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold shadow-sm">
+                Portfolio 2024
+                <span className="text-slate-200">한국언론진흥재단</span>
+              </p>
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
+                안녕하세요,<br />개발자 신성무입니다.
+              </h1>
+              <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">
+                약 10년간 공공 SI, 게임, 물류 등 다양한 분야에서 백엔드/프론트엔드 개발을 수행했습니다.
+                현재는 한국언론진흥재단에서 PL/AA로 프로젝트를 리딩하며,
+                서비스의 안정성과 운영 효율성을 높이는 데 집중하고 있습니다.
+              </p>
+
+              {/* CTA Buttons */}
               <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://thmm.kr/flash-coupon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-900 font-semibold hover:underline"
+                  href="#experience"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 text-white font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 hover:bg-slate-800 transition-all duration-200"
                 >
-                  데모 보기
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  경력 보기
                 </a>
                 <a
-                  href="https://thmm.kr/api/docs"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-600 hover:underline"
+                  href="#projects"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-slate-300 font-semibold hover:border-slate-900 hover:bg-slate-50 hover:-translate-y-1 transition-all duration-200"
                 >
-                  API 문서
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
+                  프로젝트 보기
                 </a>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-emerald-600 text-emerald-600 font-semibold hover:bg-emerald-600 hover:text-white hover:-translate-y-1 transition-all duration-200"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  이력서 다운로드
+                </a>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl">
+                {[
+                  { label: '총 경력', value: '10년' },
+                  { label: '현재 역할', value: 'PL/AA' },
+                  { label: '주요 스택', value: 'Java · Spring' },
+                  { label: '인프라', value: 'NCP · Jenkins' },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl bg-white/80 shadow-sm border border-slate-200/60 p-4"
+                  >
+                    <div className="text-2xl font-bold">{item.value}</div>
+                    <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section
+        id="experience"
+        className="px-6 py-20 bg-slate-50"
+      >
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="text-center space-y-3">
+            <p className="text-sm font-semibold text-slate-500 uppercase tracking-[0.2em]">
+              Experience
+            </p>
+            <h2 className="text-4xl font-bold tracking-tight">실무 경력</h2>
+            <p className="text-slate-600">
+              약 10년간 공공 SI, 게임, 물류 등 다양한 분야에서 백엔드/프론트엔드 개발을 수행했습니다.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {/* 한국언론진흥재단 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900">한국언론진흥재단</h3>
+                  <p className="text-slate-600 mt-1">프리랜서 · PL/AA</p>
+                  <p className="text-sm text-slate-500 mt-1">2020.08 - 현재 (4년 4개월)</p>
+                </div>
+                <span className="px-4 py-2 rounded-full bg-emerald-600 text-white text-sm font-semibold w-fit">
+                  현재 재직
+                </span>
+              </div>
+              <div className="space-y-3 text-slate-700">
+                <p className="font-semibold text-slate-900">정부광고통합지원시스템</p>
+                <ul className="space-y-2 text-sm leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 mt-1">•</span>
+                    <span>Jenkins 기반 CI/CD 파이프라인 구축 (배포 시간 30분 → 5분 단축)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 mt-1">•</span>
+                    <span>NCP 활용 고가용성 인프라 구축 (세션 클러스터링, 무중단 배포)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 mt-1">•</span>
+                    <span>실시간 모니터링/알림 체계 구축 및 장애 대응</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 mt-1">•</span>
+                    <span>BizTalk 카카오 알림톡, ePapyrus PDF 솔루션 연계 개발</span>
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {['Java', 'Spring', 'Oracle', 'NCP', 'Jenkins', 'WebtoB', 'JEUS'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-full bg-white border border-slate-300 text-xs font-semibold text-slate-700">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 아이티파트너스 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900">아이티파트너스</h3>
+                  <p className="text-slate-600 mt-1">정규직 · 개발자</p>
+                  <p className="text-sm text-slate-500 mt-1">2017.10 - 2020.07 (2년 9개월)</p>
+                </div>
+              </div>
+              <div className="space-y-3 text-slate-700">
+                <p className="font-semibold text-slate-900">공공기관 SI 프로젝트 (언론진흥재단, 농림식품기술평가원 등)</p>
+                <ul className="space-y-2 text-sm leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>레거시 시스템 현대화 (T-Form → Nexacro 플랫폼 전환)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>연구물품 재고 및 입출고 관리 시스템 구축 (수기 관리 → DB화)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>RESTful API 기반 내부 ERP 연동 모듈 개발</span>
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {['Java', 'Spring', 'Nexacro', 'Oracle', 'RESTful API'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-full bg-white border border-slate-300 text-xs font-semibold text-slate-700">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 큐로드 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900">주식회사 큐로드</h3>
+                  <p className="text-slate-600 mt-1">계약직 · 개발자</p>
+                  <p className="text-sm text-slate-500 mt-1">2015.11 (1개월)</p>
+                </div>
+              </div>
+              <div className="space-y-3 text-slate-700">
+                <ul className="space-y-2 text-sm leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>QA 검수 시스템 개발 (테스트 결과 입력 → 검증 → 승인 프로세스)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>고객센터 문의 접수 및 이메일 답변 처리 시스템 구축</span>
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {['Java', 'Spring', 'MySQL'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-full bg-white border border-slate-300 text-xs font-semibold text-slate-700">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* NHN엔터테인먼트 */}
+            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-slate-900">NHN엔터테인먼트</h3>
+                  <p className="text-slate-600 mt-1">정규직 · 개발자</p>
+                  <p className="text-sm text-slate-500 mt-1">2012.12 - 2014.12 (2년)</p>
+                </div>
+              </div>
+              <div className="space-y-3 text-slate-700">
+                <p className="font-semibold text-slate-900">게임 운영 서비스 (위닝일레븐온라인2, 풋볼데이 등)</p>
+                <ul className="space-y-2 text-sm leading-relaxed">
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>게임 포털/이벤트 페이지 개발 및 운영</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>jQuery/Ajax 비동기 UI 구현으로 로딩 속도 개선</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-slate-600 mt-1">•</span>
+                    <span>운영자용 게임 관리 콘솔(CMS) 개발 (쿠폰/상품 지급 기능)</span>
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {['Java', 'Spring', 'MySQL', 'jQuery', 'Ajax'].map((tech) => (
+                    <span key={tech} className="px-3 py-1 rounded-full bg-white border border-slate-300 text-xs font-semibold text-slate-700">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -167,25 +320,29 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-4 text-sm font-semibold">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="https://thmm.kr/flash-coupon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-900 hover:underline"
+                  className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-900 text-white font-semibold hover:bg-slate-800 hover:shadow-lg transition-all duration-200"
                 >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                   Live Demo
                 </a>
                 <a
                   href="https://thmm.kr/api/docs"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-600 hover:underline"
+                  className="inline-flex items-center gap-1 px-4 py-2 rounded-lg border-2 border-slate-300 font-semibold hover:border-slate-900 hover:bg-slate-50 transition-all duration-200"
                 >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
                   API Docs
                 </a>
-                <span className="text-slate-400">•</span>
-                <span className="text-slate-600">프론트/백엔드 레포 분리 운영</span>
               </div>
             </div>
 
@@ -207,25 +364,40 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-4 text-sm font-semibold">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="https://thmm.kr/springboot-jwt"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-900 hover:underline"
+                  className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-900 text-white font-semibold hover:bg-slate-800 hover:shadow-lg transition-all duration-200"
                 >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                   Live Demo
                 </a>
                 <a
                   href="https://github.com/thmm-kr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-600 hover:underline"
+                  className="inline-flex items-center gap-1 px-4 py-2 rounded-lg border-2 border-slate-300 font-semibold hover:border-slate-900 hover:bg-slate-50 transition-all duration-200"
                 >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
                   GitHub
                 </a>
-                <span className="text-slate-400">•</span>
-                <span className="text-slate-600">Redis 블랙리스트 · RBAC</span>
+                <a
+                  href="https://thmm.kr/springboot-jwt/api/docs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-4 py-2 rounded-lg border-2 border-slate-300 font-semibold hover:border-slate-900 hover:bg-slate-50 transition-all duration-200"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  API Docs
+                </a>
               </div>
             </div>
           </div>
@@ -279,10 +451,11 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               {[
-                { label: 'Backend', value: 'NestJS · Express · Redis · MySQL' },
-                { label: 'Frontend', value: 'Next.js · React · Tailwind' },
-                { label: 'Infra', value: 'Docker · Nginx · PM2' },
-                { label: 'Collab', value: 'Swagger · REST · GitHub Actions' },
+                { label: 'Backend', value: 'Java · Spring' },
+                { label: 'Frontend', value: 'JSP · jQuery' },
+                { label: 'Database', value: 'Oracle · MySQL · PostgreSQL · Redis' },
+                { label: 'Infra', value: 'NCP · Jenkins · Docker · Nginx' },
+                { label: 'Collab', value: 'GitLab · Jenkins · Swagger' },
               ].map((item) => (
                 <div key={item.label} className="p-3 rounded-2xl bg-white/10 border border-white/15">
                   <p className="text-xs text-slate-200">{item.label}</p>
@@ -294,48 +467,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section
-        id="contact"
-        className="px-6 py-20"
-      >
-        <div className="max-w-5xl mx-auto rounded-3xl bg-slate-900 text-white p-10 md:p-14 shadow-xl">
-          <div className="grid md:grid-cols-[1.1fr,0.9fr] gap-10 items-center">
-            <div className="space-y-3">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300">
-                Contact
-              </p>
-              <h2 className="text-3xl font-bold leading-tight">
-                새로운 시도, 함께 만들어볼까요?
-              </h2>
-              <p className="text-slate-200">
-                협업, 프리랜스, 스터디 제안 모두 환영합니다. 편하게 연락 주세요.
-              </p>
-            </div>
-            <div className="grid sm:grid-cols-2 gap-4">
-              <a
-                href="mailto:ssm218@naver.com"
-                className="w-full px-4 py-3 rounded-2xl bg-white text-slate-900 font-semibold text-center hover:-translate-y-0.5 transition"
-              >
-                이메일 보내기
-              </a>
-              <a
-                href="https://github.com/thmm-kr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-4 py-3 rounded-2xl border border-white/30 font-semibold text-center hover:-translate-y-0.5 transition"
-              >
-                GitHub 살펴보기
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <footer className="py-10 text-center text-slate-500 text-sm">
         © 2024 THMM. Crafted with TypeScript & Next.js.
       </footer>
-    </main>
+    </main >
   );
 }
-
