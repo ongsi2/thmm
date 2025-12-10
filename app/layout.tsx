@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'THMM - Portfolio',
   description: 'Personal portfolio and projects showcase',
+  icons: [
+    { rel: 'icon', url: '/favicon.svg' },
+  ],
 };
 
 export default function RootLayout({
