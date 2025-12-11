@@ -56,16 +56,12 @@ export default function Home() {
 
             {/* Main Content */}
             <div className="space-y-6">
-              <p className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold shadow-sm">
-                Portfolio 2024
-                <span className="text-slate-200">한국언론진흥재단</span>
-              </p>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight">
                 안녕하세요,<br />개발자 신성무입니다.
               </h1>
               <p className="text-lg text-slate-600 leading-relaxed max-w-3xl">
-                약 10년간 공공 SI, 게임, 물류 등 다양한 분야에서 백엔드/프론트엔드 개발을 수행했습니다.
-                현재는 한국언론진흥재단에서 PL/AA로 프로젝트를 리딩하며,
+                약 10년간 공공 SI, 게임, 물류 등 다양한 분야에서 개발을 수행했습니다.<br />
+                현재는 한국언론진흥재단에서 PL/AA로 프로젝트를 리딩하며,<br />
                 서비스의 안정성과 운영 효율성을 높이는 데 집중하고 있습니다.
               </p>
 
@@ -126,7 +122,7 @@ export default function Home() {
       {/* Experience Section */}
       <section
         id="experience"
-        className="px-6 py-20 bg-slate-50"
+        className="px-6 py-20 bg-slate-100/40"
       >
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center space-y-3">
@@ -141,7 +137,7 @@ export default function Home() {
 
           <div className="space-y-6">
             {/* 한국언론진흥재단 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+            <div className="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ring-2 ring-emerald-500/20">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-slate-900">한국언론진흥재단</h3>
@@ -149,7 +145,7 @@ export default function Home() {
                   <p className="text-sm text-slate-500 mt-1">2020.08 - 현재 (4년 4개월)</p>
                 </div>
                 <span className="px-4 py-2 rounded-full bg-emerald-600 text-white text-sm font-semibold w-fit">
-                  현재 재직
+                  재직중
                 </span>
               </div>
               <div className="space-y-3 text-slate-700">
@@ -183,7 +179,7 @@ export default function Home() {
             </div>
 
             {/* 아이티파트너스 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+            <div className="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-slate-900">아이티파트너스</h3>
@@ -192,7 +188,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="space-y-3 text-slate-700">
-                <p className="font-semibold text-slate-900">공공기관 SI 프로젝트 (언론진흥재단, 농림식품기술평가원 등)</p>
+                <p className="font-semibold text-slate-900">공공기관 SI 프로젝트 (한국과학기술연구원, 농림식품기술평가원 등)</p>
                 <ul className="space-y-2 text-sm leading-relaxed">
                   <li className="flex items-start gap-2">
                     <span className="text-slate-600 mt-1">•</span>
@@ -218,7 +214,7 @@ export default function Home() {
             </div>
 
             {/* 큐로드 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+            <div className="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-slate-900">주식회사 큐로드</h3>
@@ -248,7 +244,7 @@ export default function Home() {
             </div>
 
             {/* NHN엔터테인먼트 */}
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:border-slate-300 transition">
+            <div className="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                 <div>
                   <h3 className="text-2xl font-bold text-slate-900">NHN엔터테인먼트</h3>
@@ -376,17 +372,7 @@ export default function Home() {
                   </svg>
                   Live Demo
                 </a>
-                <a
-                  href="https://github.com/thmm-kr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 px-4 py-2 rounded-lg border-2 border-slate-300 font-semibold hover:border-slate-900 hover:bg-slate-50 transition-all duration-200"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                  GitHub
-                </a>
+
                 <a
                   href="https://thmm.kr/springboot-jwt/api/docs"
                   target="_blank"
@@ -442,20 +428,33 @@ export default function Home() {
                 <p className="text-xl font-bold">신성무</p>
               </div>
               <div className="px-3 py-1 text-xs rounded-full bg-white/15 text-white border border-white/20">
-                Builder
+                Full-Stack
               </div>
             </div>
-            <div className="space-y-3 text-sm leading-relaxed text-slate-100">
-              <p>문제 정의 → 빠른 MVP → 로그/지표로 개선 사이클을 돌리는 것을 선호합니다.</p>
-              <p>팀과 함께 쓰기 좋은 코드(명확한 인터페이스, 문서, 예제)를 목표로 합니다.</p>
+            <div className="space-y-4 text-sm leading-relaxed text-slate-100">
+              <p>
+                저는 완벽한 설계를 먼저 그리기보다는, 문제를 빠르게 정의하고 작동하는 MVP를 만들어보는 쪽을 선호합니다.
+                일단 돌아가는 코드를 만들고 나면, 로그와 모니터링 지표를 통해 병목 지점과 개선 방향이 명확하게 보입니다.
+                사용자 피드백과 실제 데이터를 기반으로 조금씩 개선해 나가는 사이클이 결국 더 탄탄한 결과물을 만든다고 생각합니다.
+              </p>
+              <p>
+                혼자 잘 짜는 것보다 팀과 함께 읽기 좋은 코드를 만드는 게 더 중요하다고 믿습니다.
+                다른 개발자가 코드를 봤을 때 빠르게 이해할 수 있도록, 인터페이스를 명확하게 설계하고 문서화를 충실히 하려고 노력합니다.
+                실용적인 예제 코드를 함께 남겨두면 새로운 팀원이 합류했을 때도 빠르게 이해하고 확장할 수 있습니다.
+              </p>
+              <p>
+                코드 리뷰나 페어 프로그래밍을 통해 더 나은 방법을 배우고 공유하는 과정을 중요하게 생각합니다.
+                서로의 코드를 보면서 개선점을 찾아가고, 그 과정에서 팀 전체의 코드 품질이 향상되는 것을 경험했기 때문에,
+                이런 협업 문화를 만들고 유지하는 데 적극적으로 기여하고 싶습니다.
+              </p>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm">
               {[
-                { label: 'Backend', value: 'Java · Spring' },
-                { label: 'Frontend', value: 'JSP · jQuery' },
+                { label: 'Backend', value: 'Java · Spring Boot · Node.js' },
+                { label: 'Frontend', value: 'HTML · CSS · JavaScript · jQuery' },
                 { label: 'Database', value: 'Oracle · MySQL · PostgreSQL · Redis' },
-                { label: 'Infra', value: 'NCP · Jenkins · Docker · Nginx' },
-                { label: 'Collab', value: 'GitLab · Jenkins · Swagger' },
+                { label: 'Infra', value: 'NCP · AWS · OCI' },
+                { label: 'CI/CD', value: 'GitLab · Jenkins · Git' },
               ].map((item) => (
                 <div key={item.label} className="p-3 rounded-2xl bg-white/10 border border-white/15">
                   <p className="text-xs text-slate-200">{item.label}</p>
@@ -465,7 +464,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       <footer className="py-10 text-center text-slate-500 text-sm">
         © 2024 THMM. Crafted with TypeScript & Next.js.
