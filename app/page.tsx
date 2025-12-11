@@ -306,11 +306,11 @@ export default function Home() {
                 </span>
               </div>
               <p className="text-slate-600 mb-6">
-                다량의 쿠폰 발급/사용 요청을 Redis로 버퍼링하고 MySQL로 영속화하여 안정성을 확보한 서비스.
+                다량의 쿠폰 발급/사용 요청을 Redis로 버퍼링하고 postgreSQL로 영속화하여 안정성을 확보한 서비스.
                 Next.js 기반 프론트로 쿠폰 발급 플로우를 한눈에 관리합니다.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['NestJS', 'TypeScript', 'Redis', 'MySQL', 'Next.js', 'Docker', 'Nginx'].map((tag) => (
+                {['NestJS', 'TypeScript', 'Redis', 'postgreSQL', 'Next.js', 'Docker', 'Nginx'].map((tag) => (
                   <span key={tag} className="px-3 py-1 rounded-full bg-slate-100 text-xs font-semibold text-slate-700">
                     {tag}
                   </span>
@@ -373,7 +373,7 @@ export default function Home() {
                   Live Demo
                 </a>
 
-                <a
+                {/* <a
                   href="https://thmm.kr/springboot-jwt/api/docs"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -383,7 +383,7 @@ export default function Home() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   API Docs
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
