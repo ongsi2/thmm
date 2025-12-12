@@ -13,18 +13,49 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 24,
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: '#1a1a1a',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          borderRadius: '20%',
+          position: 'relative',
         }}
       >
-        👨‍💻
+        {/* Geometric shapes - overlapping squares */}
+        <div
+          style={{
+            position: 'absolute',
+            width: '16px',
+            height: '16px',
+            background: '#10b981',
+            transform: 'rotate(45deg)',
+            top: '6px',
+            left: '6px',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            width: '12px',
+            height: '12px',
+            background: '#059669',
+            transform: 'rotate(45deg)',
+            bottom: '8px',
+            right: '8px',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            width: '8px',
+            height: '8px',
+            border: '2px solid #10b981',
+            transform: 'rotate(45deg)',
+            top: '12px',
+            right: '10px',
+          }}
+        />
       </div>
     ),
     {
