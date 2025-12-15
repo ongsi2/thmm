@@ -200,7 +200,7 @@ export default function Home() {
                     </div>
                     <h3 className="text-2xl font-bold text-[var(--color-primary)] mb-2">한국언론진흥재단</h3>
                     <p className="text-[var(--color-text-muted)] mb-1">프리랜서 · PL/AA</p>
-                    <p className="text-sm text-[var(--color-text-muted)] font-mono">2020.08 - 현재 (4년 4개월)</p>
+                    <p className="text-sm text-[var(--color-text-muted)] font-mono">2020.08 - 현재 (5년 4개월)</p>
                   </div>
                 </div>
 
