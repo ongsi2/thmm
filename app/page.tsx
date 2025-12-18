@@ -396,6 +396,50 @@ export default function Home() {
           <div id="projects-scroll" className="flex gap-6 md:gap-8 overflow-x-auto pb-8 pt-6 -mx-6 px-6 scrollbar-hide snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <div className="w-2 flex-shrink-0"></div>
 
+            {/* ENG-SPARKLING Card */}
+            <div className="flex-shrink-0 w-[85vw] sm:w-[450px] md:w-[500px] snap-start">
+              <div className="relative border-2 border-[var(--color-accent)] bg-white p-8 h-full hover:shadow-xl transition-all duration-300 shadow-lg">
+                <div className="absolute -top-3 left-6 px-4 py-1 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white text-xs font-bold">
+                  MAIN
+                </div>
+
+                <div className="space-y-6 h-full flex flex-col">
+                  <div className="flex-1 space-y-4">
+                    <h3 className="text-2xl font-bold">ENG-SPARKLING</h3>
+                    <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
+                      수능/내신 영어 지문을 입력하면 <span className="font-mono font-semibold text-[var(--color-accent)]">GPT-4o-mini</span>가 12가지 유형의 문제를 자동 생성.{' '}
+                      <span className="font-mono font-semibold text-[var(--color-accent)]">Supabase</span> 기반 인증 + 코인 시스템과{' '}
+                      <span className="font-mono font-semibold text-[var(--color-accent)]">토스페이먼츠</span> 결제 연동까지 구현한 풀스택 서비스.
+                    </p>
+
+                    {/* Tech tags */}
+                    <div className="flex flex-wrap gap-2">
+                      {['Next.js 15', 'TypeScript', 'OpenAI API', 'Supabase', 'Tailwind CSS', 'Docker'].map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 border border-[var(--color-border)] bg-[var(--color-bg-off)] font-mono text-xs font-semibold hover:border-[var(--color-accent)] transition-colors"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Button */}
+                  <div>
+                    <a
+                      href="https://thmm.kr/eng-sparkling"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center px-4 py-3 bg-[var(--color-accent)] text-white font-semibold text-sm border-2 border-[var(--color-accent)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                    >
+                      Live Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Flash Coupon Card */}
             <div className="flex-shrink-0 w-[85vw] sm:w-[450px] md:w-[500px] snap-start">
               <div className="relative border-2 border-[var(--color-border)] bg-white p-8 h-full hover:border-[var(--color-accent)] hover:shadow-xl transition-all duration-300">
@@ -490,53 +534,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* ENG-SPARKLING Card */}
-            <div className="flex-shrink-0 w-[85vw] sm:w-[450px] md:w-[500px] snap-start">
-              <div className="relative border-2 border-[var(--color-accent)] bg-white p-8 h-full hover:shadow-xl transition-all duration-300 shadow-lg">
-                <div className="absolute -top-3 left-6 px-4 py-1 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white text-xs font-bold">
-                  MAIN
-                </div>
-
-                <div className="space-y-6 h-full flex flex-col">
-                  <div className="flex-1 space-y-4">
-                    <h3 className="text-2xl font-bold">
-                      <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">ENG</span>-SPARKLING
-                    </h3>
-                    <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
-                      수능/내신 영어 지문을 입력하면 <span className="font-mono font-semibold text-[var(--color-accent)]">GPT-4o-mini</span>가 12가지 유형의 문제를 자동 생성.{' '}
-                      <span className="font-mono font-semibold text-[var(--color-accent)]">Supabase</span> 기반 인증 + 코인 시스템과{' '}
-                      <span className="font-mono font-semibold text-[var(--color-accent)]">토스페이먼츠</span> 결제 연동까지 구현한 풀스택 서비스.
-                    </p>
-
-                    {/* Tech tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {['Next.js 15', 'TypeScript', 'OpenAI API', 'Supabase', 'Tailwind CSS', 'Docker'].map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2.5 py-1 border border-[var(--color-border)] bg-[var(--color-bg-off)] font-mono text-xs font-semibold hover:border-[var(--color-accent)] transition-colors"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Button */}
-                  <div>
-                    <a
-                      href="https://thmm.kr/eng-sparkling"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center px-4 py-3 bg-[var(--color-accent)] text-white font-semibold text-sm border-2 border-[var(--color-accent)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                    >
-                      Live Demo
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Dummy Project 2 */}
+            {/* Real-time Chat Service Card */}
             <div className="flex-shrink-0 w-[85vw] sm:w-[450px] md:w-[500px] snap-start">
               <div className="relative border-2 border-[var(--color-border)] bg-white p-8 h-full hover:border-[var(--color-accent)] hover:shadow-xl transition-all duration-300">
                 <div className="absolute -top-3 left-6 px-4 py-1 bg-purple-600 text-white text-xs font-bold">
@@ -620,16 +618,13 @@ export default function Home() {
             <div className="space-y-8">
               <div className="border-l-4 border-[var(--color-accent)] pl-6 space-y-4">
                 <p className="text-lg leading-relaxed text-[var(--color-text)]">
-                  저는 완벽한 설계를 먼저 그리기보다는, 문제를 빠르게 정의하고 작동하는 MVP를 만들어보는 쪽을 선호합니다. 일단 돌아가는 코드를 만들고 나면,
-                  로그와 모니터링 지표를 통해 병목 지점과 개선 방향이 명확하게 보입니다.
+                  완벽한 설계보다 <span className="font-semibold">빠르게 작동하는 MVP</span>를 먼저 만드는 편입니다. 돌아가는 코드가 있어야 로그와 지표를 통해 병목과 개선점이 보이기 때문입니다.
                 </p>
                 <p className="text-lg leading-relaxed text-[var(--color-text)]">
-                  혼자 잘 짜는 것보다 팀과 함께 읽기 좋은 코드를 만드는 게 더 중요하다고 믿습니다. 다른 개발자가 코드를 봤을 때 빠르게 이해할 수 있도록,
-                  인터페이스를 명확하게 설계하고 문서화를 충실히 하려고 노력합니다.
+                  혼자 잘 짜는 것보다 <span className="font-semibold">팀이 읽기 좋은 코드</span>가 더 중요하다고 믿습니다. 명확한 인터페이스 설계와 문서화로 누구나 빠르게 이해할 수 있는 코드를 지향합니다.
                 </p>
                 <p className="text-lg leading-relaxed text-[var(--color-text)]">
-                  코드 리뷰나 페어 프로그래밍을 통해 더 나은 방법을 배우고 공유하는 과정을 중요하게 생각합니다. 서로의 코드를 보면서 개선점을 찾아가고, 그 과정에서 팀
-                  전체의 코드 품질이 향상되는 것을 경험했기 때문입니다.
+                  코드 리뷰와 페어 프로그래밍을 통해 <span className="font-semibold">더 나은 방법을 함께 찾아가는 과정</span>을 즐깁니다. 서로 배우며 팀 전체의 코드 품질이 높아지는 경험을 해왔습니다.
                 </p>
               </div>
 
