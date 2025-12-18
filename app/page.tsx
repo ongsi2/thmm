@@ -499,10 +499,9 @@ export default function Home() {
 
                 <div className="space-y-6 h-full flex flex-col">
                   <div className="flex-1 space-y-4">
-                    <h3 className="text-2xl font-bold">E-Commerce Platform</h3>
+                    <h3 className="text-2xl font-bold">ENG-SPARKLING</h3>
                     <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
-                      실시간 재고 관리와 결제 시스템을 갖춘 전자상거래 플랫폼.
-                      <span className="font-mono font-semibold">MSA</span> 아키텍처로 설계하여 확장 가능한 구조를 구현했습니다.
+                      수능 영어문제 자동 생성.
                     </p>
 
                     {/* Tech tags */}
@@ -519,14 +518,16 @@ export default function Home() {
                   </div>
 
                   {/* Button */}
-                  <div>
-                    <button
-                      disabled
-                      className="block w-full text-center px-4 py-3 bg-gray-300 text-gray-500 font-semibold text-sm border-2 border-gray-300 cursor-not-allowed"
-                    >
-                      Coming Soon
-                    </button>
-                  </div>
+                    <div>
+                        <a
+                            href="https://thmm.kr/eng-sparkling"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-center px-4 py-3 bg-[var(--color-primary)] text-white font-semibold text-sm border-2 border-[var(--color-primary)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                        >
+                            Live Demo
+                        </a>
+                    </div>
                 </div>
               </div>
             </div>
