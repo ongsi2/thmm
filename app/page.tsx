@@ -490,23 +490,27 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Dummy Project 1 */}
+            {/* ENG-SPARKLING Card */}
             <div className="flex-shrink-0 w-[85vw] sm:w-[450px] md:w-[500px] snap-start">
-              <div className="relative border-2 border-[var(--color-border)] bg-white p-8 h-full hover:border-[var(--color-accent)] hover:shadow-xl transition-all duration-300">
-                <div className="absolute -top-3 left-6 px-4 py-1 bg-gray-400 text-white text-xs font-bold">
-                  준비중
+              <div className="relative border-2 border-[var(--color-accent)] bg-white p-8 h-full hover:shadow-xl transition-all duration-300 shadow-lg">
+                <div className="absolute -top-3 left-6 px-4 py-1 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white text-xs font-bold">
+                  MAIN
                 </div>
 
                 <div className="space-y-6 h-full flex flex-col">
                   <div className="flex-1 space-y-4">
-                    <h3 className="text-2xl font-bold">ENG-SPARKLING</h3>
+                    <h3 className="text-2xl font-bold">
+                      <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">ENG</span>-SPARKLING
+                    </h3>
                     <p className="text-base leading-relaxed text-[var(--color-text-muted)]">
-                      수능 영어문제 자동 생성.
+                      수능/내신 영어 지문을 입력하면 <span className="font-mono font-semibold text-[var(--color-accent)]">GPT-4o-mini</span>가 12가지 유형의 문제를 자동 생성.{' '}
+                      <span className="font-mono font-semibold text-[var(--color-accent)]">Supabase</span> 기반 인증 + 코인 시스템과{' '}
+                      <span className="font-mono font-semibold text-[var(--color-accent)]">토스페이먼츠</span> 결제 연동까지 구현한 풀스택 서비스.
                     </p>
 
                     {/* Tech tags */}
                     <div className="flex flex-wrap gap-2">
-                      {['Spring Cloud', 'Kafka', 'MySQL', 'React', 'Kubernetes'].map((tag) => (
+                      {['Next.js 15', 'TypeScript', 'OpenAI API', 'Supabase', 'Tailwind CSS', 'Docker'].map((tag) => (
                         <span
                           key={tag}
                           className="px-2.5 py-1 border border-[var(--color-border)] bg-[var(--color-bg-off)] font-mono text-xs font-semibold hover:border-[var(--color-accent)] transition-colors"
@@ -518,16 +522,16 @@ export default function Home() {
                   </div>
 
                   {/* Button */}
-                    <div>
-                        <a
-                            href="https://thmm.kr/eng-sparkling"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block text-center px-4 py-3 bg-[var(--color-primary)] text-white font-semibold text-sm border-2 border-[var(--color-primary)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                        >
-                            Live Demo
-                        </a>
-                    </div>
+                  <div>
+                    <a
+                      href="https://thmm.kr/eng-sparkling"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center px-4 py-3 bg-[var(--color-accent)] text-white font-semibold text-sm border-2 border-[var(--color-accent)] hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                    >
+                      Live Demo
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
