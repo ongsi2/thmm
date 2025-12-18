@@ -618,13 +618,13 @@ export default function Home() {
             <div className="space-y-8">
               <div className="border-l-4 border-[var(--color-accent)] pl-6 space-y-4">
                 <p className="text-lg leading-relaxed text-[var(--color-text)]">
-                  완벽한 설계보다 <span className="font-semibold">빠르게 작동하는 MVP</span>를 먼저 만드는 편입니다. 돌아가는 코드가 있어야 로그와 지표를 통해 병목과 개선점이 보이기 때문입니다.
+                  완벽한 설계보다 <span className="font-semibold">빠르게 작동하는 MVP</span>를 먼저 만듭니다. 돌아가는 코드가 있어야 병목과 개선점이 보이기 때문입니다.
                 </p>
                 <p className="text-lg leading-relaxed text-[var(--color-text)]">
-                  혼자 잘 짜는 것보다 <span className="font-semibold">팀이 읽기 좋은 코드</span>가 더 중요하다고 믿습니다. 명확한 인터페이스 설계와 문서화로 누구나 빠르게 이해할 수 있는 코드를 지향합니다.
+                  <span className="font-semibold">팀이 읽기 좋은 코드</span>가 좋은 코드라고 믿습니다. 명확한 인터페이스와 문서화로 누구나 빠르게 이해할 수 있도록 합니다.
                 </p>
                 <p className="text-lg leading-relaxed text-[var(--color-text)]">
-                  코드 리뷰와 페어 프로그래밍을 통해 <span className="font-semibold">더 나은 방법을 함께 찾아가는 과정</span>을 즐깁니다. 서로 배우며 팀 전체의 코드 품질이 높아지는 경험을 해왔습니다.
+                  코드 리뷰와 페어 프로그래밍으로 <span className="font-semibold">함께 더 나은 방법을 찾는 과정</span>을 즐깁니다. 서로 배우며 성장하는 팀을 지향합니다.
                 </p>
               </div>
 
