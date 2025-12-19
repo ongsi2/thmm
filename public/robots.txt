@@ -1,0 +1,20 @@
+# https://thmm.kr/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thmm.kr/sitemap.xml
+
+# 크롤링 속도 조절
+Crawl-delay: 1
+
+# 특정 봇 허용
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yeti
+Allow: /
