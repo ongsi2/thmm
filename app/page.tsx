@@ -339,21 +339,21 @@ export default function Home() {
                 <div className="space-y-5 mb-5">
                   <div className="border-l-[3px] border-[var(--color-border)] pl-5">
                     <p className="font-semibold text-base mb-1">크레비즈</p>
-                    <p className="text-xs text-[var(--color-text-muted)] mb-3">ERP 물류 모듈 개발</p>
+                    <p className="text-xs text-[var(--color-text-muted)] mb-3">ERP 물류 모듈 및 대시보드 개발</p>
                     <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
                       <BulletItem>부품 입출고, 재고, 출하 등의 관리 기능 통합 개발</BulletItem>
                       <BulletItem>재고 출하 요청 데이터를 ERP 테이블과 실시간 연동</BulletItem>
+                      <BulletItem>실시간 재고 현황 및 입출고 이력 조회 대시보드 구현 (Highchart)</BulletItem>
+                      <BulletItem>Excel 업로드 기능으로 보고서 작성 시간 약 70% 단축</BulletItem>
                     </ul>
                   </div>
 
                   <div className="border-l-[3px] border-[var(--color-border)] pl-5">
                     <p className="font-semibold text-base mb-1">큐로드</p>
-                    <p className="text-xs text-[var(--color-text-muted)] mb-3">관리자용 물류 현황 대시보드 및 보고서 시스템</p>
+                    <p className="text-xs text-[var(--color-text-muted)] mb-3">고객 문의 및 QA 검수 시스템 개발</p>
                     <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                      <BulletItem>실시간 재고 현황 및 입출고 이력 조회 화면 구현</BulletItem>
-                      <BulletItem>차트 라이브러리(Highchart)를 활용한 데이터 시각화</BulletItem>
-                      <BulletItem>Excel 업로드 기능으로 보고서 작성 시간 약 70% 단축</BulletItem>
-                      <BulletItem>보고서 템플릿 자동 생성 기능으로 담당자 업무 부담 감소</BulletItem>
+                      <BulletItem>QA 업체의 테스트 결과 입력 → 검증 → 승인 기능 개발</BulletItem>
+                      <BulletItem>고객센터 문의 접수 및 이메일 답변 처리 시스템 구축</BulletItem>
                     </ul>
                   </div>
                 </div>
