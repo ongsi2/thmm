@@ -109,6 +109,10 @@ const personSchema = {
   alumniOf: [
     {
       '@type': 'Organization',
+      name: '한국언론진흥재단',
+    },
+    {
+      '@type': 'Organization',
       name: 'NHN엔터테인먼트',
     },
     {
@@ -118,7 +122,7 @@ const personSchema = {
   ],
   worksFor: {
     '@type': 'Organization',
-    name: '한국언론진흥재단',
+    name: '해양수산과학기술진흥원',
   },
 };
 
