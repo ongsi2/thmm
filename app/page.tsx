@@ -397,28 +397,26 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 md:py-32 bg-[var(--color-bg-light)] overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="projects" className="py-24 md:py-32 bg-[var(--color-bg-light)]">
+        <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12 reveal">
             <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">PROJECTS</p>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">운영 환경에서 바로 활용 가능한 프로젝트들</h2>
           </div>
-        </div>
 
-        {/* Auto-scrolling marquee */}
-        <div
-          className="relative"
-          onMouseEnter={() => setIsProjectsHovered(true)}
-          onMouseLeave={() => setIsProjectsHovered(false)}
-        >
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
-
+          {/* Auto-scrolling marquee - max-w 안에서 스크롤 */}
           <div
-            ref={scrollRef}
-            className="flex gap-6 pb-6 pt-4 px-8 scrollbar-hide"
-            style={{ overflowX: 'scroll', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            className="relative overflow-hidden"
+            onMouseEnter={() => setIsProjectsHovered(true)}
+            onMouseLeave={() => setIsProjectsHovered(false)}
           >
+            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
+
+            <div
+              ref={scrollRef}
+              className="flex gap-6 pb-6 pt-4 overflow-x-scroll scrollbar-hide"
+            >
             {[0, 1].map((setIndex) => (
               <div key={setIndex} className="flex gap-6 flex-shrink-0">
                 {/* ENG-SPARKLING */}
@@ -534,9 +532,10 @@ export default function Home() {
             ))}
           </div>
 
-          <p className={`text-center text-xs mt-2 spring ${isProjectsHovered ? 'opacity-80 text-[var(--color-accent)]' : 'opacity-30 text-[var(--color-text-muted)]'}`}>
-            {isProjectsHovered ? '일시정지됨' : '마우스를 올리면 멈춥니다'}
-          </p>
+            <p className={`text-center text-xs mt-2 spring ${isProjectsHovered ? 'opacity-80 text-[var(--color-accent)]' : 'opacity-30 text-[var(--color-text-muted)]'}`}>
+              {isProjectsHovered ? '일시정지됨' : '마우스를 올리면 멈춥니다'}
+            </p>
+          </div>
         </div>
       </section>
 
