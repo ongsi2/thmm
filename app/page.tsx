@@ -552,7 +552,32 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* ohmybaby 자리 - 연구 완료 후 추가 */}
+                {/* 오마이베이비 */}
+                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
+                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
+                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-md">
+                      개발중
+                    </div>
+                    <div className="space-y-5 h-full flex flex-col">
+                      <div className="flex-1 space-y-3">
+                        <h3 className="text-lg font-bold">오마이베이비</h3>
+                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                          AI 이름 추천과 이상형 월드컵 방식을 결합하여 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
+                          <span className="font-mono font-semibold text-[var(--color-accent)]">카카오 로그인</span>과{' '}
+                          <span className="font-mono font-semibold text-[var(--color-accent)]">토스페이먼츠</span> 결제 연동, 한자 뜻풀이와 오행 분석 등 한국 작명 문화를 반영했습니다.
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {['Next.js 16', 'Supabase', 'Toss Payments', 'Framer Motion', 'Tailwind CSS 4'].map((tag) => (
+                            <TechTag key={tag}>{tag}</TechTag>
+                          ))}
+                        </div>
+                      </div>
+                      <button disabled className="block w-full text-center px-4 py-2.5 bg-[var(--color-bg-soft)] text-[var(--color-text-muted)] font-semibold text-sm rounded-xl cursor-not-allowed">
+                        In Development
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
