@@ -465,6 +465,33 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* 그랑베이 산후조리원 */}
+                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
+                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
+                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-amber-600 text-white text-xs font-semibold rounded-md">
+                      외주
+                    </div>
+                    <div className="space-y-5 h-full flex flex-col">
+                      <div className="flex-1 space-y-3">
+                        <h3 className="text-lg font-bold">그랑베이 산후조리원</h3>
+                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                          안양 소재 프리미엄 산후조리원의 반응형 홈페이지. <span className="font-mono font-semibold text-[var(--color-accent)]">Astro 6</span> 기반 정적 사이트로,
+                          스크롤 기반 프레임 애니메이션 히어로, <span className="font-mono font-semibold text-[var(--color-accent)]">카카오맵</span> 연동,
+                          시설/프로그램/식단/스파 등 9개 페이지를 호텔급 고급 브랜딩 컨셉으로 구현했습니다.
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {['Astro 6', 'Tailwind CSS 4', 'Kakao Map', 'Vercel'].map((tag) => (
+                            <TechTag key={tag}>{tag}</TechTag>
+                          ))}
+                        </div>
+                      </div>
+                      <a href="https://astro-fawn-nu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block text-center px-4 py-2.5 bg-[var(--color-primary)] text-white font-semibold text-sm rounded-xl hover:shadow-md hover:scale-[1.02] active:scale-[0.98] spring">
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Real-time Chat */}
                 <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
                   <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
