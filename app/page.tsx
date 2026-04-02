@@ -32,39 +32,40 @@ export default function Home() {
     return () => cancelAnimationFrame(animRef.current);
   }, [isPaused]);
 
-  // 화살표: 카드 한 장씩 스냅 (부드러운 전환)
+  // 화살표: 카드 한 장씩 스냅 (무한 루프, 부드러운 전환)
   const scrollByCard = useCallback((direction: number) => {
     const container = marqueeRef.current;
     const wrapper = wrapperRef.current;
-    if (!container || !wrapper) return;
+    if (!container || !wrapper || isSnapping.current) return;
 
     const gap = 24;
-    const cardWidth = 420 + gap; // sm 기준, 실제 카드 + gap
+    const cardWidth = 420 + gap;
     const visibleWidth = wrapper.clientWidth;
     const halfWidth = container.scrollWidth / 2;
 
-    // 현재 위치에서 가장 가까운 카드 인덱스 계산 (카드 중앙 정렬)
     const centerOffset = (visibleWidth - 420) / 2;
     const currentIndex = Math.round((offsetRef.current + centerOffset) / cardWidth);
     const targetIndex = currentIndex + direction;
     const targetOffset = targetIndex * cardWidth - centerOffset;
 
-    // 무한 루프 처리
-    let finalOffset = targetOffset;
-    if (finalOffset >= halfWidth) finalOffset -= halfWidth;
-    if (finalOffset < 0) finalOffset += halfWidth;
-
-    // 부드러운 전환
+    // 전환 중에는 모듈로 처리 안 함 → 자연스럽게 다음 카드로 이동
     isSnapping.current = true;
     container.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-    offsetRef.current = finalOffset;
-    container.style.transform = `translateX(-${finalOffset}px)`;
+    offsetRef.current = targetOffset;
+    container.style.transform = `translateX(-${targetOffset}px)`;
 
-    // 전환 끝나면 transition 제거 (자동 스크롤 복귀 대비)
+    // 전환 끝나면 조용히 리셋 (복제 세트 경계 처리)
     setTimeout(() => {
       container.style.transition = 'none';
+      if (offsetRef.current >= halfWidth) {
+        offsetRef.current -= halfWidth;
+        container.style.transform = `translateX(-${offsetRef.current}px)`;
+      } else if (offsetRef.current < 0) {
+        offsetRef.current += halfWidth;
+        container.style.transform = `translateX(-${offsetRef.current}px)`;
+      }
       isSnapping.current = false;
-    }, 500);
+    }, 520);
   }, []);
 
   // IntersectionObserver for scroll reveal
@@ -494,6 +495,60 @@ export default function Home() {
                   </div>
                 </div>
 
+                {/* 그랑베이 산후조리원 */}
+                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
+                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
+                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-amber-600 text-white text-xs font-semibold rounded-md">
+                      외주
+                    </div>
+                    <div className="space-y-5 h-full flex flex-col">
+                      <div className="flex-1 space-y-3">
+                        <h3 className="text-lg font-bold">그랑베이 산후조리원</h3>
+                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                          안양 소재 프리미엄 산후조리원의 반응형 홈페이지. <span className="font-mono font-semibold text-[var(--color-accent)]">Astro 6</span> 기반 정적 사이트로,
+                          스크롤 기반 프레임 애니메이션 히어로, <span className="font-mono font-semibold text-[var(--color-accent)]">카카오맵</span> 연동,
+                          시설/프로그램/식단/스파 등 9개 페이지를 호텔급 고급 브랜딩 컨셉으로 구현했습니다.
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {['Astro 6', 'Tailwind CSS 4', 'Kakao Map', 'Vercel'].map((tag) => (
+                            <TechTag key={tag}>{tag}</TechTag>
+                          ))}
+                        </div>
+                      </div>
+                      <a href="https://astro-fawn-nu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block text-center px-4 py-2.5 bg-[var(--color-primary)] text-white font-semibold text-sm rounded-xl hover:shadow-md hover:scale-[1.02] active:scale-[0.98] spring">
+                        Live Demo
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* 오마이베이비 */}
+                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
+                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
+                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-md">
+                      개발중
+                    </div>
+                    <div className="space-y-5 h-full flex flex-col">
+                      <div className="flex-1 space-y-3">
+                        <h3 className="text-lg font-bold">오마이베이비</h3>
+                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
+                          AI 이름 추천과 이상형 월드컵 방식을 결합하여 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
+                          <span className="font-mono font-semibold text-[var(--color-accent)]">카카오 로그인</span>과{' '}
+                          <span className="font-mono font-semibold text-[var(--color-accent)]">토스페이먼츠</span> 결제 연동, 한자 뜻풀이와 오행 분석 등 한국 작명 문화를 반영했습니다.
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {['Next.js 16', 'Supabase', 'Toss Payments', 'Framer Motion', 'Tailwind CSS 4'].map((tag) => (
+                            <TechTag key={tag}>{tag}</TechTag>
+                          ))}
+                        </div>
+                      </div>
+                      <button disabled className="block w-full text-center px-4 py-2.5 bg-[var(--color-bg-soft)] text-[var(--color-text-muted)] font-semibold text-sm rounded-xl cursor-not-allowed">
+                        In Development
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Flash Coupon */}
                 <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
                   <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
@@ -547,60 +602,6 @@ export default function Home() {
                       <a href="https://thmm.kr/springboot-jwt" target="_blank" rel="noopener noreferrer" className="block text-center px-4 py-2.5 bg-[var(--color-primary)] text-white font-semibold text-sm rounded-xl hover:shadow-md hover:scale-[1.02] active:scale-[0.98] spring">
                         Live Demo
                       </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 그랑베이 산후조리원 */}
-                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
-                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
-                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-amber-600 text-white text-xs font-semibold rounded-md">
-                      외주
-                    </div>
-                    <div className="space-y-5 h-full flex flex-col">
-                      <div className="flex-1 space-y-3">
-                        <h3 className="text-lg font-bold">그랑베이 산후조리원</h3>
-                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                          안양 소재 프리미엄 산후조리원의 반응형 홈페이지. <span className="font-mono font-semibold text-[var(--color-accent)]">Astro 6</span> 기반 정적 사이트로,
-                          스크롤 기반 프레임 애니메이션 히어로, <span className="font-mono font-semibold text-[var(--color-accent)]">카카오맵</span> 연동,
-                          시설/프로그램/식단/스파 등 9개 페이지를 호텔급 고급 브랜딩 컨셉으로 구현했습니다.
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {['Astro 6', 'Tailwind CSS 4', 'Kakao Map', 'Vercel'].map((tag) => (
-                            <TechTag key={tag}>{tag}</TechTag>
-                          ))}
-                        </div>
-                      </div>
-                      <a href="https://astro-fawn-nu.vercel.app/" target="_blank" rel="noopener noreferrer" className="block text-center px-4 py-2.5 bg-[var(--color-primary)] text-white font-semibold text-sm rounded-xl hover:shadow-md hover:scale-[1.02] active:scale-[0.98] spring">
-                        Live Demo
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 오마이베이비 */}
-                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
-                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
-                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-md">
-                      개발중
-                    </div>
-                    <div className="space-y-5 h-full flex flex-col">
-                      <div className="flex-1 space-y-3">
-                        <h3 className="text-lg font-bold">오마이베이비</h3>
-                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                          AI 이름 추천과 이상형 월드컵 방식을 결합하여 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
-                          <span className="font-mono font-semibold text-[var(--color-accent)]">카카오 로그인</span>과{' '}
-                          <span className="font-mono font-semibold text-[var(--color-accent)]">토스페이먼츠</span> 결제 연동, 한자 뜻풀이와 오행 분석 등 한국 작명 문화를 반영했습니다.
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {['Next.js 16', 'Supabase', 'Toss Payments', 'Framer Motion', 'Tailwind CSS 4'].map((tag) => (
-                            <TechTag key={tag}>{tag}</TechTag>
-                          ))}
-                        </div>
-                      </div>
-                      <button disabled className="block w-full text-center px-4 py-2.5 bg-[var(--color-bg-soft)] text-[var(--color-text-muted)] font-semibold text-sm rounded-xl cursor-not-allowed">
-                        In Development
-                      </button>
                     </div>
                   </div>
                 </div>
