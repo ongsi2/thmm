@@ -1,9 +1,46 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
+  const [isPaused, setIsPaused] = useState(false);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef(0);
+  const animRef = useRef<number>(0);
+
+  // Projects 자동 스크롤 (JS transform 기반)
+  useEffect(() => {
+    const container = marqueeRef.current;
+    if (!container) return;
+
+    const animate = () => {
+      if (!isPaused) {
+        offsetRef.current += 0.5;
+        const halfWidth = container.scrollWidth / 2;
+        if (offsetRef.current >= halfWidth) {
+          offsetRef.current -= halfWidth;
+        }
+        container.style.transform = `translateX(-${offsetRef.current}px)`;
+      }
+      animRef.current = requestAnimationFrame(animate);
+    };
+
+    animRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animRef.current);
+  }, [isPaused]);
+
+  const scrollByCard = useCallback((direction: number) => {
+    const cardWidth = 444; // 420px + 24px gap
+    offsetRef.current += cardWidth * direction;
+    const container = marqueeRef.current;
+    if (container) {
+      const halfWidth = container.scrollWidth / 2;
+      if (offsetRef.current >= halfWidth) offsetRef.current -= halfWidth;
+      if (offsetRef.current < 0) offsetRef.current += halfWidth;
+      container.style.transform = `translateX(-${offsetRef.current}px)`;
+    }
+  }, []);
 
   // IntersectionObserver for scroll reveal
   useEffect(() => {
@@ -373,12 +410,35 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">운영 환경에서 바로 활용 가능한 프로젝트들</h2>
           </div>
 
-          {/* Auto-scrolling marquee - CSS translateX 기반 */}
-          <div className="relative overflow-hidden">
+          {/* Auto-scrolling marquee - JS transform 기반 + 화살표 */}
+          <div
+            className="relative overflow-hidden"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Fade edges */}
             <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
             <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
 
-            <div className="flex gap-6 pb-6 pt-4 animate-marquee w-max">
+            {/* Arrow buttons */}
+            <button
+              onClick={() => scrollByCard(-1)}
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-[var(--color-border)] shadow-md flex items-center justify-center hover:bg-white hover:shadow-lg hover:scale-110 active:scale-95 spring"
+            >
+              <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => scrollByCard(1)}
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm border border-[var(--color-border)] shadow-md flex items-center justify-center hover:bg-white hover:shadow-lg hover:scale-110 active:scale-95 spring"
+            >
+              <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <div ref={marqueeRef} className="flex gap-6 pb-6 pt-4 w-max">
             {[0, 1].map((setIndex) => (
               <div key={setIndex} className="flex gap-6 flex-shrink-0">
                 {/* ENG-SPARKLING */}
@@ -492,37 +552,13 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Real-time Chat */}
-                <div className="flex-shrink-0 w-[85vw] sm:w-[380px] md:w-[420px]">
-                  <div className="relative bg-white border border-[var(--color-border)] p-7 h-full rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-lg spring">
-                    <div className="absolute -top-2.5 left-5 px-3 py-0.5 bg-purple-500 text-white text-xs font-semibold rounded-md">
-                      개발중
-                    </div>
-                    <div className="space-y-5 h-full flex flex-col">
-                      <div className="flex-1 space-y-3">
-                        <h3 className="text-lg font-bold">Real-time Chat Service</h3>
-                        <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-                          WebSocket 기반 실시간 채팅 서비스.{' '}
-                          <span className="font-mono font-semibold">Redis Pub/Sub</span>으로 다중 서버 환경에서의 메시지 동기화를 구현했습니다.
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {['Node.js', 'Socket.io', 'Redis', 'MongoDB', 'Vue.js'].map((tag) => (
-                            <TechTag key={tag}>{tag}</TechTag>
-                          ))}
-                        </div>
-                      </div>
-                      <button disabled className="block w-full text-center px-4 py-2.5 bg-[var(--color-bg-soft)] text-[var(--color-text-muted)] font-semibold text-sm rounded-xl cursor-not-allowed">
-                        In Development
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                {/* ohmybaby 자리 - 연구 완료 후 추가 */}
               </div>
             ))}
           </div>
 
-            <p className="text-center text-xs mt-2 opacity-30 text-[var(--color-text-muted)]">
-              마우스를 올리면 멈춥니다
+            <p className={`text-center text-xs mt-2 spring ${isPaused ? 'opacity-60 text-[var(--color-accent)]' : 'opacity-30 text-[var(--color-text-muted)]'}`}>
+              {isPaused ? '일시정지 — 화살표로 이동' : '마우스를 올리면 멈춥니다'}
             </p>
           </div>
         </div>
