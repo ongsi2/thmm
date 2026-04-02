@@ -1,12 +1,9 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
-  const [isProjectsHovered, setIsProjectsHovered] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>(0);
 
   // IntersectionObserver for scroll reveal
   useEffect(() => {
@@ -24,34 +21,6 @@ export default function Home() {
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
-
-  // Projects 자동 스크롤
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!container) return;
-
-    let lastTime = 0;
-    const speed = 0.5;
-
-    const animate = (timestamp: number) => {
-      if (!lastTime) lastTime = timestamp;
-      const delta = timestamp - lastTime;
-      lastTime = timestamp;
-
-      if (!isProjectsHovered && delta < 100) {
-        container.scrollLeft += speed * (delta / 16);
-        const halfScroll = container.scrollWidth / 2;
-        if (container.scrollLeft >= halfScroll) {
-          container.scrollLeft = 0;
-        }
-      }
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [isProjectsHovered]);
 
   // 섹션 스크롤 감지
   useEffect(() => {
@@ -404,19 +373,12 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">운영 환경에서 바로 활용 가능한 프로젝트들</h2>
           </div>
 
-          {/* Auto-scrolling marquee - max-w 안에서 스크롤 */}
-          <div
-            className="relative overflow-hidden"
-            onMouseEnter={() => setIsProjectsHovered(true)}
-            onMouseLeave={() => setIsProjectsHovered(false)}
-          >
+          {/* Auto-scrolling marquee - CSS translateX 기반 */}
+          <div className="relative overflow-hidden">
             <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
             <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[var(--color-bg-light)] to-transparent z-10 pointer-events-none"></div>
 
-            <div
-              ref={scrollRef}
-              className="flex gap-6 pb-6 pt-4 overflow-x-scroll scrollbar-hide"
-            >
+            <div className="flex gap-6 pb-6 pt-4 animate-marquee w-max">
             {[0, 1].map((setIndex) => (
               <div key={setIndex} className="flex gap-6 flex-shrink-0">
                 {/* ENG-SPARKLING */}
@@ -532,8 +494,8 @@ export default function Home() {
             ))}
           </div>
 
-            <p className={`text-center text-xs mt-2 spring ${isProjectsHovered ? 'opacity-80 text-[var(--color-accent)]' : 'opacity-30 text-[var(--color-text-muted)]'}`}>
-              {isProjectsHovered ? '일시정지됨' : '마우스를 올리면 멈춥니다'}
+            <p className="text-center text-xs mt-2 opacity-30 text-[var(--color-text-muted)]">
+              마우스를 올리면 멈춥니다
             </p>
           </div>
         </div>
