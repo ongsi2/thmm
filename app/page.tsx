@@ -6,8 +6,10 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const [isPaused, setIsPaused] = useState(false);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const offsetRef = useRef(0);
   const animRef = useRef<number>(0);
+  const isSnapping = useRef(false);
 
   // Projects 자동 스크롤 (JS transform 기반)
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function Home() {
     if (!container) return;
 
     const animate = () => {
-      if (!isPaused) {
+      if (!isPaused && !isSnapping.current) {
         offsetRef.current += 0.5;
         const halfWidth = container.scrollWidth / 2;
         if (offsetRef.current >= halfWidth) {
@@ -30,16 +32,39 @@ export default function Home() {
     return () => cancelAnimationFrame(animRef.current);
   }, [isPaused]);
 
+  // 화살표: 카드 한 장씩 스냅 (부드러운 전환)
   const scrollByCard = useCallback((direction: number) => {
-    const cardWidth = 444; // 420px + 24px gap
-    offsetRef.current += cardWidth * direction;
     const container = marqueeRef.current;
-    if (container) {
-      const halfWidth = container.scrollWidth / 2;
-      if (offsetRef.current >= halfWidth) offsetRef.current -= halfWidth;
-      if (offsetRef.current < 0) offsetRef.current += halfWidth;
-      container.style.transform = `translateX(-${offsetRef.current}px)`;
-    }
+    const wrapper = wrapperRef.current;
+    if (!container || !wrapper) return;
+
+    const gap = 24;
+    const cardWidth = 420 + gap; // sm 기준, 실제 카드 + gap
+    const visibleWidth = wrapper.clientWidth;
+    const halfWidth = container.scrollWidth / 2;
+
+    // 현재 위치에서 가장 가까운 카드 인덱스 계산 (카드 중앙 정렬)
+    const centerOffset = (visibleWidth - 420) / 2;
+    const currentIndex = Math.round((offsetRef.current + centerOffset) / cardWidth);
+    const targetIndex = currentIndex + direction;
+    const targetOffset = targetIndex * cardWidth - centerOffset;
+
+    // 무한 루프 처리
+    let finalOffset = targetOffset;
+    if (finalOffset >= halfWidth) finalOffset -= halfWidth;
+    if (finalOffset < 0) finalOffset += halfWidth;
+
+    // 부드러운 전환
+    isSnapping.current = true;
+    container.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    offsetRef.current = finalOffset;
+    container.style.transform = `translateX(-${finalOffset}px)`;
+
+    // 전환 끝나면 transition 제거 (자동 스크롤 복귀 대비)
+    setTimeout(() => {
+      container.style.transition = 'none';
+      isSnapping.current = false;
+    }, 500);
   }, []);
 
   // IntersectionObserver for scroll reveal
@@ -412,6 +437,7 @@ export default function Home() {
 
           {/* Auto-scrolling marquee - JS transform 기반 + 화살표 */}
           <div
+            ref={wrapperRef}
             className="relative overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
