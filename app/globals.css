@@ -21,6 +21,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* 스크롤바 나타날 자리 항상 확보 — 콘텐츠 높이 변화로 스크롤바 토글 시 레이아웃 떨림 방지 */
+    scrollbar-gutter: stable;
   }
 
   body {
