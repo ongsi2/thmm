@@ -19,6 +19,15 @@ export const organizations: Record<string, Organization> = {
     intro:
       '해양수산 R&D 통합정보시스템(바다봄) 운영 및 확장. 타사이트 SSO 연동, 로그뷰어 등 운영 편의 도구 제작, 외부 시스템(OTT 기술거래)을 바다봄으로 이관하는 등의 업무를 수행.',
   },
+  'personal': {
+    id: 'personal',
+    system: '프리랜서 · 사이드 프로젝트',
+    company: '개인',
+    period: '2025 - 현재',
+    role: '기획 · 디자인 · 개발',
+    intro:
+      '직접 기획하거나 클라이언트에게 제안해서 시작한 프로젝트들. 컨셉부터 디자인, 개발, 배포까지 전 과정을 직접 수행.',
+  },
   'kpf-issga': {
     id: 'kpf-issga',
     system: '정부광고통합지원시스템',
@@ -122,6 +131,26 @@ export const cases: CaseInfo[] = [
       'WebtoB 공용 SSL을 건드리기 부담스러워서, 앞단에 Nginx를 세우고 거기서 TLS를 종단하도록 바꿨습니다. 기존 서비스는 영향 없이 TLS 1.3으로 올렸습니다.',
     outcome: 'TLS 1.3 적용 · 영향 최소화',
     stack: ['Nginx', 'WebtoB', 'JEUS', 'TLS 1.2/1.3', 'Reverse Proxy'],
+  },
+  {
+    slug: 'grandbaie',
+    organizationId: 'personal',
+    category: 'CLIENT WORK / WEB',
+    title: '산후조리원 홈페이지 리뉴얼 제안 → 제작',
+    summary:
+      '아내가 입소한 조리원의 홈페이지가 오래돼 보여서 직접 UI 샘플을 만들어 제안했습니다. 192프레임 스크롤 애니메이션, 카카오맵, SEO까지 갖춘 Astro 정적 사이트를 제작해서 실제 운영 도메인으로 배포했습니다.',
+    outcome: 'grandbaie.co.kr 운영중',
+    stack: ['Astro 6', 'Tailwind CSS 4', 'Canvas API', 'Kakao Map', 'Vercel'],
+  },
+  {
+    slug: 'ohmybaby',
+    organizationId: 'personal',
+    category: 'SIDE PROJECT / AI',
+    title: 'AI 작명 + 이상형 월드컵으로 가족이 함께 고르는 아기 이름',
+    summary:
+      '기존 작명 서비스가 혼자 쓰는 구조여서, 가족이 같이 참여할 수 있는 방식을 만들었습니다. GPT-4o가 사주·오행 맞춰 이름을 추천하면, 이상형 월드컵으로 가족이 투표해서 최종 이름을 고릅니다.',
+    outcome: 'ohmybaby.kr 운영중',
+    stack: ['Next.js 16', 'GPT-4o', 'Supabase', 'Kakao OAuth', 'Framer Motion'],
   },
 ];
 

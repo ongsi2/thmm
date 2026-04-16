@@ -25,20 +25,19 @@ const monoPlain = (s: string) => <span className="font-mono font-semibold">{s}</
 
 export const projects: Project[] = [
   {
-    slug: 'eng-sparkling',
-    title: 'ENG-SPARKLING',
+    slug: 'ohmybaby',
+    title: '오마이베이비',
     badge: { text: 'MAIN', tone: 'main' },
     accentBorder: true,
     featured: true,
     description: (
       <>
-        수능/내신 영어 지문을 입력하면 {mono('GPT-4o-mini')}가 12가지 유형의 문제를 자동 생성해주는
-        서비스입니다. {mono('Supabase')} 기반 인증과 코인 시스템으로 무료 체험부터 유료 사용까지
-        자연스럽게 이어지도록 구성했습니다.
+        AI 이름 추천과 이상형 월드컵 방식을 결합해 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
+        {mono('카카오 로그인')} 기반 인증과 한자 뜻풀이·오행 분석 등 한국 작명 문화를 반영했습니다.
       </>
     ),
-    tags: ['Next.js 15', 'TypeScript', 'OpenAI API', 'Supabase', 'Tailwind CSS', 'Docker'],
-    ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/eng-sparkling', variant: 'accent' }],
+    tags: ['Next.js 16', 'Supabase', 'Framer Motion', 'Tailwind CSS 4'],
+    ctas: [{ label: '사이트 방문', href: 'https://ohmybaby.kr', variant: 'accent' }],
   },
   {
     slug: 'grandbaie',
@@ -56,18 +55,19 @@ export const projects: Project[] = [
     ctas: [{ label: '사이트 방문', href: 'https://grandbaie.co.kr', variant: 'primary' }],
   },
   {
-    slug: 'ohmybaby',
-    title: '오마이베이비',
+    slug: 'eng-sparkling',
+    title: 'ENG-SPARKLING',
     badge: { text: '운영중', tone: 'secondary' },
     featured: true,
     description: (
       <>
-        AI 이름 추천과 이상형 월드컵 방식을 결합해 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
-        {mono('카카오 로그인')} 기반 인증과 한자 뜻풀이·오행 분석 등 한국 작명 문화를 반영했습니다.
+        수능/내신 영어 지문을 입력하면 {mono('GPT-4o-mini')}가 12가지 유형의 문제를 자동 생성해주는
+        서비스입니다. {mono('Supabase')} 기반 인증과 코인 시스템으로 무료 체험부터 유료 사용까지
+        자연스럽게 이어지도록 구성했습니다.
       </>
     ),
-    tags: ['Next.js 16', 'Supabase', 'Framer Motion', 'Tailwind CSS 4'],
-    ctas: [{ label: '사이트 방문', href: 'https://ohmybaby.kr', variant: 'primary' }],
+    tags: ['Next.js 15', 'TypeScript', 'OpenAI API', 'Supabase', 'Tailwind CSS', 'Docker'],
+    ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/eng-sparkling', variant: 'primary' }],
   },
   {
     slug: 'flash-coupon',
