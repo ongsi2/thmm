@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export default function Home() {
@@ -182,7 +183,7 @@ export default function Home() {
           >
             THMM
           </a>
-          <div className="flex gap-8 text-sm font-medium">
+          <div className="flex gap-5 sm:gap-8 text-sm font-medium">
             {sections.map((item) => (
               <a
                 key={item.id}
@@ -201,6 +202,12 @@ export default function Home() {
                 />
               </a>
             ))}
+            <Link
+              href="/portfolio"
+              className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
+            >
+              Case Studies
+            </Link>
           </div>
         </div>
       </nav>
@@ -249,6 +256,13 @@ export default function Home() {
               >
                 프로젝트 보기
               </a>
+              <Link
+                href="/portfolio"
+                className="px-7 py-3.5 bg-white text-[var(--color-accent)] font-semibold border border-[var(--color-accent)]/40 rounded-xl shadow-sm hover:shadow-md hover:bg-[var(--color-accent-light)] hover:scale-[1.02] active:scale-[0.98] spring inline-flex items-center gap-2"
+              >
+                <span>케이스 스터디</span>
+                <span aria-hidden>→</span>
+              </Link>
               <a
                 href="/resume.pdf"
                 download
@@ -624,7 +638,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight">사용자 경험과 안정성을 함께 챙기는 풀스택 개발자</h2>
           </div>
 
-          <div className="grid md:grid-cols-[1.2fr,0.8fr] gap-10 items-start">
+          <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
             {/* Philosophy */}
             <div className="space-y-8 reveal">
               <div className="space-y-5">

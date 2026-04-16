@@ -1,0 +1,138 @@
+export type Organization = {
+  id: string;
+  system: string;
+  company: string;
+  period: string;
+  role: string;
+  current?: boolean;
+  intro: string;
+};
+
+export const organizations: Record<string, Organization> = {
+  'kimst-bdbis': {
+    id: 'kimst-bdbis',
+    system: '바다봄',
+    company: '해양수산과학기술진흥원',
+    period: '2026.01 - 현재',
+    role: '프리랜서 · 개발자',
+    current: true,
+    intro:
+      '해양수산 R&D 통합정보시스템(바다봄) 운영 및 확장. 타사이트 SSO 연동, 로그뷰어 등 운영 편의 도구 제작, 외부 시스템(OTT 기술거래)을 바다봄으로 이관하는 등의 업무를 수행.',
+  },
+  'kpf-issga': {
+    id: 'kpf-issga',
+    system: '정부광고통합지원시스템',
+    company: '한국언론진흥재단',
+    period: '2020.08 - 2025.12 (5년 4개월)',
+    role: '프리랜서 · PL/AA',
+    intro:
+      '정부광고 통합지원 플랫폼을 PL/AA 역할로 운영. CI/CD 구축, 세션 클러스터링, TLS 업그레이드 등 인프라·보안·배포 자동화 작업을 담당.',
+  },
+};
+
+export type CaseInfo = {
+  slug: string;
+  organizationId: keyof typeof organizations;
+  category: string;
+  title: string;
+  summary: string;
+  outcome: string;
+  stack: string[];
+};
+
+export const cases: CaseInfo[] = [
+  {
+    slug: 'sso-provider',
+    organizationId: 'kimst-bdbis',
+    category: 'AUTH / SSO',
+    title: '외부 사이트용 SSO Provider 구축',
+    summary:
+      'OTT 등 외부 기관 사이트에서 바다봄 계정으로 로그인하도록 Provider를 직접 구현했습니다. 일회용 UUID 토큰을 DB에 저장해 다중 WAS를 지원하고, CI(개인 공통 식별자) 기반으로 양쪽 계정을 자동 매핑합니다.',
+    outcome: '외부 사이트 SSO 통합 · 계정 자동 매핑',
+    stack: [
+      'Spring MVC',
+      'iBATIS',
+      'UUID Token',
+      'DB 세션 저장소',
+      'CORS',
+      '전자정부 프레임워크',
+    ],
+  },
+  {
+    slug: 'log-viewer',
+    organizationId: 'kimst-bdbis',
+    category: 'DEVOPS / OBSERVABILITY',
+    title: 'SSE + Cross-WAS 실시간 로그 뷰어',
+    summary:
+      'WAS는 대전 IDC에 있는데, 망분리 정책상 그 서버에 붙을 수 있는 PC가 부산 사무실에만 있었습니다. 그래서 로그 한 번 보려면 사실상 부산으로 가야 하는 구조였어요. 관리자 웹 안에 SSE 기반 뷰어를 만들고, 두 개 WAS 노드 로그까지 Cross-WAS 릴레이로 한 화면에서 보이도록 구성했습니다.',
+    outcome: '부산 의존 제거 · 멀티 노드 통합',
+    stack: [
+      'Spring MVC',
+      'Server-Sent Events',
+      'RandomAccessFile',
+      'Proxy Token',
+      'JEUS',
+      '전자정부 프레임워크',
+    ],
+  },
+  {
+    slug: 'techtrade-migration',
+    organizationId: 'kimst-bdbis',
+    category: 'LEGACY MIGRATION',
+    title: 'OTT 기술거래 시스템을 바다봄으로 이관',
+    summary:
+      'Oracle + MyBatis 기반의 OTT 기술거래 플랫폼을 PostgreSQL + iBATIS 환경으로 옮겼습니다. 87개 URL, 34개 JSP, 80여 개 SQL과 14개 테이블을 재작성했습니다.',
+    outcome: '87 URL · 80+ SQL 이관',
+    stack: [
+      'Spring MVC 4.3',
+      'eGovFrame 3.9',
+      'iBATIS 2.0',
+      'PostgreSQL',
+      'Oracle',
+      'JSP',
+      'rMateGridH5',
+    ],
+  },
+  {
+    slug: 'cicd',
+    organizationId: 'kpf-issga',
+    category: 'CI/CD',
+    title: '빌드·배포 프로세스 자동화',
+    summary:
+      '전부 수동으로 하던 빌드·배포를 Jenkins + GitLab Webhook 기반으로 자동화해서, 배포 시간을 15~20분에서 4분대로 줄였습니다.',
+    outcome: '배포 시간 80% 단축',
+    stack: ['Jenkins', 'GitLab', 'Docker', 'Maven', 'Declarative Pipeline'],
+  },
+  {
+    slug: 'redis-session',
+    organizationId: 'kpf-issga',
+    category: 'INFRA / SESSION',
+    title: 'Redis 기반 세션 클러스터링',
+    summary:
+      'JEUS Standard에서는 세션 클러스터링 기능을 못 써서, Redis를 외부 세션 저장소로 두고 우회했습니다. 덕분에 WAS 순차 재기동이 가능해졌습니다.',
+    outcome: '무중단 배포 가능',
+    stack: ['Redis', 'Spring Session', 'Docker', '전자정부 프레임워크', 'JEUS'],
+  },
+  {
+    slug: 'tls-upgrade',
+    organizationId: 'kpf-issga',
+    category: 'SECURITY / NETWORK',
+    title: 'Nginx 리버스 프록시로 TLS 1.3 적용',
+    summary:
+      'WebtoB 공용 SSL을 건드리기 부담스러워서, 앞단에 Nginx를 세우고 거기서 TLS를 종단하도록 바꿨습니다. 기존 서비스는 영향 없이 TLS 1.3으로 올렸습니다.',
+    outcome: 'TLS 1.3 적용 · 영향 최소화',
+    stack: ['Nginx', 'WebtoB', 'JEUS', 'TLS 1.2/1.3', 'Reverse Proxy'],
+  },
+];
+
+export function casesByOrganization() {
+  const order = Object.values(organizations).sort((a, b) => {
+    if (a.current && !b.current) return -1;
+    if (!a.current && b.current) return 1;
+    return 0;
+  });
+  return order.map((org) => ({
+    org,
+    items: cases.filter((c) => c.organizationId === org.id),
+  }));
+}

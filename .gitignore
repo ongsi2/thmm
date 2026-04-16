@@ -40,3 +40,23 @@ next-env.d.ts
 
 # idea
 .idea
+
+# playwright browser testing artifacts
+.playwright-mcp/
+
+# work-in-progress reference images at repo root
+/cicd*.png
+/main-about*.png
+/portfolio-index*.png
+/portfolio-v*.png
+/redis.png
+/tls*.png
+
+# reference text/docs kept out of repo
+/portfolio.txt
+
+# design skill workspace (not deployed)
+/supanova-design-skill/
+
+# reference portfolio PDF (deployed copy is public/resume.pdf)
+/신성무_Developer*Portfolio.pdf

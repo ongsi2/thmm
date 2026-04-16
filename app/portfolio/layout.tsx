@@ -1,0 +1,73 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+
+const siteUrl = 'https://thmm.kr';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: '케이스 스터디 | 신성무 포트폴리오',
+    template: '%s | 신성무 포트폴리오',
+  },
+  description:
+    '레거시 환경에서 CI/CD, 세션 클러스터링, TLS 업그레이드 등 실제 운영 문제를 해결한 백엔드 케이스 스터디 모음.',
+  alternates: {
+    canonical: `${siteUrl}/portfolio`,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    url: `${siteUrl}/portfolio`,
+    siteName: 'THMM Portfolio',
+    title: '케이스 스터디 | 신성무 포트폴리오',
+    description:
+      '레거시 환경에서 CI/CD, 세션 클러스터링, TLS 업그레이드 등 실제 운영 문제를 해결한 백엔드 케이스 스터디 모음.',
+    images: [`${siteUrl}/og-image.jpg`],
+  },
+};
+
+export default function PortfolioLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <div className="min-h-[100dvh] bg-[var(--color-bg-light)] noise-overlay">
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/[0.06]">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <Link
+            href="/"
+            className="text-lg font-bold tracking-tight text-[var(--color-primary)] hover:text-[var(--color-accent)] spring"
+          >
+            THMM
+          </Link>
+          <div className="flex gap-5 sm:gap-8 text-sm font-medium">
+            <Link
+              href="/#experience"
+              className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
+            >
+              Experience
+            </Link>
+            <Link
+              href="/#projects"
+              className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
+            >
+              Projects
+            </Link>
+            <Link
+              href="/portfolio"
+              className="relative py-1 text-[var(--color-accent)]"
+            >
+              Case Studies
+              <span className="absolute -bottom-0.5 left-0 h-[2px] w-full bg-[var(--color-accent)] rounded-full" />
+            </Link>
+          </div>
+        </div>
+      </nav>
+      {children}
+      <footer className="py-10 text-center border-t border-[var(--color-border)]">
+        <p className="text-[var(--color-text-muted)] text-xs">
+          &copy; 2026 THMM. Crafted with TypeScript &amp; Next.js
+        </p>
+      </footer>
+    </div>
+  );
+}
