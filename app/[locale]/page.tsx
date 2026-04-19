@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import ProjectsList from './_components/ProjectsList';
+import ProjectsList from '../_components/ProjectsList';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');

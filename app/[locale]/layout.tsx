@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+import '../globals.css';
 
 const siteUrl = 'https://thmm.kr';
 const siteName = 'THMM Portfolio';
@@ -147,13 +150,20 @@ const profilePageSchema = {
   },
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }>) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
   return (
-    <html lang="ko">
+    <html lang={locale}>
       <head>
         <script
           type="application/ld+json"
@@ -169,8 +179,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        {children}
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
   );
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }

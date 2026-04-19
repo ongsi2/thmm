@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { projects, ProjectCard } from '../../_components/projects-data';
+import { projects, ProjectCard } from '../../../_components/projects-data';
 
 export const metadata = {
   title: 'Demo B · Featured + All | THMM',
