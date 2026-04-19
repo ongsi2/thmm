@@ -60,7 +60,7 @@ app/
 ├── globals.css
 └── sitemap.ts             # 한/영 URL 모두 발행 + alternates 연결
 
-middleware.ts              # next-intl 미들웨어 (as-needed prefix)
+proxy.ts                   # next-intl 미들웨어 (Next.js 16에서 middleware.ts → proxy.ts 로 변경)
 i18n/
 ├── request.ts             # getRequestConfig — locale별 messages 로드
 └── routing.ts             # defineRouting — locales=['ko','en'], defaultLocale='ko'
