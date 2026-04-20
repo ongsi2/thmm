@@ -9,6 +9,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const tNav = useTranslations('nav');
   const tHero = useTranslations('hero');
+  const tExp = useTranslations('experience');
 
   // IntersectionObserver for scroll reveal
   useEffect(() => {
@@ -220,8 +221,8 @@ export default function Home() {
       <section id="experience" className="px-6 py-24 md:py-32 bg-white relative">
         <div className="max-w-5xl mx-auto">
           <div className="mb-14 reveal">
-            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">EXPERIENCE</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">약 10년간의 실무 경력</h2>
+            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">{tExp('eyebrow')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{tExp('heading')}</h2>
           </div>
 
           <div className="space-y-6 relative before:absolute before:left-[11px] before:top-0 before:bottom-0 before:w-[2px] before:bg-[var(--color-border)]">
@@ -233,20 +234,20 @@ export default function Home() {
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
                   <div>
                     <span className="inline-block px-2.5 py-0.5 bg-[var(--color-accent)] text-white text-xs font-semibold rounded-md mb-3">
-                      재직중
+                      {tExp('currentBadge')}
                     </span>
-                    <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">해양수산과학기술진흥원</h3>
-                    <p className="text-sm text-[var(--color-text-muted)]">프리랜서 · 개발자</p>
-                    <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">2026.01 - 현재</p>
+                    <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('kimst.name')}</h3>
+                    <p className="text-sm text-[var(--color-text-muted)]">{tExp('kimst.role')}</p>
+                    <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('kimst.tenure')}</p>
                   </div>
                 </div>
 
                 <div className="border-l-[3px] border-[var(--color-accent)]/30 pl-5 mb-5">
-                  <p className="font-semibold text-base mb-3">바다봄 홈페이지 운영</p>
+                  <p className="font-semibold text-base mb-3">{tExp('kimst.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    <BulletItem accent>타사이트와의 SSO 연동 개발</BulletItem>
-                    <BulletItem accent>실시간 로그뷰어 개발</BulletItem>
-                    <BulletItem accent>기술거래 사이트 마이그레이션 작업</BulletItem>
+                    {(tExp.raw('kimst.bullets') as string[]).map((bullet, idx) => (
+                      <BulletItem accent key={idx}>{bullet}</BulletItem>
+                    ))}
                   </ul>
                 </div>
 
@@ -263,18 +264,17 @@ export default function Home() {
               <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
               <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
                 <div className="mb-5">
-                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">한국언론진흥재단</h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">프리랜서 · PL/AA</p>
-                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">2020.08 - 2025.12 (5년 4개월)</p>
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('kpf.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('kpf.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('kpf.tenure')}</p>
                 </div>
 
                 <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
-                  <p className="font-semibold text-base mb-3">정부광고통합지원시스템</p>
+                  <p className="font-semibold text-base mb-3">{tExp('kpf.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    <BulletItem>Jenkins 기반 CI/CD 파이프라인 구축 (배포 시간 30분 → 5분 단축)</BulletItem>
-                    <BulletItem>NCP 활용 고가용성 인프라 구축 (세션 클러스터링, 무중단 배포)</BulletItem>
-                    <BulletItem>실시간 모니터링/알림 체계 구축 및 장애 대응</BulletItem>
-                    <BulletItem>BizTalk 카카오 알림톡, ePapyrus PDF 솔루션 연계 개발</BulletItem>
+                    {(tExp.raw('kpf.bullets') as string[]).map((bullet, idx) => (
+                      <BulletItem key={idx}>{bullet}</BulletItem>
+                    ))}
                   </ul>
                 </div>
 
@@ -291,17 +291,17 @@ export default function Home() {
               <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
               <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
                 <div className="mb-5">
-                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">아이티파트너스</h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">정규직 · 개발자</p>
-                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">2017.10 - 2020.07 (2년 9개월)</p>
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('itpartners.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('itpartners.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('itpartners.tenure')}</p>
                 </div>
 
                 <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
-                  <p className="font-semibold text-base mb-3">공공기관 SI 프로젝트 (한국과학기술연구원, 농림식품기술평가원 등)</p>
+                  <p className="font-semibold text-base mb-3">{tExp('itpartners.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    <BulletItem>레거시 시스템 현대화 (T-Form → Nexacro 플랫폼 전환)</BulletItem>
-                    <BulletItem>연구물품 재고 및 입출고 관리 시스템 구축 (수기 관리 → DB화)</BulletItem>
-                    <BulletItem>RESTful API 기반 내부 ERP 연동 모듈 개발</BulletItem>
+                    {(tExp.raw('itpartners.bullets') as string[]).map((bullet, idx) => (
+                      <BulletItem key={idx}>{bullet}</BulletItem>
+                    ))}
                   </ul>
                 </div>
 
@@ -318,29 +318,29 @@ export default function Home() {
               <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
               <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
                 <div className="mb-5">
-                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">크레비즈, 큐로드</h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">프리랜서 · 정규직 혼합</p>
-                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">2014.12 - 2015.11 (1년)</p>
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('crebiz.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('crebiz.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('crebiz.tenure')}</p>
                 </div>
 
                 <div className="space-y-5 mb-5">
                   <div className="border-l-[3px] border-[var(--color-border)] pl-5">
-                    <p className="font-semibold text-base mb-1">크레비즈</p>
-                    <p className="text-xs text-[var(--color-text-muted)] mb-3">ERP 물류 모듈 및 대시보드 개발</p>
+                    <p className="font-semibold text-base mb-1">{tExp('crebiz.crebizTitle')}</p>
+                    <p className="text-xs text-[var(--color-text-muted)] mb-3">{tExp('crebiz.crebizSubtitle')}</p>
                     <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                      <BulletItem>부품 입출고, 재고, 출하 등의 관리 기능 통합 개발</BulletItem>
-                      <BulletItem>재고 출하 요청 데이터를 ERP 테이블과 실시간 연동</BulletItem>
-                      <BulletItem>실시간 재고 현황 및 입출고 이력 조회 대시보드 구현 (Highchart)</BulletItem>
-                      <BulletItem>Excel 업로드 기능으로 보고서 작성 시간 약 70% 단축</BulletItem>
+                      {(tExp.raw('crebiz.crebizBullets') as string[]).map((bullet, idx) => (
+                        <BulletItem key={idx}>{bullet}</BulletItem>
+                      ))}
                     </ul>
                   </div>
 
                   <div className="border-l-[3px] border-[var(--color-border)] pl-5">
-                    <p className="font-semibold text-base mb-1">큐로드</p>
-                    <p className="text-xs text-[var(--color-text-muted)] mb-3">고객 문의 및 QA 검수 시스템 개발</p>
+                    <p className="font-semibold text-base mb-1">{tExp('crebiz.qloadTitle')}</p>
+                    <p className="text-xs text-[var(--color-text-muted)] mb-3">{tExp('crebiz.qloadSubtitle')}</p>
                     <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                      <BulletItem>QA 업체의 테스트 결과 입력 → 검증 → 승인 기능 개발</BulletItem>
-                      <BulletItem>고객센터 문의 접수 및 이메일 답변 처리 시스템 구축</BulletItem>
+                      {(tExp.raw('crebiz.qloadBullets') as string[]).map((bullet, idx) => (
+                        <BulletItem key={idx}>{bullet}</BulletItem>
+                      ))}
                     </ul>
                   </div>
                 </div>
@@ -358,17 +358,17 @@ export default function Home() {
               <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
               <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
                 <div className="mb-5">
-                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">NHN엔터테인먼트</h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">정규직 · 개발자</p>
-                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">2012.12 - 2014.12 (2년)</p>
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('nhn.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('nhn.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('nhn.tenure')}</p>
                 </div>
 
                 <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
-                  <p className="font-semibold text-base mb-3">게임 운영 서비스 (위닝일레븐온라인2, 풋볼데이 등)</p>
+                  <p className="font-semibold text-base mb-3">{tExp('nhn.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    <BulletItem>게임 포털/이벤트 페이지 개발 및 운영</BulletItem>
-                    <BulletItem>jQuery/Ajax 비동기 UI 구현으로 로딩 속도 개선</BulletItem>
-                    <BulletItem>운영자용 게임 관리 콘솔(CMS) 개발 (쿠폰/상품 지급 기능)</BulletItem>
+                    {(tExp.raw('nhn.bullets') as string[]).map((bullet, idx) => (
+                      <BulletItem key={idx}>{bullet}</BulletItem>
+                    ))}
                   </ul>
                 </div>
 
