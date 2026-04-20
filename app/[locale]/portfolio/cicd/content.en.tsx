@@ -64,7 +64,7 @@ export default function CicdContentEn() {
         title="Automating the Build and Deploy Pipeline"
         subtitle="I replaced a fully manual dev-server deploy — build, transfer, restart, all done by hand — with a Jenkins pipeline. Push to GitLab and the build-and-deploy runs on its own."
         meta={[
-          { label: 'Deploy time', value: '20 min → 4 min', hint: '~80% faster' },
+          { label: 'Deploy time', value: '20 min → 4 min', hint: '~80% reduction' },
           { label: 'Automation scope', value: '3 stages', hint: 'Checkout · Build · Deploy' },
           { label: 'Trigger', value: 'GitLab Webhook', hint: 'Branch-based auto-detection' },
           { label: 'Infrastructure', value: 'Docker + Jenkins', hint: 'Declarative Pipeline' },
@@ -200,7 +200,7 @@ export default function CicdContentEn() {
             },
             {
               title: 'Manual mistakes disappeared',
-              detail: 'The kinds of human-in-the-loop errors — command typos, wrong-environment mix-ups — are now virtually gone.',
+              detail: 'The kinds of errors that came from manual steps — command typos, wrong-environment mix-ups — are now virtually gone.',
             },
             {
               title: 'No more blocking wait time',
