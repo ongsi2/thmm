@@ -21,7 +21,7 @@
   "experience": {
     "eyebrow": "EXPERIENCE",
     "heading": "About 10 years in the field",
-    "currentBadge": "Current",
+    "currentBadge": "Present",
     "kimst": {
       "name": "Korea Institute of Marine Science & Technology Promotion (해양수산과학기술진흥원, KIMST)",
       "role": "Freelance · Developer",
@@ -42,37 +42,43 @@
         "Built a Jenkins-based CI/CD pipeline, cutting deploy time from 30 min to 5 min",
         "Designed a high-availability infrastructure on NCP (session clustering, zero-downtime deploys)",
         "Set up real-time monitoring and alerting, and led incident response",
-        "Integrated BizTalk KakaoTalk notifications and ePapyrus PDF solutions"
+        "Integrated BizTalk's KakaoTalk AlimTalk notifications and ePapyrus PDF solutions"
       ]
     },
     "itpartners": {
       "name": "IT Partners",
       "role": "Full-time · Developer",
       "tenure": "Oct 2017 - Jul 2020 (2y 9m)",
-      "projectTitle": "Public-sector SI projects (Korea Institute of Science & Technology, Korea Institute of Planning & Evaluation for Technology in Food, Agriculture and Forestry, and others)",
+      "projectTitle": "Public-sector SI projects (KIST, IPET, and others)",
       "bullets": [
-        "Modernised legacy systems, migrating from T-Form to the Nexacro platform",
+        "Modernized legacy systems, migrating from T-Form to the Nexacro platform",
         "Built a research-equipment inventory and in/out tracking system, replacing manual records with a database",
         "Developed RESTful API modules for integration with internal ERP"
       ]
     },
     "crebiz": {
       "name": "Crebiz, Qload",
-      "role": "Mixed freelance / full-time",
+      "role": "Freelance / full-time",
       "tenure": "Dec 2014 - Nov 2015 (1y)",
-      "crebizTitle": "Crebiz",
-      "crebizSubtitle": "ERP logistics module and dashboard",
-      "crebizBullets": [
-        "Built unified management features for parts receiving, inventory, and shipments",
-        "Synced shipping-request data with ERP tables in real time",
-        "Implemented a live dashboard for inventory and movement history using Highcharts",
-        "Added Excel upload, reducing report-preparation time by about 70%"
-      ],
-      "qloadTitle": "Qload",
-      "qloadSubtitle": "Customer inquiry and QA review system",
-      "qloadBullets": [
-        "Built an input → verification → approval flow for QA vendor test results",
-        "Developed a customer-inquiry intake and email-response system"
+      "projects": [
+        {
+          "title": "Crebiz",
+          "subtitle": "ERP logistics module and dashboard",
+          "bullets": [
+            "Built unified management features for parts receiving, inventory, and shipments",
+            "Synced shipping-request data with ERP tables in real time",
+            "Implemented a live dashboard for inventory and movement history using Highcharts",
+            "Added Excel upload, reducing report-preparation time by about 70%"
+          ]
+        },
+        {
+          "title": "Qload",
+          "subtitle": "Customer inquiry and QA review system",
+          "bullets": [
+            "Built an input → verification → approval flow for QA vendor test results",
+            "Developed a customer-inquiry intake and email-response system"
+          ]
+        }
       ]
     },
     "nhn": {

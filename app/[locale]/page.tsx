@@ -10,6 +10,7 @@ export default function Home() {
   const tNav = useTranslations('nav');
   const tHero = useTranslations('hero');
   const tExp = useTranslations('experience');
+  const expBullets = (key: string) => tExp.raw(key) as string[];
 
   // IntersectionObserver for scroll reveal
   useEffect(() => {
@@ -245,7 +246,7 @@ export default function Home() {
                 <div className="border-l-[3px] border-[var(--color-accent)]/30 pl-5 mb-5">
                   <p className="font-semibold text-base mb-3">{tExp('kimst.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    {(tExp.raw('kimst.bullets') as string[]).map((bullet, idx) => (
+                    {expBullets('kimst.bullets').map((bullet, idx) => (
                       <BulletItem accent key={idx}>{bullet}</BulletItem>
                     ))}
                   </ul>
@@ -272,7 +273,7 @@ export default function Home() {
                 <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
                   <p className="font-semibold text-base mb-3">{tExp('kpf.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    {(tExp.raw('kpf.bullets') as string[]).map((bullet, idx) => (
+                    {expBullets('kpf.bullets').map((bullet, idx) => (
                       <BulletItem key={idx}>{bullet}</BulletItem>
                     ))}
                   </ul>
@@ -299,7 +300,7 @@ export default function Home() {
                 <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
                   <p className="font-semibold text-base mb-3">{tExp('itpartners.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    {(tExp.raw('itpartners.bullets') as string[]).map((bullet, idx) => (
+                    {expBullets('itpartners.bullets').map((bullet, idx) => (
                       <BulletItem key={idx}>{bullet}</BulletItem>
                     ))}
                   </ul>
@@ -324,25 +325,17 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-5 mb-5">
-                  <div className="border-l-[3px] border-[var(--color-border)] pl-5">
-                    <p className="font-semibold text-base mb-1">{tExp('crebiz.crebizTitle')}</p>
-                    <p className="text-xs text-[var(--color-text-muted)] mb-3">{tExp('crebiz.crebizSubtitle')}</p>
-                    <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                      {(tExp.raw('crebiz.crebizBullets') as string[]).map((bullet, idx) => (
-                        <BulletItem key={idx}>{bullet}</BulletItem>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="border-l-[3px] border-[var(--color-border)] pl-5">
-                    <p className="font-semibold text-base mb-1">{tExp('crebiz.qloadTitle')}</p>
-                    <p className="text-xs text-[var(--color-text-muted)] mb-3">{tExp('crebiz.qloadSubtitle')}</p>
-                    <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                      {(tExp.raw('crebiz.qloadBullets') as string[]).map((bullet, idx) => (
-                        <BulletItem key={idx}>{bullet}</BulletItem>
-                      ))}
-                    </ul>
-                  </div>
+                  {(tExp.raw('crebiz.projects') as { title: string; subtitle: string; bullets: string[] }[]).map((proj, idx) => (
+                    <div key={idx} className="border-l-[3px] border-[var(--color-border)] pl-5">
+                      <p className="font-semibold text-base mb-1">{proj.title}</p>
+                      <p className="text-xs text-[var(--color-text-muted)] mb-3">{proj.subtitle}</p>
+                      <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                        {proj.bullets.map((bullet, bi) => (
+                          <BulletItem key={bi}>{bullet}</BulletItem>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="flex flex-wrap gap-1.5">
@@ -366,7 +359,7 @@ export default function Home() {
                 <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
                   <p className="font-semibold text-base mb-3">{tExp('nhn.projectTitle')}</p>
                   <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                    {(tExp.raw('nhn.bullets') as string[]).map((bullet, idx) => (
+                    {expBullets('nhn.bullets').map((bullet, idx) => (
                       <BulletItem key={idx}>{bullet}</BulletItem>
                     ))}
                   </ul>
