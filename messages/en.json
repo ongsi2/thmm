@@ -92,5 +92,48 @@
         "Built an operator-facing CMS with coupon and item-grant features"
       ]
     }
+  },
+  "about": {
+    "eyebrow": "ABOUT",
+    "heading": "A full-stack engineer who cares about both user experience and reliability",
+    "philosophy": [
+      {
+        "text": "I ship a working MVP before chasing a perfect design.",
+        "sub": "Only running code reveals where the real bottlenecks and improvements live."
+      },
+      {
+        "text": "I believe code that teammates can read is good code.",
+        "sub": "Clear interfaces and documentation let anyone come up to speed quickly."
+      },
+      {
+        "text": "I enjoy finding better approaches together through code review and pair programming.",
+        "sub": "I aim for a team that learns and grows from each other."
+      },
+      {
+        "text": "I lean on AI to raise my own productivity.",
+        "sub": "Tools like Claude Code and Cursor let me focus on the core logic."
+      }
+    ],
+    "checklist": [
+      "API documentation & Swagger",
+      "Redis caching and queues for performance tuning",
+      "Multi-service deployment with Docker and Nginx",
+      "AI-assisted development"
+    ],
+    "cardLabel": "Developer",
+    "cardName": "Sungmoo Shin",
+    "cardBadge": "FULL-STACK",
+    "stackLabels": {
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "database": "Database",
+      "infra": "Infra",
+      "cicd": "CI/CD",
+      "aiTools": "AI Tools"
+    },
+    "contactLabel": "CONTACT"
+  },
+  "footer": {
+    "text": "© 2026 THMM. Crafted with TypeScript & Next.js"
   }
 }

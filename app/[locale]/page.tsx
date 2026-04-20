@@ -10,6 +10,8 @@ export default function Home() {
   const tNav = useTranslations('nav');
   const tHero = useTranslations('hero');
   const tExp = useTranslations('experience');
+  const tAbout = useTranslations('about');
+  const tFooter = useTranslations('footer');
   const expBullets = (key: string) => tExp.raw(key) as string[];
 
   // IntersectionObserver for scroll reveal
@@ -394,20 +396,15 @@ export default function Home() {
       <section id="about" className="px-6 py-24 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="mb-14 reveal">
-            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">ABOUT</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">사용자 경험과 안정성을 함께 챙기는 풀스택 개발자</h2>
+            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">{tAbout('eyebrow')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{tAbout('heading')}</h2>
           </div>
 
           <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
             {/* Philosophy */}
             <div className="space-y-8 reveal">
               <div className="space-y-5">
-                {[
-                  { text: '완벽한 설계보다 빠르게 작동하는 MVP를 먼저 만듭니다.', sub: '돌아가는 코드가 있어야 병목과 개선점이 보이기 때문입니다.' },
-                  { text: '팀이 읽기 좋은 코드가 좋은 코드라고 믿습니다.', sub: '명확한 인터페이스와 문서화로 누구나 빠르게 이해할 수 있도록 합니다.' },
-                  { text: '코드 리뷰와 페어 프로그래밍으로 함께 더 나은 방법을 찾는 과정을 즐깁니다.', sub: '서로 배우며 성장하는 팀을 지향합니다.' },
-                  { text: 'AI를 적극 활용하여 개발 생산성을 높입니다.', sub: 'Claude Code, Cursor 등 AI 도구를 실무에 접목해 핵심 로직에 집중합니다.' },
-                ].map((item, i) => (
+                {(tAbout.raw('philosophy') as { text: string; sub: string }[]).map((item, i) => (
                   <div key={i} className="flex gap-4 items-start">
                     <span className="w-1 h-full min-h-[3rem] bg-[var(--color-accent)]/20 rounded-full flex-shrink-0"></span>
                     <div>
@@ -419,7 +416,7 @@ export default function Home() {
               </div>
 
               <div className="grid sm:grid-cols-2 gap-2.5">
-                {['API 문서화 & Swagger', 'Redis 캐시/큐로 성능 튜닝', 'Docker · Nginx로 다중 서비스 배포', 'AI 도구 활용 개발'].map((item) => (
+                {(tAbout.raw('checklist') as string[]).map((item) => (
                   <div key={item} className="flex items-center gap-2.5 text-sm text-[var(--color-text)] bg-[var(--color-bg-light)] px-3.5 py-2.5 rounded-lg">
                     <span className="w-4 h-4 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center flex-shrink-0">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
@@ -435,32 +432,36 @@ export default function Home() {
               <div className="space-y-5">
                 <div className="flex items-center justify-between border-b border-[var(--color-border)] pb-4">
                   <div>
-                    <p className="text-xs text-[var(--color-text-muted)]">Developer</p>
-                    <p className="text-xl font-bold">신성무</p>
+                    <p className="text-xs text-[var(--color-text-muted)]">{tAbout('cardLabel')}</p>
+                    <p className="text-xl font-bold">{tAbout('cardName')}</p>
                   </div>
                   <span className="px-2.5 py-1 border border-[var(--color-accent)]/40 text-[var(--color-accent)] text-xs font-semibold rounded-md bg-[var(--color-accent)]/5">
-                    FULL-STACK
+                    {tAbout('cardBadge')}
                   </span>
                 </div>
 
                 <div className="space-y-2.5">
-                  {[
-                    { label: 'Backend', value: 'Java · Spring Boot · Node.js' },
-                    { label: 'Frontend', value: 'HTML · CSS · JavaScript · jQuery' },
-                    { label: 'Database', value: 'Oracle · MySQL · PostgreSQL · Redis' },
-                    { label: 'Infra', value: 'NCP · AWS · OCI' },
-                    { label: 'CI/CD', value: 'GitLab · Jenkins · Git' },
-                    { label: 'AI Tools', value: 'Claude Code · Cursor · ChatGPT' },
-                  ].map((item) => (
-                    <div key={item.label} className="bg-white border border-[var(--color-border)] p-3 rounded-xl hover:border-[var(--color-accent)]/40 spring">
-                      <p className="text-xs text-[var(--color-text-muted)] mb-0.5">{item.label}</p>
-                      <p className="font-mono text-sm font-medium">{item.value}</p>
-                    </div>
-                  ))}
+                  {(() => {
+                    const stackLabels = tAbout.raw('stackLabels') as Record<string, string>;
+                    const stackItems = [
+                      { labelKey: 'backend', value: 'Java · Spring Boot · Node.js' },
+                      { labelKey: 'frontend', value: 'HTML · CSS · JavaScript · jQuery' },
+                      { labelKey: 'database', value: 'Oracle · MySQL · PostgreSQL · Redis' },
+                      { labelKey: 'infra', value: 'NCP · AWS · OCI' },
+                      { labelKey: 'cicd', value: 'GitLab · Jenkins · Git' },
+                      { labelKey: 'aiTools', value: 'Claude Code · Cursor · ChatGPT' },
+                    ];
+                    return stackItems.map((item) => (
+                      <div key={item.labelKey} className="bg-white border border-[var(--color-border)] p-3 rounded-xl hover:border-[var(--color-accent)]/40 spring">
+                        <p className="text-xs text-[var(--color-text-muted)] mb-0.5">{stackLabels[item.labelKey]}</p>
+                        <p className="font-mono text-sm font-medium">{item.value}</p>
+                      </div>
+                    ));
+                  })()}
                 </div>
 
                 <div className="pt-4 border-t border-[var(--color-border)]">
-                  <p className="text-xs text-[var(--color-text-muted)] mb-2">CONTACT</p>
+                  <p className="text-xs text-[var(--color-text-muted)] mb-2">{tAbout('contactLabel')}</p>
                   <a
                     href="mailto:ongsya@gmail.com"
                     className="font-mono text-sm font-semibold text-[var(--color-accent)] hover:underline inline-flex items-center gap-2 spring"
@@ -479,7 +480,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="py-10 text-center border-t border-[var(--color-border)]">
-        <p className="text-[var(--color-text-muted)] text-xs">&copy; 2026 THMM. Crafted with TypeScript & Next.js</p>
+        <p className="text-[var(--color-text-muted)] text-xs">{tFooter('text')}</p>
       </footer>
     </main>
   );

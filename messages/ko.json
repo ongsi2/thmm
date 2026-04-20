@@ -92,5 +92,48 @@
         "운영자용 게임 관리 콘솔(CMS) 개발 (쿠폰/상품 지급 기능)"
       ]
     }
+  },
+  "about": {
+    "eyebrow": "ABOUT",
+    "heading": "사용자 경험과 안정성을 함께 챙기는 풀스택 개발자",
+    "philosophy": [
+      {
+        "text": "완벽한 설계보다 빠르게 작동하는 MVP를 먼저 만듭니다.",
+        "sub": "돌아가는 코드가 있어야 병목과 개선점이 보이기 때문입니다."
+      },
+      {
+        "text": "팀이 읽기 좋은 코드가 좋은 코드라고 믿습니다.",
+        "sub": "명확한 인터페이스와 문서화로 누구나 빠르게 이해할 수 있도록 합니다."
+      },
+      {
+        "text": "코드 리뷰와 페어 프로그래밍으로 함께 더 나은 방법을 찾는 과정을 즐깁니다.",
+        "sub": "서로 배우며 성장하는 팀을 지향합니다."
+      },
+      {
+        "text": "AI를 적극 활용하여 개발 생산성을 높입니다.",
+        "sub": "Claude Code, Cursor 등 AI 도구를 실무에 접목해 핵심 로직에 집중합니다."
+      }
+    ],
+    "checklist": [
+      "API 문서화 & Swagger",
+      "Redis 캐시/큐로 성능 튜닝",
+      "Docker · Nginx로 다중 서비스 배포",
+      "AI 도구 활용 개발"
+    ],
+    "cardLabel": "Developer",
+    "cardName": "신성무",
+    "cardBadge": "FULL-STACK",
+    "stackLabels": {
+      "backend": "Backend",
+      "frontend": "Frontend",
+      "database": "Database",
+      "infra": "Infra",
+      "cicd": "CI/CD",
+      "aiTools": "AI Tools"
+    },
+    "contactLabel": "CONTACT"
+  },
+  "footer": {
+    "text": "© 2026 THMM. Crafted with TypeScript & Next.js"
   }
 }
