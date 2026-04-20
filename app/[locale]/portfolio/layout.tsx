@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
+import LanguageToggle from '@/app/_components/LanguageToggle';
 
 const siteUrl = 'https://thmm.kr';
 
@@ -26,9 +28,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PortfolioLayout({
+export default async function PortfolioLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const tNav = await getTranslations('nav');
+  const tFooter = await getTranslations('footer');
+
   return (
     <div className="min-h-[100dvh] bg-[var(--color-bg-light)] noise-overlay">
       <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/[0.06]">
@@ -44,29 +49,28 @@ export default function PortfolioLayout({
               href="/#experience"
               className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
             >
-              Experience
+              {tNav('experience')}
             </Link>
             <Link
               href="/#projects"
               className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
             >
-              Projects
+              {tNav('projects')}
             </Link>
             <Link
               href="/portfolio"
               className="relative py-1 text-[var(--color-accent)]"
             >
-              Case Studies
+              {tNav('caseStudies')}
               <span className="absolute -bottom-0.5 left-0 h-[2px] w-full bg-[var(--color-accent)] rounded-full" />
             </Link>
+            <LanguageToggle />
           </div>
         </div>
       </nav>
       {children}
       <footer className="py-10 text-center border-t border-[var(--color-border)]">
-        <p className="text-[var(--color-text-muted)] text-xs">
-          &copy; 2026 THMM. Crafted with TypeScript &amp; Next.js
-        </p>
+        <p className="text-[var(--color-text-muted)] text-xs">{tFooter('text')}</p>
       </footer>
     </div>
   );
