@@ -207,6 +207,7 @@ export function ProcessSteps({ steps }: StepsProps) {
 
 export async function OtherCases({ current, all }: { current: string; all: CaseInfo[] }) {
   const locale = (await getLocale()) as Locale;
+  const t = await getTranslations('projects.caseShell');
   const others = all.filter((c) => c.slug !== current);
   return (
     <section className="px-6 py-16 md:py-24 border-t border-[var(--color-border)] bg-white">
@@ -215,7 +216,7 @@ export async function OtherCases({ current, all }: { current: string; all: CaseI
           MORE
         </p>
         <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-[var(--color-primary)] mb-8">
-          다른 케이스 살펴보기
+          {t('otherCases')}
         </h2>
         <div className="grid md:grid-cols-2 gap-5">
           {others.map((c) => {
@@ -241,7 +242,7 @@ export async function OtherCases({ current, all }: { current: string; all: CaseI
                   {caseContent.summary}
                 </p>
                 <span className="inline-flex items-center gap-1 mt-4 text-xs font-mono font-medium text-[var(--color-accent)]">
-                  자세히 보기 <span aria-hidden>→</span>
+                  {t('viewDetail')} <span aria-hidden>→</span>
                 </span>
               </Link>
             );

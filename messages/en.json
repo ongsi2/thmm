@@ -155,7 +155,9 @@
       "currentBadge": "Current"
     },
     "caseShell": {
-      "backToAll": "All case studies"
+      "backToAll": "All case studies",
+      "otherCases": "Explore other cases",
+      "viewDetail": "View detail"
     }
   },
   "footer": {

@@ -155,7 +155,9 @@
       "currentBadge": "재직중"
     },
     "caseShell": {
-      "backToAll": "모든 케이스 스터디"
+      "backToAll": "모든 케이스 스터디",
+      "otherCases": "다른 케이스 살펴보기",
+      "viewDetail": "자세히 보기"
     }
   },
   "footer": {
