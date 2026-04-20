@@ -1,1 +1,21 @@
-{}
+{
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "about": "About",
+    "caseStudies": "Case Studies"
+  },
+  "hero": {
+    "eyebrow": "FULLSTACK DEVELOPER",
+    "greeting": "안녕하세요,",
+    "roleHighlight": "개발자",
+    "roleSuffix": "신성무입니다.",
+    "lead": "약 10년간 공공 SI, 게임, 물류 등 다양한 분야에서 개발을 수행했습니다.",
+    "sub": "현재는 해양수산과학기술진흥원에서 바다봄 홈페이지 운영 및 시스템 연동 업무를 담당하고 있습니다.",
+    "ctaExperience": "경력 보기",
+    "ctaProjects": "프로젝트 보기",
+    "ctaCaseStudies": "케이스 스터디",
+    "ctaResume": "이력서 다운로드"
+  }
+}

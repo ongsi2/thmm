@@ -1,1 +1,21 @@
-{}
+{
+  "nav": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "about": "About",
+    "caseStudies": "Case Studies"
+  },
+  "hero": {
+    "eyebrow": "FULL-STACK DEVELOPER",
+    "greeting": "Hello,",
+    "roleHighlight": "software engineer",
+    "roleSuffix": "Sungmoo Shin.",
+    "lead": "I'm a full-stack developer with about 10 years of experience across public-sector SI, gaming, and logistics.",
+    "sub": "I'm currently at the Korea Institute of Marine Science & Technology Promotion (해양수산과학기술진흥원, KIMST), operating the Badabom portal and building cross-system integrations.",
+    "ctaExperience": "View Experience",
+    "ctaProjects": "View Projects",
+    "ctaCaseStudies": "Case Studies",
+    "ctaResume": "Download Résumé"
+  }
+}

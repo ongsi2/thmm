@@ -2,10 +2,13 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import ProjectsList from '../_components/ProjectsList';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
+  const tNav = useTranslations('nav');
+  const tHero = useTranslations('hero');
 
   // IntersectionObserver for scroll reveal
   useEffect(() => {
@@ -46,10 +49,10 @@ export default function Home() {
   }, []);
 
   const sections = [
-    { id: 'home', label: 'Home' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'about', label: 'About' },
+    { id: 'home', label: tNav('home') },
+    { id: 'experience', label: tNav('experience') },
+    { id: 'projects', label: tNav('projects') },
+    { id: 'about', label: tNav('about') },
   ];
 
   // 불릿 리스트 아이템 컴포넌트
@@ -144,7 +147,7 @@ export default function Home() {
               href="/portfolio"
               className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
             >
-              Case Studies
+              {tNav('caseStudies')}
             </Link>
           </div>
         </div>
@@ -160,22 +163,22 @@ export default function Home() {
         <div className="max-w-5xl mx-auto w-full relative z-10">
           <div className="space-y-10">
             <div className="space-y-6 animate-fadeInUp">
-              <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider">FULLSTACK DEVELOPER</p>
+              <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider">{tHero('eyebrow')}</p>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-wrap-balance">
-                안녕하세요,
+                {tHero('greeting')}
                 <br />
                 <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">
-                  개발자
+                  {tHero('roleHighlight')}
                 </span>{' '}
-                신성무입니다.
+                {tHero('roleSuffix')}
               </h1>
 
               <div className="max-w-2xl space-y-3">
                 <p className="text-lg md:text-xl leading-relaxed font-medium text-[var(--color-text)]">
-                  약 10년간 공공 SI, 게임, 물류 등 다양한 분야에서 개발을 수행했습니다.
+                  {tHero('lead')}
                 </p>
                 <p className="text-base md:text-lg text-[var(--color-text-muted)] leading-relaxed">
-                  현재는 해양수산과학기술진흥원에서 바다봄 홈페이지 운영 및 시스템 연동 업무를 담당하고 있습니다.
+                  {tHero('sub')}
                 </p>
               </div>
             </div>
@@ -186,19 +189,19 @@ export default function Home() {
                 href="#experience"
                 className="px-7 py-3.5 bg-[var(--color-primary)] text-white font-semibold rounded-xl shadow-lg shadow-black/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] spring"
               >
-                경력 보기
+                {tHero('ctaExperience')}
               </a>
               <a
                 href="#projects"
                 className="px-7 py-3.5 bg-white text-[var(--color-primary)] font-semibold border border-[var(--color-border)] rounded-xl shadow-sm hover:shadow-md hover:border-[var(--color-accent)] hover:scale-[1.02] active:scale-[0.98] spring"
               >
-                프로젝트 보기
+                {tHero('ctaProjects')}
               </a>
               <Link
                 href="/portfolio"
                 className="px-7 py-3.5 bg-white text-[var(--color-accent)] font-semibold border border-[var(--color-accent)]/40 rounded-xl shadow-sm hover:shadow-md hover:bg-[var(--color-accent-light)] hover:scale-[1.02] active:scale-[0.98] spring inline-flex items-center gap-2"
               >
-                <span>케이스 스터디</span>
+                <span>{tHero('ctaCaseStudies')}</span>
                 <span aria-hidden>→</span>
               </Link>
               <a
@@ -206,7 +209,7 @@ export default function Home() {
                 download
                 className="px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] spring"
               >
-                이력서 다운로드
+                {tHero('ctaResume')}
               </a>
             </div>
           </div>
