@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import LanguageToggle from '../_components/LanguageToggle';
 import ProjectsList from '../_components/ProjectsList';
 
 export default function Home() {
@@ -153,6 +154,7 @@ export default function Home() {
             >
               {tNav('caseStudies')}
             </Link>
+            <LanguageToggle />
           </div>
         </div>
       </nav>
