@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getLocale } from 'next-intl/server';
 import { projects, ProjectCard } from '../../../_components/projects-data';
 
 export const metadata = {
@@ -6,7 +7,8 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ProjectsDemoA() {
+export default async function ProjectsDemoA() {
+  const locale = (await getLocale()) as 'ko' | 'en';
   return (
     <main className="min-h-[100dvh] bg-[var(--color-bg-light)]">
       <nav className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
@@ -59,7 +61,7 @@ export default function ProjectsDemoA() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
             {projects.map((p) => (
-              <ProjectCard key={p.slug} project={p} />
+              <ProjectCard key={p.slug} project={p} locale={locale} />
             ))}
           </div>
         </div>

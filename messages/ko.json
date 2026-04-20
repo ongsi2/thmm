@@ -133,6 +133,31 @@
     },
     "contactLabel": "CONTACT"
   },
+  "projects": {
+    "sectionEyebrow": "PROJECTS",
+    "sectionHeading": "운영 환경에서 바로 활용 가능한 프로젝트들",
+    "list": {
+      "countSuffix": "Projects",
+      "collapseAll": "Collapse all",
+      "expandAll": "Expand all"
+    },
+    "index": {
+      "eyebrow": "CASE STUDIES",
+      "headingLine1": "실무에서 직접",
+      "headingLine2": "풀어본 문제들",
+      "lead": "업무 중에 겪은 운영 이슈를 어떻게 풀었는지 정리했습니다. 상황, 접근 방법, 구현, 결과 순서로 기록해 두었고 관련 코드·설정도 함께 담았습니다."
+    },
+    "labels": {
+      "organization": "ORGANIZATION",
+      "case": "CASE",
+      "outcome": "OUTCOME",
+      "read": "READ",
+      "currentBadge": "재직중"
+    },
+    "caseShell": {
+      "backToAll": "모든 케이스 스터디"
+    }
+  },
   "footer": {
     "text": "© 2026 THMM. Crafted with TypeScript & Next.js"
   }

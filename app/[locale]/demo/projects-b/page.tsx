@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getLocale } from 'next-intl/server';
 import { projects, ProjectCard } from '../../../_components/projects-data';
 
 export const metadata = {
@@ -6,7 +7,8 @@ export const metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ProjectsDemoB() {
+export default async function ProjectsDemoB() {
+  const locale = (await getLocale()) as 'ko' | 'en';
   const featured = projects.filter((p) => p.featured);
   const total = projects.length;
 
@@ -70,7 +72,7 @@ export default function ProjectsDemoB() {
 
           <div className="grid md:grid-cols-3 gap-6 pt-4">
             {featured.map((p) => (
-              <ProjectCard key={p.slug} project={p} size="featured" />
+              <ProjectCard key={p.slug} project={p} locale={locale} size="featured" />
             ))}
           </div>
 

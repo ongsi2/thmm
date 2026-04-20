@@ -13,6 +13,7 @@ export default function Home() {
   const tExp = useTranslations('experience');
   const tAbout = useTranslations('about');
   const tFooter = useTranslations('footer');
+  const tProjects = useTranslations('projects');
   const expBullets = (key: string) => tExp.raw(key) as string[];
 
   // IntersectionObserver for scroll reveal
@@ -384,8 +385,8 @@ export default function Home() {
       <section id="projects" className="py-24 md:py-32 bg-[var(--color-bg-light)]">
         <div className="max-w-5xl mx-auto px-6">
           <div className="mb-12 reveal">
-            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">PROJECTS</p>
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">운영 환경에서 바로 활용 가능한 프로젝트들</h2>
+            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">{tProjects('sectionEyebrow')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{tProjects('sectionHeading')}</h2>
           </div>
 
           <div className="reveal">

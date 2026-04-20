@@ -1,20 +1,27 @@
 import type { ReactNode } from 'react';
 
+type Locale = 'ko' | 'en';
+
 export type ProjectCTA = {
   label: string;
   href?: string;
   variant?: 'primary' | 'accent' | 'ghost';
 };
 
+type LocalizedProjectContent = {
+  title: string;
+  badgeText: string;
+  description: ReactNode;
+  ctas: ProjectCTA[];
+};
+
 export type Project = {
   slug: string;
-  title: string;
-  badge: { text: string; tone: 'main' | 'secondary' | 'amber' | 'purple' };
-  description: ReactNode;
+  badgeTone: 'main' | 'secondary' | 'amber' | 'purple';
   tags: string[];
-  ctas: ProjectCTA[];
   featured?: boolean; // used by demo B
   accentBorder?: boolean; // ENG-SPARKLING 원본처럼
+  i18n: Record<Locale, LocalizedProjectContent>;
 };
 
 const mono = (s: string) => (
@@ -26,82 +33,171 @@ const monoPlain = (s: string) => <span className="font-mono font-semibold">{s}</
 export const projects: Project[] = [
   {
     slug: 'ohmybaby',
-    title: '오마이베이비',
-    badge: { text: 'MAIN', tone: 'main' },
+    badgeTone: 'main',
     accentBorder: true,
     featured: true,
-    description: (
-      <>
-        AI 이름 추천과 이상형 월드컵 방식을 결합해 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
-        {mono('카카오 로그인')} 기반 인증과 한자 뜻풀이·오행 분석 등 한국 작명 문화를 반영했습니다.
-      </>
-    ),
     tags: ['Next.js 16', 'Supabase', 'Framer Motion', 'Tailwind CSS 4'],
-    ctas: [{ label: '사이트 방문', href: 'https://ohmybaby.kr', variant: 'accent' }],
+    i18n: {
+      ko: {
+        title: '오마이베이비',
+        badgeText: 'MAIN',
+        description: (
+          <>
+            AI 이름 추천과 이상형 월드컵 방식을 결합해 가족이 함께 아기 이름을 고를 수 있는 웹 서비스.{' '}
+            {mono('카카오 로그인')} 기반 인증과 한자 뜻풀이·오행 분석 등 한국 작명 문화를 반영했습니다.
+          </>
+        ),
+        ctas: [{ label: '사이트 방문', href: 'https://ohmybaby.kr', variant: 'accent' }],
+      },
+      en: {
+        title: 'Ohmybaby',
+        badgeText: 'MAIN',
+        description: (
+          <>
+            A web service combining AI name suggestions with tournament-style voting so families
+            can choose a baby's name together. Built on {mono('Kakao Login')}-based authentication
+            and reflects Korean naming culture — Hanja meaning lookup, Ohaeng (Five-Element)
+            analysis, and more.
+          </>
+        ),
+        ctas: [{ label: 'Visit Site', href: 'https://ohmybaby.kr', variant: 'accent' }],
+      },
+    },
   },
   {
     slug: 'grandbaie',
-    title: '그랑베이 산후조리원',
-    badge: { text: '외주 · 운영중', tone: 'amber' },
+    badgeTone: 'amber',
     featured: true,
-    description: (
-      <>
-        안양 소재 프리미엄 산후조리원의 반응형 홈페이지. {mono('Astro 6')} 기반 정적 사이트로,
-        스크롤 기반 프레임 애니메이션 히어로, {mono('카카오맵')} 연동, 시설/프로그램/식단/스파 등 9개
-        페이지를 호텔급 고급 브랜딩 컨셉으로 구현했습니다.
-      </>
-    ),
     tags: ['Astro 6', 'Tailwind CSS 4', 'Kakao Map', 'Vercel'],
-    ctas: [{ label: '사이트 방문', href: 'https://grandbaie.co.kr', variant: 'primary' }],
+    i18n: {
+      ko: {
+        title: '그랑베이 산후조리원',
+        badgeText: '외주 · 운영중',
+        description: (
+          <>
+            안양 소재 프리미엄 산후조리원의 반응형 홈페이지. {mono('Astro 6')} 기반 정적 사이트로,
+            스크롤 기반 프레임 애니메이션 히어로, {mono('카카오맵')} 연동, 시설/프로그램/식단/스파 등 9개
+            페이지를 호텔급 고급 브랜딩 컨셉으로 구현했습니다.
+          </>
+        ),
+        ctas: [{ label: '사이트 방문', href: 'https://grandbaie.co.kr', variant: 'primary' }],
+      },
+      en: {
+        title: 'Grand-Baie Postpartum Care',
+        badgeText: 'Client · Live',
+        description: (
+          <>
+            A responsive site for a premium postpartum care center in Anyang, built as a static
+            site on {mono('Astro 6')}. Features a scroll-driven frame-animation hero,{' '}
+            {mono('Kakao Map')} integration, and nine pages (facilities, programs, meals, spa, and
+            more) designed around a hotel-grade luxury brand concept.
+          </>
+        ),
+        ctas: [{ label: 'Visit Site', href: 'https://grandbaie.co.kr', variant: 'primary' }],
+      },
+    },
   },
   {
     slug: 'eng-sparkling',
-    title: 'ENG-SPARKLING',
-    badge: { text: '운영중', tone: 'secondary' },
+    badgeTone: 'secondary',
     featured: true,
-    description: (
-      <>
-        수능/내신 영어 지문을 입력하면 {mono('GPT-4o-mini')}가 12가지 유형의 문제를 자동 생성해주는
-        서비스입니다. {mono('Supabase')} 기반 인증과 코인 시스템으로 무료 체험부터 유료 사용까지
-        자연스럽게 이어지도록 구성했습니다.
-      </>
-    ),
     tags: ['Next.js 15', 'TypeScript', 'OpenAI API', 'Supabase', 'Tailwind CSS', 'Docker'],
-    ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/eng-sparkling', variant: 'primary' }],
+    i18n: {
+      ko: {
+        title: 'ENG-SPARKLING',
+        badgeText: '운영중',
+        description: (
+          <>
+            수능/내신 영어 지문을 입력하면 {mono('GPT-4o-mini')}가 12가지 유형의 문제를 자동 생성해주는
+            서비스입니다. {mono('Supabase')} 기반 인증과 코인 시스템으로 무료 체험부터 유료 사용까지
+            자연스럽게 이어지도록 구성했습니다.
+          </>
+        ),
+        ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/eng-sparkling', variant: 'primary' }],
+      },
+      en: {
+        title: 'ENG-SPARKLING',
+        badgeText: 'Live',
+        description: (
+          <>
+            Paste a Korean high-school English passage and {mono('GPT-4o-mini')} auto-generates
+            12 question types. A {mono('Supabase')} authentication stack plus a credit system
+            smoothly transitions users from free trial to paid usage.
+          </>
+        ),
+        ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/eng-sparkling', variant: 'primary' }],
+      },
+    },
   },
   {
     slug: 'flash-coupon',
-    title: 'Flash Coupon',
-    badge: { text: '운영중', tone: 'secondary' },
-    description: (
-      <>
-        다량의 쿠폰 발급/사용 요청을 {mono('Redis')}로 버퍼링하고 {mono('PostgreSQL')}로 영속화하여
-        안정성을 확보한 서비스.
-      </>
-    ),
+    badgeTone: 'secondary',
     tags: ['NestJS', 'TypeScript', 'Redis', 'PostgreSQL', 'Next.js', 'Docker'],
-    ctas: [
-      { label: 'Live Demo', href: 'https://thmm.kr/flash-coupon', variant: 'primary' },
-      { label: 'API Docs', href: 'https://thmm.kr/api/docs', variant: 'ghost' },
-    ],
+    i18n: {
+      ko: {
+        title: 'Flash Coupon',
+        badgeText: '운영중',
+        description: (
+          <>
+            다량의 쿠폰 발급/사용 요청을 {mono('Redis')}로 버퍼링하고 {mono('PostgreSQL')}로 영속화하여
+            안정성을 확보한 서비스.
+          </>
+        ),
+        ctas: [
+          { label: 'Live Demo', href: 'https://thmm.kr/flash-coupon', variant: 'primary' },
+          { label: 'API Docs', href: 'https://thmm.kr/api/docs', variant: 'ghost' },
+        ],
+      },
+      en: {
+        title: 'Flash Coupon',
+        badgeText: 'Live',
+        description: (
+          <>
+            A coupon service that buffers bursts of issuance and redemption with {mono('Redis')}{' '}
+            and persists them to {mono('PostgreSQL')} for reliability under load.
+          </>
+        ),
+        ctas: [
+          { label: 'Live Demo', href: 'https://thmm.kr/flash-coupon', variant: 'primary' },
+          { label: 'API Docs', href: 'https://thmm.kr/api/docs', variant: 'ghost' },
+        ],
+      },
+    },
   },
   {
     slug: 'jwt-auth',
-    title: 'JWT Auth System',
-    badge: { text: '운영중', tone: 'secondary' },
-    description: (
-      <>
-        Spring Boot 기반 JWT 인증 시스템. {monoPlain('Redis 블랙리스트')}와{' '}
-        {monoPlain('Dual Token 정책')}으로 보안을 강화하고, 관리자 기능으로 사용자 세션을 실시간
-        제어합니다.
-      </>
-    ),
+    badgeTone: 'secondary',
     tags: ['Spring Boot', 'Spring Security', 'JJWT', 'Redis', 'PostgreSQL', 'Docker'],
-    ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/springboot-jwt', variant: 'primary' }],
+    i18n: {
+      ko: {
+        title: 'JWT Auth System',
+        badgeText: '운영중',
+        description: (
+          <>
+            Spring Boot 기반 JWT 인증 시스템. {monoPlain('Redis 블랙리스트')}와{' '}
+            {monoPlain('Dual Token 정책')}으로 보안을 강화하고, 관리자 기능으로 사용자 세션을 실시간
+            제어합니다.
+          </>
+        ),
+        ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/springboot-jwt', variant: 'primary' }],
+      },
+      en: {
+        title: 'JWT Auth System',
+        badgeText: 'Live',
+        description: (
+          <>
+            A Spring Boot-based JWT authentication system, hardened with a{' '}
+            {monoPlain('Redis blacklist')} and a {monoPlain('dual-token policy')}, plus admin
+            tooling for real-time session control.
+          </>
+        ),
+        ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/springboot-jwt', variant: 'primary' }],
+      },
+    },
   },
 ];
 
-const toneClass: Record<Project['badge']['tone'], string> = {
+const toneClass: Record<Project['badgeTone'], string> = {
   main: 'bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white',
   secondary: 'bg-[var(--color-secondary)] text-white',
   amber: 'bg-amber-600 text-white',
@@ -133,7 +229,16 @@ function TechTag({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function ProjectCard({ project, size = 'regular' }: { project: Project; size?: 'regular' | 'featured' }) {
+export function ProjectCard({
+  project,
+  locale,
+  size = 'regular',
+}: {
+  project: Project;
+  locale: Locale;
+  size?: 'regular' | 'featured';
+}) {
+  const content = project.i18n[locale];
   const borderClass = project.accentBorder
     ? 'border-[var(--color-accent)]/30'
     : 'border-[var(--color-border)] hover:border-[var(--color-accent)]/40';
@@ -142,15 +247,15 @@ export function ProjectCard({ project, size = 'regular' }: { project: Project; s
   return (
     <div className={`relative bg-white border ${borderClass} ${padding} h-full rounded-2xl hover:shadow-lg spring`}>
       <div
-        className={`absolute -top-2.5 left-5 px-3 py-0.5 text-xs font-semibold rounded-md ${toneClass[project.badge.tone]}`}
+        className={`absolute -top-2.5 left-5 px-3 py-0.5 text-xs font-semibold rounded-md ${toneClass[project.badgeTone]}`}
       >
-        {project.badge.text}
+        {content.badgeText}
       </div>
       <div className="space-y-5 h-full flex flex-col">
         <div className="flex-1 space-y-3">
-          <h3 className={`${titleSize} font-bold`}>{project.title}</h3>
+          <h3 className={`${titleSize} font-bold`}>{content.title}</h3>
           <p className="text-sm leading-relaxed text-[var(--color-text-muted)]">
-            {project.description}
+            {content.description}
           </p>
           <div className="flex flex-wrap gap-1.5">
             {project.tags.map((tag) => (
@@ -158,8 +263,8 @@ export function ProjectCard({ project, size = 'regular' }: { project: Project; s
             ))}
           </div>
         </div>
-        <div className={project.ctas.length > 1 ? 'flex gap-3' : ''}>
-          {project.ctas.map((cta) => (
+        <div className={content.ctas.length > 1 ? 'flex gap-3' : ''}>
+          {content.ctas.map((cta) => (
             <Cta key={cta.label} cta={cta} />
           ))}
         </div>

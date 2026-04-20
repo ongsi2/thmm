@@ -1,7 +1,10 @@
-import Link from 'next/link';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { Link } from '@/i18n/navigation';
 import type { ReactNode } from 'react';
 import type { CaseInfo, Organization } from './cases';
 import { organizations } from './cases';
+
+type Locale = 'ko' | 'en';
 
 type HeroProps = {
   organization: Organization;
@@ -12,7 +15,11 @@ type HeroProps = {
   stack: string[];
 };
 
-export function CaseHero({ organization, category, title, subtitle, meta, stack }: HeroProps) {
+export async function CaseHero({ organization, category, title, subtitle, meta, stack }: HeroProps) {
+  const locale = (await getLocale()) as Locale;
+  const t = await getTranslations('projects.caseShell');
+  const tLabels = await getTranslations('projects.labels');
+  const org = organization.i18n[locale];
   return (
     <section className="px-6 pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-bg-light)] via-white to-[var(--color-accent-light)]/20" />
@@ -23,7 +30,7 @@ export function CaseHero({ organization, category, title, subtitle, meta, stack 
           className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[var(--color-text-muted)] hover:text-[var(--color-accent)] spring"
         >
           <span aria-hidden>←</span>
-          <span>모든 케이스 스터디</span>
+          <span>{t('backToAll')}</span>
         </Link>
 
         <div className="mt-14 mb-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs">
@@ -31,24 +38,24 @@ export function CaseHero({ organization, category, title, subtitle, meta, stack 
             <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/25 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] animate-pulse" />
               <span className="text-[10px] font-semibold text-[var(--color-accent-dark)] tracking-[0.15em] uppercase">
-                재직중
+                {tLabels('currentBadge')}
               </span>
             </span>
           )}
           <span className="font-semibold text-[var(--color-primary)]">
-            {organization.system}
+            {org.system}
           </span>
           <span className="text-[var(--color-border)]" aria-hidden>
             /
           </span>
           <span className="text-[var(--color-text-muted)]">
-            {organization.company}
+            {org.company}
           </span>
           <span className="hidden sm:inline text-[var(--color-border)]" aria-hidden>
             ·
           </span>
           <span className="font-mono text-[11px] text-[var(--color-text-muted)]">
-            {organization.period}
+            {org.period}
           </span>
         </div>
 
@@ -198,7 +205,8 @@ export function ProcessSteps({ steps }: StepsProps) {
   );
 }
 
-export function OtherCases({ current, all }: { current: string; all: CaseInfo[] }) {
+export async function OtherCases({ current, all }: { current: string; all: CaseInfo[] }) {
+  const locale = (await getLocale()) as Locale;
   const others = all.filter((c) => c.slug !== current);
   return (
     <section className="px-6 py-16 md:py-24 border-t border-[var(--color-border)] bg-white">
@@ -212,6 +220,8 @@ export function OtherCases({ current, all }: { current: string; all: CaseInfo[] 
         <div className="grid md:grid-cols-2 gap-5">
           {others.map((c) => {
             const org = organizations[c.organizationId];
+            const orgContent = org.i18n[locale];
+            const caseContent = c.i18n[locale];
             return (
               <Link
                 key={c.slug}
@@ -219,16 +229,16 @@ export function OtherCases({ current, all }: { current: string; all: CaseInfo[] 
                 className="group block p-6 bg-[var(--color-bg-light)] border border-[var(--color-border)] rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring"
               >
                 <p className="text-[10px] font-mono font-semibold text-[var(--color-text-muted)] tracking-wider uppercase mb-2">
-                  {org.system}
+                  {orgContent.system}
                 </p>
                 <p className="text-[10px] font-mono font-semibold text-[var(--color-accent)] tracking-wider uppercase mb-2">
                   {c.category}
                 </p>
                 <h3 className="text-lg font-bold text-[var(--color-primary)] mb-2 group-hover:text-[var(--color-accent)] spring">
-                  {c.title}
+                  {caseContent.title}
                 </h3>
                 <p className="text-sm text-[var(--color-text-muted)] leading-relaxed">
-                  {c.summary}
+                  {caseContent.summary}
                 </p>
                 <span className="inline-flex items-center gap-1 mt-4 text-xs font-mono font-medium text-[var(--color-accent)]">
                   자세히 보기 <span aria-hidden>→</span>

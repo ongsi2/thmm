@@ -1,7 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 import { projects, type Project, type ProjectCTA } from './projects-data';
+
+type Locale = 'ko' | 'en';
 
 function Cta({ cta }: { cta: ProjectCTA }) {
   const base =
@@ -21,7 +24,7 @@ function Cta({ cta }: { cta: ProjectCTA }) {
   );
 }
 
-const toneBadge: Record<Project['badge']['tone'], string> = {
+const toneBadge: Record<Project['badgeTone'], string> = {
   main: 'bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white',
   secondary: 'bg-[var(--color-secondary)] text-white',
   amber: 'bg-amber-600 text-white',
@@ -30,13 +33,16 @@ const toneBadge: Record<Project['badge']['tone'], string> = {
 
 function ProjectRow({
   project,
+  locale,
   isOpen,
   onToggle,
 }: {
   project: Project;
+  locale: Locale;
   isOpen: boolean;
   onToggle: () => void;
 }) {
+  const content = project.i18n[locale];
   const primaryTags = project.tags.slice(0, 3);
 
   return (
@@ -51,14 +57,14 @@ function ProjectRow({
         aria-expanded={isOpen}
       >
         <span
-          className={`shrink-0 px-2.5 py-0.5 text-[11px] font-semibold rounded-md ${toneBadge[project.badge.tone]}`}
+          className={`shrink-0 px-2.5 py-0.5 text-[11px] font-semibold rounded-md ${toneBadge[project.badgeTone]}`}
         >
-          {project.badge.text}
+          {content.badgeText}
         </span>
 
         <div className="flex-1 min-w-0 flex flex-wrap items-center gap-x-4 gap-y-1">
           <h3 className="text-base md:text-lg font-bold text-[var(--color-primary)]">
-            {project.title}
+            {content.title}
           </h3>
           <div className="hidden md:flex flex-wrap gap-1.5">
             {primaryTags.map((t) => (
@@ -96,7 +102,7 @@ function ProjectRow({
         <div className="px-4 md:px-6 pb-6 pt-1 grid md:grid-cols-[1fr_auto] gap-6 items-start">
           <div className="space-y-4">
             <p className="text-sm md:text-[15px] leading-relaxed text-[var(--color-text)]">
-              {project.description}
+              {content.description}
             </p>
             <div className="flex flex-wrap gap-1.5">
               {project.tags.map((t) => (
@@ -110,7 +116,7 @@ function ProjectRow({
             </div>
           </div>
           <div className="flex flex-wrap md:flex-col gap-2 md:items-stretch">
-            {project.ctas.map((cta) => (
+            {content.ctas.map((cta) => (
               <Cta key={cta.label} cta={cta} />
             ))}
           </div>
@@ -164,6 +170,8 @@ function CollapsePanel({
 }
 
 export default function ProjectsList() {
+  const locale = useLocale() as Locale;
+  const t = useTranslations('projects.list');
   const [openSet, setOpenSet] = useState<Set<string>>(new Set());
   const toggle = (slug: string) => {
     setOpenSet((prev) => {
@@ -184,13 +192,13 @@ export default function ProjectsList() {
     <>
       <div className="flex items-center justify-between mb-3 px-1">
         <p className="font-mono text-[11px] font-semibold text-[var(--color-text-muted)] tracking-[0.2em] uppercase">
-          {projects.length} Projects
+          {projects.length} {t('countSuffix')}
         </p>
         <button
           onClick={toggleAll}
           className="font-mono text-[11px] font-semibold text-[var(--color-accent)] hover:text-[var(--color-accent-dark)] tracking-wider uppercase spring"
         >
-          {allOpen ? 'Collapse all' : 'Expand all'}
+          {allOpen ? t('collapseAll') : t('expandAll')}
         </button>
       </div>
 
@@ -199,6 +207,7 @@ export default function ProjectsList() {
           <ProjectRow
             key={p.slug}
             project={p}
+            locale={locale}
             isOpen={openSet.has(p.slug)}
             onToggle={() => toggle(p.slug)}
           />

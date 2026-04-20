@@ -133,6 +133,31 @@
     },
     "contactLabel": "CONTACT"
   },
+  "projects": {
+    "sectionEyebrow": "PROJECTS",
+    "sectionHeading": "Production-ready projects you can use today",
+    "list": {
+      "countSuffix": "Projects",
+      "collapseAll": "Collapse all",
+      "expandAll": "Expand all"
+    },
+    "index": {
+      "eyebrow": "CASE STUDIES",
+      "headingLine1": "Problems I solved",
+      "headingLine2": "in production",
+      "lead": "A set of real production-environment problems and how I solved them. Each entry is laid out as situation → approach → implementation → result, with the relevant code and configuration included."
+    },
+    "labels": {
+      "organization": "ORGANIZATION",
+      "case": "CASE",
+      "outcome": "OUTCOME",
+      "read": "READ",
+      "currentBadge": "Current"
+    },
+    "caseShell": {
+      "backToAll": "All case studies"
+    }
+  },
   "footer": {
     "text": "© 2026 THMM. Crafted with TypeScript & Next.js"
   }
