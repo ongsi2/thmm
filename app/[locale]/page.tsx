@@ -155,6 +155,16 @@ export default function Home() {
             >
               {tNav('caseStudies')}
             </Link>
+            <a
+              href="/showcase.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the flashy showcase version in a new tab"
+              className="relative inline-flex items-center gap-1 py-1 px-3 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-pink-500 via-orange-400 to-amber-300 shadow-sm shadow-orange-400/40 hover:shadow-md hover:shadow-orange-400/60 hover:scale-[1.05] spring"
+            >
+              <span aria-hidden>✨</span>
+              <span>Showcase</span>
+            </a>
             <LanguageToggle />
           </div>
         </div>
