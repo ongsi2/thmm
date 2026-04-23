@@ -1,77 +1,78 @@
 import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
 
 const siteUrl = 'https://thmm.kr';
 const siteName = 'THMM Portfolio';
-const siteTitle = '신성무 | 시니어 풀스택 개발자 | Spring Boot·NestJS·Next.js·Redis 포트폴리오';
-const siteDescription = '풀스택 개발자 신성무의 포트폴리오 | Java·Spring Boot·NestJS·Next.js·TypeScript·Redis·Docker | CI/CD 파이프라인 구축 | 배포 시간 83% 단축 실적 | 실서비스 운영 경험';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: siteTitle,
-  description: siteDescription,
-  keywords: [
-    '풀스택 개발자',
-    '시니어 개발자',
-    'Spring Boot',
-    'NestJS',
-    'Next.js',
-    'TypeScript',
-    'Redis',
-    'Docker',
-    'CI/CD',
-    'Jenkins',
-    '백엔드',
-    '프론트엔드',
-    '포트폴리오',
-    '신성무',
-  ],
-  authors: [{ name: '신성무', url: siteUrl }],
-  creator: '신성무',
-  publisher: '신성무',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta.root' });
+  const titleSuffix = t('titleSuffix');
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: titleSuffix,
+      template: `%s`,
+    },
+    keywords: [
+      '풀스택 개발자',
+      '시니어 개발자',
+      'Spring Boot',
+      'NestJS',
+      'Next.js',
+      'TypeScript',
+      'Redis',
+      'Docker',
+      'CI/CD',
+      'Jenkins',
+      '백엔드',
+      '프론트엔드',
+      '포트폴리오',
+      '신성무',
+    ],
+    authors: [{ name: '신성무', url: siteUrl }],
+    creator: '신성무',
+    publisher: '신성무',
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'ko_KR',
-    url: siteUrl,
-    siteName: siteName,
-    title: siteTitle,
-    description: siteDescription,
-    images: [
-      {
-        url: `${siteUrl}/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: '신성무 | 풀스택 개발자 포트폴리오',
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteTitle,
-    description: siteDescription,
-    images: [`${siteUrl}/og-image.jpg`],
-  },
-  verification: {
-    google: 'JsspUkmTqguJNpukyCl2P1Je3L5LBvDtWB4PrjbMpWA',
-  },
-  alternates: {
-    canonical: siteUrl,
-  },
-};
+    },
+    openGraph: {
+      siteName,
+      images: [
+        {
+          url: `${siteUrl}/og-image.jpg`,
+          width: 1200,
+          height: 630,
+          alt: '신성무 | 풀스택 개발자 포트폴리오',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: [`${siteUrl}/og-image.jpg`],
+    },
+    verification: {
+      google: 'JsspUkmTqguJNpukyCl2P1Je3L5LBvDtWB4PrjbMpWA',
+    },
+  };
+}
 
 const personSchema = {
   '@context': 'https://schema.org',

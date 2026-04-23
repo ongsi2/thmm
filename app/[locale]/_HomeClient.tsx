@@ -1,0 +1,500 @@
+'use client';
+
+import { Link } from '@/i18n/navigation';
+import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import LanguageToggle from '../_components/LanguageToggle';
+import ProjectsList from '../_components/ProjectsList';
+
+export default function HomeClient() {
+  const [activeSection, setActiveSection] = useState('home');
+  const tNav = useTranslations('nav');
+  const tHero = useTranslations('hero');
+  const tExp = useTranslations('experience');
+  const tAbout = useTranslations('about');
+  const tFooter = useTranslations('footer');
+  const tProjects = useTranslations('projects');
+  const expBullets = (key: string) => tExp.raw(key) as string[];
+
+  // IntersectionObserver for scroll reveal
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  // 섹션 스크롤 감지
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    ['home', 'experience', 'projects', 'about'].forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const sections = [
+    { id: 'home', label: tNav('home') },
+    { id: 'experience', label: tNav('experience') },
+    { id: 'projects', label: tNav('projects') },
+    { id: 'about', label: tNav('about') },
+  ];
+
+  // 불릿 리스트 아이템 컴포넌트
+  const BulletItem = ({ children, accent = false }: { children: React.ReactNode; accent?: boolean }) => (
+    <li className="flex items-start gap-3">
+      <span
+        className={`w-1.5 h-1.5 rounded-full mt-[9px] flex-shrink-0 ${
+          accent ? 'bg-[var(--color-accent)]' : 'bg-[var(--color-text-muted)]'
+        }`}
+      />
+      <span>{children}</span>
+    </li>
+  );
+
+  // 기술 태그 컴포넌트
+  const TechTag = ({ children, hoverable = false }: { children: React.ReactNode; hoverable?: boolean }) => (
+    <span
+      className={`px-2.5 py-1 border border-[var(--color-border)] bg-[var(--color-bg-off)] font-mono text-xs font-medium rounded-md ${
+        hoverable ? 'hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-light)] spring' : ''
+      }`}
+    >
+      {children}
+    </span>
+  );
+
+  return (
+    <main className="min-h-[100dvh] bg-[var(--color-bg-light)] noise-overlay">
+      {/* Side Navigation */}
+      <nav className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-40">
+        <ul className="space-y-4">
+          {sections.map((section) => (
+            <li key={section.id}>
+              <a
+                href={`#${section.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="group flex items-center gap-3"
+              >
+                <span
+                  className={`text-xs font-semibold transition-all duration-300 ${
+                    activeSection === section.id
+                      ? 'opacity-100 text-[var(--color-accent)]'
+                      : 'opacity-0 group-hover:opacity-100 text-[var(--color-text-muted)]'
+                  }`}
+                >
+                  {section.label}
+                </span>
+                <span
+                  className={`block rounded-full transition-all duration-300 ${
+                    activeSection === section.id
+                      ? 'w-10 h-[3px] bg-[var(--color-accent)]'
+                      : 'w-6 h-[3px] bg-[var(--color-border)] group-hover:bg-[var(--color-text-muted)] group-hover:w-8'
+                  }`}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Navigation - Glass */}
+      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/[0.06]">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <a
+            href="#home"
+            className="text-lg font-bold tracking-tight text-[var(--color-primary)] hover:text-[var(--color-accent)] spring"
+          >
+            THMM
+          </a>
+          <div className="flex gap-5 sm:gap-8 text-sm font-medium">
+            {sections.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`relative py-1 spring ${
+                  activeSection === item.id
+                    ? 'text-[var(--color-accent)]'
+                    : 'text-[var(--color-text-muted)] hover:text-[var(--color-primary)]'
+                }`}
+              >
+                {item.label}
+                <span
+                  className={`absolute -bottom-0.5 left-0 h-[2px] bg-[var(--color-accent)] rounded-full spring ${
+                    activeSection === item.id ? 'w-full' : 'w-0'
+                  }`}
+                />
+              </a>
+            ))}
+            <Link
+              href="/portfolio"
+              className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
+            >
+              {tNav('caseStudies')}
+            </Link>
+            <a
+              href="/showcase.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the flashy showcase version in a new tab"
+              className="relative inline-flex items-center gap-1 py-1 px-3 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-pink-500 via-orange-400 to-amber-300 shadow-sm shadow-orange-400/40 hover:shadow-md hover:shadow-orange-400/60 hover:scale-[1.05] spring"
+            >
+              <span aria-hidden>✨</span>
+              <span>Showcase</span>
+            </a>
+            <LanguageToggle />
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-[100dvh] flex items-center px-6 pt-24 pb-20 relative overflow-hidden">
+        {/* 배경 장식 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-bg-light)] via-white to-[var(--color-accent-light)]/20"></div>
+        <div className="absolute top-32 right-[10%] w-80 h-80 rounded-full bg-[var(--color-accent)]/[0.04] blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-[5%] w-64 h-64 rounded-full bg-[var(--color-secondary)]/[0.03] blur-3xl animate-float" style={{ animationDelay: '3s' }}></div>
+
+        <div className="max-w-5xl mx-auto w-full relative z-10">
+          <div className="space-y-10">
+            <div className="space-y-6 animate-fadeInUp">
+              <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider">{tHero('eyebrow')}</p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-wrap-balance">
+                {tHero('greeting')}
+                <br />
+                <span className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">
+                  {tHero('roleHighlight')}
+                </span>{' '}
+                {tHero('roleSuffix')}
+              </h1>
+
+              <div className="max-w-2xl space-y-3">
+                <p className="text-lg md:text-xl leading-relaxed font-medium text-[var(--color-text)]">
+                  {tHero('lead')}
+                </p>
+                <p className="text-base md:text-lg text-[var(--color-text-muted)] leading-relaxed">
+                  {tHero('sub')}
+                </p>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="flex flex-wrap gap-4 animate-fadeInUp" style={{ animationDelay: '0.2s', opacity: 0 }}>
+              <a
+                href="#experience"
+                className="px-7 py-3.5 bg-[var(--color-primary)] text-white font-semibold rounded-xl shadow-lg shadow-black/10 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] spring"
+              >
+                {tHero('ctaExperience')}
+              </a>
+              <a
+                href="#projects"
+                className="px-7 py-3.5 bg-white text-[var(--color-primary)] font-semibold border border-[var(--color-border)] rounded-xl shadow-sm hover:shadow-md hover:border-[var(--color-accent)] hover:scale-[1.02] active:scale-[0.98] spring"
+              >
+                {tHero('ctaProjects')}
+              </a>
+              <Link
+                href="/portfolio"
+                className="px-7 py-3.5 bg-white text-[var(--color-accent)] font-semibold border border-[var(--color-accent)]/40 rounded-xl shadow-sm hover:shadow-md hover:bg-[var(--color-accent-light)] hover:scale-[1.02] active:scale-[0.98] spring inline-flex items-center gap-2"
+              >
+                <span>{tHero('ctaCaseStudies')}</span>
+                <span aria-hidden>→</span>
+              </Link>
+              <a
+                href="/resume.pdf"
+                download
+                className="px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] spring"
+              >
+                {tHero('ctaResume')}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="px-6 py-24 md:py-32 bg-white relative">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-14 reveal">
+            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">{tExp('eyebrow')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{tExp('heading')}</h2>
+          </div>
+
+          <div className="space-y-6 relative before:absolute before:left-[11px] before:top-0 before:bottom-0 before:w-[2px] before:bg-[var(--color-border)]">
+
+            {/* 해양수산과학기술진흥원 */}
+            <div className="relative pl-12 reveal">
+              <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-[var(--color-accent)] border-4 border-white shadow-md shadow-emerald-500/20"></div>
+              <div className="bg-[var(--color-bg-light)] border border-[var(--color-accent)]/30 p-7 rounded-2xl shadow-sm hover:shadow-md spring">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-5">
+                  <div>
+                    <span className="inline-block px-2.5 py-0.5 bg-[var(--color-accent)] text-white text-xs font-semibold rounded-md mb-3">
+                      {tExp('currentBadge')}
+                    </span>
+                    <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('kimst.name')}</h3>
+                    <p className="text-sm text-[var(--color-text-muted)]">{tExp('kimst.role')}</p>
+                    <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('kimst.tenure')}</p>
+                  </div>
+                </div>
+
+                <div className="border-l-[3px] border-[var(--color-accent)]/30 pl-5 mb-5">
+                  <p className="font-semibold text-base mb-3">{tExp('kimst.projectTitle')}</p>
+                  <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                    {expBullets('kimst.bullets').map((bullet, idx) => (
+                      <BulletItem accent key={idx}>{bullet}</BulletItem>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {['Java', 'Spring', 'SSO', 'PostgreSQL', 'Docker'].map((tech) => (
+                    <TechTag key={tech} hoverable>{tech}</TechTag>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 한국언론진흥재단 */}
+            <div className="relative pl-12 reveal">
+              <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
+              <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
+                <div className="mb-5">
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('kpf.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('kpf.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('kpf.tenure')}</p>
+                </div>
+
+                <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
+                  <p className="font-semibold text-base mb-3">{tExp('kpf.projectTitle')}</p>
+                  <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                    {expBullets('kpf.bullets').map((bullet, idx) => (
+                      <BulletItem key={idx}>{bullet}</BulletItem>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {['Java', 'Spring', 'Oracle', 'NCP', 'Jenkins', 'WebtoB', 'JEUS'].map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 아이티파트너스 */}
+            <div className="relative pl-12 reveal">
+              <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
+              <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
+                <div className="mb-5">
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('itpartners.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('itpartners.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('itpartners.tenure')}</p>
+                </div>
+
+                <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
+                  <p className="font-semibold text-base mb-3">{tExp('itpartners.projectTitle')}</p>
+                  <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                    {expBullets('itpartners.bullets').map((bullet, idx) => (
+                      <BulletItem key={idx}>{bullet}</BulletItem>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {['Java', 'Spring', 'Nexacro', 'Oracle', 'RESTful API'].map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 크레비즈, 큐로드 */}
+            <div className="relative pl-12 reveal">
+              <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
+              <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
+                <div className="mb-5">
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('crebiz.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('crebiz.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('crebiz.tenure')}</p>
+                </div>
+
+                <div className="space-y-5 mb-5">
+                  {(tExp.raw('crebiz.projects') as { title: string; subtitle: string; bullets: string[] }[]).map((proj, idx) => (
+                    <div key={idx} className="border-l-[3px] border-[var(--color-border)] pl-5">
+                      <p className="font-semibold text-base mb-1">{proj.title}</p>
+                      <p className="text-xs text-[var(--color-text-muted)] mb-3">{proj.subtitle}</p>
+                      <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                        {proj.bullets.map((bullet, bi) => (
+                          <BulletItem key={bi}>{bullet}</BulletItem>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {['Java', 'Spring', 'MySQL', 'Highchart', 'Excel API'].map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* NHN엔터테인먼트 */}
+            <div className="relative pl-12 reveal">
+              <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
+              <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
+                <div className="mb-5">
+                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('nhn.name')}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('nhn.role')}</p>
+                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('nhn.tenure')}</p>
+                </div>
+
+                <div className="border-l-[3px] border-[var(--color-border)] pl-5 mb-5">
+                  <p className="font-semibold text-base mb-3">{tExp('nhn.projectTitle')}</p>
+                  <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
+                    {expBullets('nhn.bullets').map((bullet, idx) => (
+                      <BulletItem key={idx}>{bullet}</BulletItem>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {['Java', 'Spring', 'MySQL', 'jQuery', 'Ajax'].map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-24 md:py-32 bg-[var(--color-bg-light)]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="mb-12 reveal">
+            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">{tProjects('sectionEyebrow')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{tProjects('sectionHeading')}</h2>
+          </div>
+
+          <div className="reveal">
+            <ProjectsList />
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="px-6 py-24 md:py-32 bg-white">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-14 reveal">
+            <p className="text-sm font-mono font-medium text-[var(--color-accent)] tracking-wider mb-3">{tAbout('eyebrow')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">{tAbout('heading')}</h2>
+          </div>
+
+          <div className="grid md:grid-cols-[1.2fr_0.8fr] gap-10 items-start">
+            {/* Philosophy */}
+            <div className="space-y-8 reveal">
+              <div className="space-y-5">
+                {(tAbout.raw('philosophy') as { text: string; sub: string }[]).map((item, i) => (
+                  <div key={i} className="flex gap-4 items-start">
+                    <span className="w-1 h-full min-h-[3rem] bg-[var(--color-accent)]/20 rounded-full flex-shrink-0"></span>
+                    <div>
+                      <p className="text-base font-semibold text-[var(--color-text)] leading-relaxed">{item.text}</p>
+                      <p className="text-sm text-[var(--color-text-muted)] mt-1">{item.sub}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-2.5">
+                {(tAbout.raw('checklist') as string[]).map((item) => (
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-[var(--color-text)] bg-[var(--color-bg-light)] px-3.5 py-2.5 rounded-lg">
+                    <span className="w-4 h-4 rounded-full bg-[var(--color-accent)]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)]"></span>
+                    </span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tech Stack Card */}
+            <div className="bg-[var(--color-bg-light)] border border-[var(--color-border)] p-7 rounded-2xl reveal">
+              <div className="space-y-5">
+                <div className="flex items-center justify-between border-b border-[var(--color-border)] pb-4">
+                  <div>
+                    <p className="text-xs text-[var(--color-text-muted)]">{tAbout('cardLabel')}</p>
+                    <p className="text-xl font-bold">{tAbout('cardName')}</p>
+                  </div>
+                  <span className="px-2.5 py-1 border border-[var(--color-accent)]/40 text-[var(--color-accent)] text-xs font-semibold rounded-md bg-[var(--color-accent)]/5">
+                    {tAbout('cardBadge')}
+                  </span>
+                </div>
+
+                <div className="space-y-2.5">
+                  {(() => {
+                    const stackLabels = tAbout.raw('stackLabels') as Record<string, string>;
+                    const stackItems = [
+                      { labelKey: 'backend', value: 'Java · Spring Boot · Node.js' },
+                      { labelKey: 'frontend', value: 'HTML · CSS · JavaScript · jQuery' },
+                      { labelKey: 'database', value: 'Oracle · MySQL · PostgreSQL · Redis' },
+                      { labelKey: 'infra', value: 'NCP · AWS · OCI' },
+                      { labelKey: 'cicd', value: 'GitLab · Jenkins · Git' },
+                      { labelKey: 'aiTools', value: 'Claude Code · Cursor · ChatGPT' },
+                    ];
+                    return stackItems.map((item) => (
+                      <div key={item.labelKey} className="bg-white border border-[var(--color-border)] p-3 rounded-xl hover:border-[var(--color-accent)]/40 spring">
+                        <p className="text-xs text-[var(--color-text-muted)] mb-0.5">{stackLabels[item.labelKey]}</p>
+                        <p className="font-mono text-sm font-medium">{item.value}</p>
+                      </div>
+                    ));
+                  })()}
+                </div>
+
+                <div className="pt-4 border-t border-[var(--color-border)]">
+                  <p className="text-xs text-[var(--color-text-muted)] mb-2">{tAbout('contactLabel')}</p>
+                  <a
+                    href="mailto:ongsya@gmail.com"
+                    className="font-mono text-sm font-semibold text-[var(--color-accent)] hover:underline inline-flex items-center gap-2 spring"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    ongsya@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-10 text-center border-t border-[var(--color-border)]">
+        <p className="text-[var(--color-text-muted)] text-xs">{tFooter('text')}</p>
+      </footer>
+    </main>
+  );
+}

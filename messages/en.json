@@ -160,6 +160,51 @@
       "viewDetail": "View detail"
     }
   },
+  "meta": {
+    "root": {
+      "titleSuffix": "Sungmoo Shin Portfolio"
+    },
+    "home": {
+      "title": "Sungmoo Shin — Full-Stack Developer Portfolio",
+      "description": "Portfolio of Sungmoo Shin, a full-stack developer with about 10 years of experience across public-sector SI, gaming, and logistics."
+    },
+    "portfolioIndex": {
+      "title": "Case Studies | Sungmoo Shin Portfolio",
+      "description": "A collection of case studies on real production-environment problems and how they were solved."
+    },
+    "cicd": {
+      "title": "CI/CD Pipeline Build-out | Case Study",
+      "description": "Building a Jenkins-based CI/CD pipeline that cut deploy time from around 20 minutes to 4."
+    },
+    "grandbaie": {
+      "title": "Grand-Baie Static Site | Case Study",
+      "description": "Building and deploying an Astro-based B2C static site for a postpartum care center."
+    },
+    "logViewer": {
+      "title": "Real-time Log Viewer | Case Study",
+      "description": "Designing an SSE + Cross-WAS real-time log streaming system that eliminated a Busan-office dependency."
+    },
+    "ohmybaby": {
+      "title": "Ohmybaby Platform | Case Study",
+      "description": "Building a family-participatory baby-naming service powered by GPT-4o and tournament-style voting."
+    },
+    "redisSession": {
+      "title": "Redis Session Clustering | Case Study",
+      "description": "Redis-backed session clustering enabling zero-downtime rolling WAS restarts on a legacy stack."
+    },
+    "ssoProvider": {
+      "title": "SSO Provider Integration | Case Study",
+      "description": "A lightweight SSO Provider between Badabom and external partner sites with CI-based account mapping."
+    },
+    "techtradeMigration": {
+      "title": "Technology-Trade Site Migration | Case Study",
+      "description": "Migrating a legacy Oracle + MyBatis tech-trade platform into PostgreSQL + iBATIS on Badabom."
+    },
+    "tlsUpgrade": {
+      "title": "TLS 1.3 Upgrade | Case Study",
+      "description": "Upgrading TLS 1.0/1.1 to TLS 1.3 via an Nginx reverse proxy without touching shared SSL."
+    }
+  },
   "footer": {
     "text": "© 2026 THMM. Crafted with TypeScript & Next.js"
   }

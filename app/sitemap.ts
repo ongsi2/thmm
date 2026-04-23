@@ -1,87 +1,35 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next';
+
+const HOST = 'https://thmm.kr';
+
+const PATHS = [
+  '/',
+  '/portfolio',
+  '/portfolio/cicd',
+  '/portfolio/grandbaie',
+  '/portfolio/log-viewer',
+  '/portfolio/ohmybaby',
+  '/portfolio/redis-session',
+  '/portfolio/sso-provider',
+  '/portfolio/techtrade-migration',
+  '/portfolio/tls-upgrade',
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://thmm.kr'
-  const lastModified = new Date()
-
-  return [
-    {
-      url: baseUrl,
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/#experience`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#projects`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/#about`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/portfolio`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/portfolio/techtrade-migration`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/cicd`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/redis-session`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/tls-upgrade`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/sso-provider`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/log-viewer`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/grandbaie`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/portfolio/ohmybaby`,
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-  ]
+  const now = new Date();
+  return PATHS.flatMap((path) => {
+    const koUrl = `${HOST}${path}`;
+    const enPath = path === '/' ? '/en' : `/en${path}`;
+    const enUrl = `${HOST}${enPath}`;
+    const alternates = {
+      languages: {
+        ko: koUrl,
+        en: enUrl,
+      },
+    };
+    return [
+      { url: koUrl, lastModified: now, alternates },
+      { url: enUrl, lastModified: now, alternates },
+    ];
+  });
 }

@@ -160,6 +160,51 @@
       "viewDetail": "자세히 보기"
     }
   },
+  "meta": {
+    "root": {
+      "titleSuffix": "신성무 포트폴리오"
+    },
+    "home": {
+      "title": "신성무 — 풀스택 개발자 포트폴리오",
+      "description": "약 10년간 공공 SI, 게임, 물류 분야에서 개발을 수행한 풀스택 개발자 신성무의 포트폴리오."
+    },
+    "portfolioIndex": {
+      "title": "케이스 스터디 | 신성무 포트폴리오",
+      "description": "실제 운영 환경에서 맞닥뜨린 문제와 해결 과정을 정리한 케이스 스터디 목록."
+    },
+    "cicd": {
+      "title": "CI/CD 파이프라인 구축 | 케이스 스터디",
+      "description": "Jenkins 기반 CI/CD 파이프라인을 구축해 배포 시간을 30분에서 5분으로 단축한 사례."
+    },
+    "grandbaie": {
+      "title": "Grand-Baie 정적 사이트 | 케이스 스터디",
+      "description": "Astro 기반 B2C 정적 사이트 구축 및 배포 사례."
+    },
+    "logViewer": {
+      "title": "실시간 로그뷰어 | 케이스 스터디",
+      "description": "SSE·WebSocket 기반 실시간 로그 스트리밍 시스템 구축 사례."
+    },
+    "ohmybaby": {
+      "title": "오마이베이비 플랫폼 | 케이스 스터디",
+      "description": "AI 추천 + 가족 투표 아기 작명 서비스 개발 사례."
+    },
+    "redisSession": {
+      "title": "Redis 세션 클러스터링 | 케이스 스터디",
+      "description": "무중단 배포를 위한 Redis 세션 클러스터링 구축 사례."
+    },
+    "ssoProvider": {
+      "title": "SSO Provider 연동 | 케이스 스터디",
+      "description": "바다봄과 파트너 사이트 간 SSO 인증 연동 사례."
+    },
+    "techtradeMigration": {
+      "title": "기술거래 사이트 마이그레이션 | 케이스 스터디",
+      "description": "레거시 기술거래 사이트를 현대적 스택으로 마이그레이션한 사례."
+    },
+    "tlsUpgrade": {
+      "title": "TLS 업그레이드 | 케이스 스터디",
+      "description": "TLS 1.2 → 1.3 업그레이드 및 cipher suite 정비 사례."
+    }
+  },
   "footer": {
     "text": "© 2026 THMM. Crafted with TypeScript & Next.js"
   }

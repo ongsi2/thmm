@@ -1,8 +1,45 @@
+import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { casesByOrganization } from './_components/cases';
 
 type Locale = 'ko' | 'en';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'meta.portfolioIndex' });
+  const path = '/portfolio';
+  const canonical = locale === 'ko' ? path : `/en${path}`;
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: {
+      canonical,
+      languages: {
+        'ko-KR': path,
+        'en-US': `/en${path}`,
+        'x-default': path,
+      },
+    },
+    openGraph: {
+      locale: locale === 'ko' ? 'ko_KR' : 'en_US',
+      alternateLocale: locale === 'ko' ? 'en_US' : 'ko_KR',
+      title: t('title'),
+      description: t('description'),
+      type: 'website',
+      url: canonical,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+    },
+  };
+}
 
 export default async function PortfolioIndex() {
   const locale = (await getLocale()) as Locale;
