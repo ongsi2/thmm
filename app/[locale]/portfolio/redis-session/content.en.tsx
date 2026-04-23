@@ -63,7 +63,7 @@ export default function RedisSessionContentEn() {
         organization={organizations['kpf-issga']}
         category="INFRA / SESSION"
         title="Redis-based session clustering"
-        subtitle="JEUS Standard Edition does not support session clustering, so we routed around the limitation by putting Redis in front as an external session store. The result: rolling restarts of WAS nodes became possible even on a legacy stack."
+        subtitle="JEUS Standard Edition does not support session clustering, so I routed around the limitation by putting Redis in front as an external session store. The result: rolling restarts of WAS nodes became possible even on a legacy stack."
         meta={[
           { label: 'Core impact', value: 'Zero-downtime deploys', hint: 'Rolling WAS restarts enabled' },
           { label: 'Session latency', value: 'Milliseconds', hint: 'No perceivable UX impact' },
@@ -83,7 +83,7 @@ export default function RedisSessionContentEn() {
 
       <CaseSection eyebrow="Problem" title="Restarting a single WAS wiped out logins and in-progress input" accent="problem">
         <p>
-          We had multiple WAS nodes, but each one held its own sessions independently. Restarting even a single
+          The setup had multiple WAS nodes, but each one held its own sessions independently. Restarting even a single
           node logged out every user pinned to it, and any form they were filling out was lost along with it.
           JEUS does offer session clustering, but only in the Enterprise license — our environment was Standard,
           so there was no official path to fix it.
@@ -108,9 +108,9 @@ export default function RedisSessionContentEn() {
 
       <CaseSection eyebrow="Approach" title="Route around it with an external Redis session store" accent="approach">
         <p>
-          A license upgrade would have been expensive, so instead we moved sessions out of the application and
+          A license upgrade would have been expensive, so instead I moved sessions out of the application and
           into an external store. Spring Session integrates with Redis out of the box, so no application code
-          had to change — only configuration. And because Redis responds in milliseconds, we expected almost
+          had to change — only configuration. And because Redis responds in milliseconds, I expected almost
           no user-facing impact.
         </p>
 
@@ -146,7 +146,7 @@ export default function RedisSessionContentEn() {
               body: (
                 <>
                   <p>
-                    We ran Redis 7.4 in a container on a shared Docker host, wiring up a password, a persistent
+                    I ran Redis 7.4 in a container on a shared Docker host, wiring up a password, a persistent
                     volume, and an auto-restart policy. The host, port, and password used by the application
                     were extracted into a separate properties file.
                   </p>
@@ -160,7 +160,7 @@ export default function RedisSessionContentEn() {
               body: (
                 <>
                   <p>
-                    We added Spring Session, Spring Data Redis, and Lettuce to the eGovFrame project&apos;s
+                    I added Spring Session, Spring Data Redis, and Lettuce to the eGovFrame project&apos;s
                     pom.xml. This is the groundwork for delegating servlet sessions to an external store.
                   </p>
                   <CodeBlock filename="pom.xml" language="xml" code={pomXml} />
@@ -172,7 +172,7 @@ export default function RedisSessionContentEn() {
               body: (
                 <>
                   <p>
-                    In <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">context-redis.xml</code> we declared a LettuceConnectionFactory and <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">RedisHttpSessionConfiguration</code>.
+                    In <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">context-redis.xml</code> I declared a LettuceConnectionFactory and <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">RedisHttpSessionConfiguration</code>.
                     That maps the HTTP session to Redis automatically, so no application code had to change.
                   </p>
                   <CodeBlock filename="context-redis.xml" language="xml" code={contextXml} />
@@ -200,12 +200,12 @@ export default function RedisSessionContentEn() {
             {
               title: 'Worked around the license ceiling with an external store',
               detail:
-                'We delivered session clustering without buying the higher license tier — a firsthand lesson that platform constraints can often be solved at the architecture layer.',
+                'I delivered session clustering without buying the higher license tier — a firsthand lesson that platform constraints can often be solved at the architecture layer.',
             },
             {
               title: 'Next time, verify compatibility up front',
               detail:
-                'Because the eGovFrame version was older, validating Spring Session and Redis compatibility took more time than expected. Going forward, we will pin down compatibility before we start.',
+                'Because the eGovFrame version was older, validating Spring Session and Redis compatibility took more time than expected. Going forward, I will pin down compatibility before I start.',
             },
           ]}
         />
