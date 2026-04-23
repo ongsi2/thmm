@@ -155,7 +155,7 @@ export default function LogViewerContentEn() {
         organization={organizations['kimst-bdbis']}
         category="DEVOPS / OBSERVABILITY"
         title="SSE + Cross-WAS Real-time Log Viewer"
-        subtitle="The WAS was in the Daejeon IDC, but network segregation policy meant the only PCs that could reach it were at the Busan office. So checking a log basically required flying to Busan. I built a viewer that streams WAS logs in real time over the web, and added a Cross-WAS relay so logs across the two nodes all show up in a single screen."
+        subtitle="The WAS was in the Daejeon IDC, but network segregation policy meant the only PCs that could reach it were at the Busan office. So checking a log basically required making the trip down to Busan. I built a viewer that streams WAS logs in real time over the web, and added a Cross-WAS relay so logs across the two nodes all show up in a single screen."
         meta={[
           { label: 'Access constraint', value: 'Busan PC ONLY', hint: 'Daejeon WAS → Busan PC only' },
           { label: 'Transport', value: 'SSE', hint: 'Cleaner access logs than polling' },
@@ -413,7 +413,7 @@ export default function LogViewerContentEn() {
           variant="outcome"
           items={[
             {
-              title: 'The "fly to Busan" constraint is gone',
+              title: 'The "trip to Busan" constraint is gone',
               detail:
                 'Incident triage no longer starts with "is anyone at the Busan PC right now?" Even when I\'m working from Seoul, a single admin login gets me streaming logs in real time, and the response speed shift is visibly faster.',
             },
