@@ -2,8 +2,11 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { routing } from '@/i18n/routing';
 import '../globals.css';
+
+const GA_MEASUREMENT_ID = 'G-RHB4LDW7WG';
 
 const siteUrl = 'https://thmm.kr';
 const siteName = 'THMM Portfolio';
@@ -182,6 +185,7 @@ export default async function LocaleLayout({
       <body className="antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
+      <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }
