@@ -28,8 +28,6 @@ const mono = (s: string) => (
   <span className="font-mono font-semibold text-[var(--color-accent)]">{s}</span>
 );
 
-const monoPlain = (s: string) => <span className="font-mono font-semibold">{s}</span>;
-
 export const projects: Project[] = [
   {
     slug: 'ohmybaby',
@@ -161,37 +159,6 @@ export const projects: Project[] = [
           { label: 'Live Demo', href: 'https://thmm.kr/flash-coupon', variant: 'primary' },
           { label: 'API Docs', href: 'https://thmm.kr/api/docs', variant: 'ghost' },
         ],
-      },
-    },
-  },
-  {
-    slug: 'jwt-auth',
-    badgeTone: 'secondary',
-    tags: ['Spring Boot', 'Spring Security', 'JJWT', 'Redis', 'PostgreSQL', 'Docker'],
-    i18n: {
-      ko: {
-        title: 'JWT Auth System',
-        badgeText: '운영중',
-        description: (
-          <>
-            Spring Boot 기반 JWT 인증 시스템. {monoPlain('Redis 블랙리스트')}와{' '}
-            {monoPlain('Dual Token 정책')}으로 보안을 강화하고, 관리자 기능으로 사용자 세션을 실시간
-            제어합니다.
-          </>
-        ),
-        ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/springboot-jwt', variant: 'primary' }],
-      },
-      en: {
-        title: 'JWT Auth System',
-        badgeText: 'Live',
-        description: (
-          <>
-            A Spring Boot-based JWT authentication system, hardened with a{' '}
-            {monoPlain('Redis blacklist')} and a {monoPlain('dual-token policy')}, plus admin
-            tooling for real-time session control.
-          </>
-        ),
-        ctas: [{ label: 'Live Demo', href: 'https://thmm.kr/springboot-jwt', variant: 'primary' }],
       },
     },
   },
