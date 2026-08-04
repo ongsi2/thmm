@@ -15,8 +15,7 @@
     "sub": "I'm currently at the Korea Institute of Marine Science & Technology Promotion (해양수산과학기술진흥원, KIMST), operating the Badabom portal and building cross-system integrations.",
     "ctaExperience": "View Experience",
     "ctaProjects": "View Projects",
-    "ctaCaseStudies": "Case Studies",
-    "ctaResume": "Download Résumé"
+    "ctaCaseStudies": "Case Studies"
   },
   "experience": {
     "eyebrow": "EXPERIENCE",
@@ -54,31 +53,6 @@
         "Modernized legacy systems, migrating from T-Form to the Nexacro platform",
         "Built a research-equipment inventory and in/out tracking system, replacing manual records with a database",
         "Developed RESTful API modules for integration with internal ERP"
-      ]
-    },
-    "crebiz": {
-      "name": "Crebiz, Qload",
-      "role": "Freelance / full-time",
-      "tenure": "Dec 2014 - Nov 2015 (1y)",
-      "projects": [
-        {
-          "title": "Crebiz",
-          "subtitle": "ERP logistics module and dashboard",
-          "bullets": [
-            "Built unified management features for parts receiving, inventory, and shipments",
-            "Synced shipping-request data with ERP tables in real time",
-            "Implemented a live dashboard for inventory and movement history using Highcharts",
-            "Added Excel upload, reducing report-preparation time by about 70%"
-          ]
-        },
-        {
-          "title": "Qload",
-          "subtitle": "Customer inquiry and QA review system",
-          "bullets": [
-            "Built an input → verification → approval flow for QA vendor test results",
-            "Developed a customer-inquiry intake and email-response system"
-          ]
-        }
       ]
     },
     "nhn": {

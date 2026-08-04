@@ -219,13 +219,6 @@ export default function HomeClient() {
                 <span>{tHero('ctaCaseStudies')}</span>
                 <span aria-hidden>→</span>
               </Link>
-              <a
-                href="/resume.pdf"
-                download
-                className="px-7 py-3.5 bg-[var(--color-accent)] text-white font-semibold rounded-xl shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-[1.02] active:scale-[0.98] spring"
-              >
-                {tHero('ctaResume')}
-              </a>
             </div>
           </div>
         </div>
@@ -321,38 +314,6 @@ export default function HomeClient() {
 
                 <div className="flex flex-wrap gap-1.5">
                   {['Java', 'Spring', 'Nexacro', 'Oracle', 'RESTful API'].map((tech) => (
-                    <TechTag key={tech}>{tech}</TechTag>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* 크레비즈, 큐로드 */}
-            <div className="relative pl-12 reveal">
-              <div className="absolute left-0 top-8 w-[24px] h-[24px] rounded-full bg-white border-[3px] border-[var(--color-border)] shadow-sm"></div>
-              <div className="bg-white border border-[var(--color-border)] p-7 rounded-2xl hover:border-[var(--color-accent)]/40 hover:shadow-md spring">
-                <div className="mb-5">
-                  <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">{tExp('crebiz.name')}</h3>
-                  <p className="text-sm text-[var(--color-text-muted)]">{tExp('crebiz.role')}</p>
-                  <p className="text-xs text-[var(--color-text-muted)] font-mono mt-1">{tExp('crebiz.tenure')}</p>
-                </div>
-
-                <div className="space-y-5 mb-5">
-                  {(tExp.raw('crebiz.projects') as { title: string; subtitle: string; bullets: string[] }[]).map((proj, idx) => (
-                    <div key={idx} className="border-l-[3px] border-[var(--color-border)] pl-5">
-                      <p className="font-semibold text-base mb-1">{proj.title}</p>
-                      <p className="text-xs text-[var(--color-text-muted)] mb-3">{proj.subtitle}</p>
-                      <ul className="space-y-2 text-sm text-[var(--color-text-muted)]">
-                        {proj.bullets.map((bullet, bi) => (
-                          <BulletItem key={bi}>{bullet}</BulletItem>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-1.5">
-                  {['Java', 'Spring', 'MySQL', 'Highchart', 'Excel API'].map((tech) => (
                     <TechTag key={tech}>{tech}</TechTag>
                   ))}
                 </div>
