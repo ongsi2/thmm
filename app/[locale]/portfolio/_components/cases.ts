@@ -23,7 +23,7 @@ export const organizations: Record<string, Organization> = {
         period: '2026.01 - 현재',
         role: '프리랜서 · 개발자',
         intro:
-          '해양수산 R&D 통합정보시스템(바다봄) 운영 및 확장. 타사이트 SSO 연동, 로그뷰어 등 운영 편의 도구 제작, 외부 시스템(OTT 기술거래)을 바다봄으로 이관하는 등의 업무를 수행.',
+          '해양수산 R&D 통합정보시스템(바다봄) 운영 및 확장. 타사이트 SSO 연동, 로그뷰어 등 운영 편의 도구 제작, 외부 시스템(OTT 기술거래) 이관을 거쳐, 하반기에는 관리자 화면 전반의 구조 개선(콘솔 셸 전환, 상용 그리드 자체 대체)을 진행.',
       },
       en: {
         system: 'Badabom',
@@ -31,7 +31,7 @@ export const organizations: Record<string, Organization> = {
         period: 'Jan 2026 - Present',
         role: 'Freelance · Developer',
         intro:
-          "Operating and extending Badabom, KIMST's integrated marine R&D information system. Work includes SSO integration with partner sites, building operational tooling like a live log viewer, and migrating external systems (OTT technology-trade) into Badabom.",
+          "Operating and extending Badabom, KIMST's integrated marine R&D information system. Work spans SSO integration with partner sites, operational tooling like a live log viewer, and migrating external systems (OTT technology-trade) in — followed by a second-half push on the admin UI itself: a console shell rewrite and replacing the commercial data grid with an in-house component.",
       },
     },
   },
@@ -171,6 +171,60 @@ export const cases: CaseInfo[] = [
         summary:
           'Moved an Oracle + MyBatis technology-trade platform (OTT) onto PostgreSQL + iBATIS. Rewrote 87 URLs, 34 JSPs, 80+ SQL queries, and 14 tables.',
         outcome: '87 URLs · 80+ SQL migrated',
+      },
+    },
+  },
+  {
+    slug: 'admin-console',
+    organizationId: 'kimst-bdbis',
+    category: 'LEGACY UI / ARCHITECTURE',
+    stack: [
+      'SiteMesh 3',
+      'JSP',
+      'iframe',
+      'Spring MVC',
+      'eGovFrame',
+      'SessionTimer',
+    ],
+    i18n: {
+      ko: {
+        title: '관리자 화면 106개를 안 건드리고 콘솔 셸로 감싸기',
+        summary:
+          '관리자 메뉴를 별도창 콘솔로 바꿔야 했는데, /adm 화면 100여 개를 다시 쓸 수는 없었습니다. SiteMesh 데코레이터를 그 자리에서 자식용으로 개조해 기존 매핑이 자동으로 따라오게 하고, 상단바·사이드바는 부모 셸에 상주시켜 iframe 본문만 교체하는 구조로 갔습니다.',
+        outcome: '화면 재작성 0건 · 225면 전수 검증',
+      },
+      en: {
+        title: 'Wrapping 106 Admin Screens in a Console Shell Without Touching Them',
+        summary:
+          'The admin menu had to become a separate-window console, but rewriting ~100 /adm screens was off the table. I converted the existing SiteMesh decorator in place into a child decorator so every current mapping followed automatically, kept the topbar and sidebar resident in a parent shell, and swapped only the iframe body.',
+        outcome: '0 screens rewritten · 225 screens swept',
+      },
+    },
+  },
+  {
+    slug: 'bdb-grid',
+    organizationId: 'kimst-bdbis',
+    category: 'FRONTEND / COMPONENT',
+    stack: [
+      'Vanilla JS (ES5)',
+      'jQuery 3',
+      'SheetJS',
+      'Web Worker',
+      'KWCAG 2.2',
+      'eGovFrame',
+    ],
+    i18n: {
+      ko: {
+        title: '상용 그리드를 걷어내고 자체 그리드 컴포넌트로 대체',
+        summary:
+          '관리자 목록 화면마다 렌더 루프와 페이징 계산을 손으로 쓰고 있었고, 남은 화면은 서버당 라이선스가 붙는 상용 그리드에 묶여 있었습니다. 응답 계약을 그대로 흡수하는 자체 그리드를 만들어 서버 코드 한 줄 안 고치고 80여 면을 옮겼습니다.',
+        outcome: '서버 변경 0건 · 라이선스 의존 제거',
+      },
+      en: {
+        title: 'Replacing a Commercial Data Grid With an In-House Component',
+        summary:
+          'Every admin list screen hand-rolled its own render loop and paging math, and the rest were locked to a commercial grid licensed per server. I built an in-house grid that absorbs the existing response contracts as-is, then moved ~80 screens onto it without changing a single line of server code.',
+        outcome: '0 server changes · license dependency removed',
       },
     },
   },

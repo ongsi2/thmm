@@ -146,6 +146,14 @@
       "title": "Case Studies | Sungmoo Shin Portfolio",
       "description": "A collection of case studies on real production-environment problems and how they were solved."
     },
+    "adminConsole": {
+      "title": "Admin Console Shell Migration | Case Study",
+      "description": "Converting a SiteMesh decorator in place to move 106 admin screens into an iframe console shell without rewriting any of them."
+    },
+    "bdbGrid": {
+      "title": "In-House Data Grid Component | Case Study",
+      "description": "Replacing a commercial data grid with an in-house component, migrating ~80 admin screens with zero server changes."
+    },
     "cicd": {
       "title": "CI/CD Pipeline Build-out | Case Study",
       "description": "Building a Jenkins-based CI/CD pipeline that cut deploy time from around 20 minutes to 4."

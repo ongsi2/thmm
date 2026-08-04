@@ -5,6 +5,8 @@ const HOST = 'https://thmm.kr';
 const PATHS = [
   '/',
   '/portfolio',
+  '/portfolio/admin-console',
+  '/portfolio/bdb-grid',
   '/portfolio/cicd',
   '/portfolio/grandbaie',
   '/portfolio/log-viewer',
