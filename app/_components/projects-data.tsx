@@ -63,6 +63,39 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'dumdum',
+    badgeTone: 'amber',
+    featured: true,
+    tags: ['Astro', 'Next.js', 'Tailwind CSS', 'Vercel', 'SEO'],
+    i18n: {
+      ko: {
+        title: '덤덤 웹스튜디오',
+        badgeText: '외주 · 운영중',
+        description: (
+          <>
+            홈페이지 제작 외주를 받는 스튜디오 사이트이자, 제 영업 창구입니다. 계약 전에{' '}
+            {mono('실제 동작하는 시안')}을 먼저 만들어 보여주는 방식으로 일하고, 산후조리원·치과·필라테스·
+            법무법인 등 업종별 시안 16건을 갤러리로 공개해 두었습니다. 그랑베이가 여기서 시작된 첫 사례입니다.
+          </>
+        ),
+        ctas: [{ label: '사이트 방문', href: 'https://dumdum.kr', variant: 'accent' }],
+      },
+      en: {
+        title: 'Dumdum Web Studio',
+        badgeText: 'Client Work · Live',
+        description: (
+          <>
+            My web-studio site and the front door for client work. I lead with a{' '}
+            {mono('working prototype')} before any contract is signed, and the gallery publishes 16
+            industry-specific concepts — postpartum care, dental, pilates, law firms, and more.
+            Grand-Baie was the first project that came out of this.
+          </>
+        ),
+        ctas: [{ label: 'Visit Site', href: 'https://dumdum.kr', variant: 'accent' }],
+      },
+    },
+  },
+  {
     slug: 'grandbaie',
     badgeTone: 'amber',
     featured: true,
@@ -92,6 +125,104 @@ export const projects: Project[] = [
           </>
         ),
         ctas: [{ label: 'Visit Site', href: 'https://grandbaie.co.kr', variant: 'primary' }],
+      },
+    },
+  },
+  {
+    slug: 'im-so-cute',
+    badgeTone: 'purple',
+    tags: ['Apps in Toss', 'Vite', 'React', 'TDS Mobile', 'Supabase'],
+    i18n: {
+      ko: {
+        title: '난귀여워',
+        badgeText: '앱인토스 · 출시',
+        description: (
+          <>
+            주어진 문장을 최대한 귀엽게 읽으면 정확도·음정·표현력·귀여움 4항목으로 점수를 매기고, 피드에
+            올려 서로 좋아요를 누르는 토스 미니앱. 토스 로그인 없이 {mono('익명 인증 + anonymous_key')}로
+            기기가 바뀌어도 본인 기록을 찾게 했고, localStorage를 1차 저장소로 두는 dual-write 구조라
+            네트워크가 끊겨도 화면이 멈추지 않습니다. 앱인토스 바이브코딩 챌린지 출품작.
+          </>
+        ),
+        ctas: [{ label: '토스 앱에서 이용', variant: 'ghost' }],
+      },
+      en: {
+        title: 'ImCute',
+        badgeText: 'Apps in Toss · Live',
+        description: (
+          <>
+            A Toss mini-app: read a given line as cutely as you can, get scored on four axes
+            (accuracy, pitch, expression, cuteness), then post it to a feed where people like each
+            other's takes. {mono('Anonymous auth + anonymous_key')} links a user across devices
+            without a Toss login, and a localStorage-first dual-write keeps the UI responsive even
+            when the network drops. Submitted to the Apps in Toss vibe-coding challenge.
+          </>
+        ),
+        ctas: [{ label: 'Available inside Toss', variant: 'ghost' }],
+      },
+    },
+  },
+  {
+    slug: 'tickereats',
+    badgeTone: 'purple',
+    tags: ['Apps in Toss', 'Vite', 'React', '키움 REST API', 'Vercel Functions'],
+    i18n: {
+      ko: {
+        title: '오늘뭐먹주',
+        badgeText: '앱인토스 · 출시',
+        description: (
+          <>
+            내가 고른 종목이 오늘 움직인 만큼, 그러니까 {mono('1주 변동액')}이 그날의 메뉴 예산이 되는
+            미니앱. 키움 REST API로 시세를 받아 6개 예산 밴드로 나누고, 시간대에 맞는 세션(모닝·점심·오후·
+            저녁·야식) 메뉴를 추천한 뒤 카카오 로컬 API로 근처 식당까지 이어줍니다. 전 화면 무스크롤 설계.
+          </>
+        ),
+        ctas: [{ label: '토스 앱에서 이용', variant: 'ghost' }],
+      },
+      en: {
+        title: 'TickerEats',
+        badgeText: 'Apps in Toss · Live',
+        description: (
+          <>
+            Your lunch budget is however much your pick moved today — the{' '}
+            {mono('per-share daily change')}. Quotes come from the Kiwoom REST API, get bucketed
+            into six budget bands, and drive a menu suggestion for the current session (morning,
+            lunch, afternoon, dinner, late-night), which then hands off to the Kakao Local API for
+            nearby restaurants. Every screen fits without scrolling.
+          </>
+        ),
+        ctas: [{ label: 'Available inside Toss', variant: 'ghost' }],
+      },
+    },
+  },
+  {
+    slug: 'bakbak',
+    badgeTone: 'purple',
+    tags: ['Apps in Toss', 'Vite', 'React 18', 'Supabase RLS', 'TDS Mobile'],
+    i18n: {
+      ko: {
+        title: '박박',
+        badgeText: '앱인토스 · 출시',
+        description: (
+          <>
+            수박을 키워서 친구와 나눠 먹는 미니앱. Supabase 익명 인증 위에 전용 스키마를 따로 두고,
+            상태 전이를 전부 {mono('RPC + RLS')}로 감싸 클라이언트가 진행도를 직접 쓰지 못하고 서버 함수를
+            통해서만 올라가도록 했습니다.
+          </>
+        ),
+        ctas: [{ label: '토스 앱에서 이용', variant: 'ghost' }],
+      },
+      en: {
+        title: 'Bakbak',
+        badgeText: 'Apps in Toss · Live',
+        description: (
+          <>
+            Grow a watermelon, then split it with friends. Built on Supabase anonymous auth with a
+            dedicated schema, where every state transition goes through {mono('RPC + RLS')} — the
+            client can never write progress directly, only ask a server function to advance it.
+          </>
+        ),
+        ctas: [{ label: 'Available inside Toss', variant: 'ghost' }],
       },
     },
   },
