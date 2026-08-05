@@ -1,14 +1,11 @@
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import LanguageToggle from '@/app/_components/LanguageToggle';
 
-export default async function PortfolioLayout({
+export default async function BlogLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   const tNav = await getTranslations('nav');
   const tFooter = await getTranslations('footer');
-  // 블로그는 한국어 전용 — en에서는 라우트가 404라 링크를 숨긴다.
-  const showBlog = (await getLocale()) === 'ko';
 
   return (
     <div className="min-h-[100dvh] bg-[var(--color-bg-light)] noise-overlay">
@@ -35,20 +32,15 @@ export default async function PortfolioLayout({
             </Link>
             <Link
               href="/portfolio"
-              className="relative py-1 text-[var(--color-accent)]"
+              className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
             >
               {tNav('caseStudies')}
+            </Link>
+            {/* 블로그는 한국어 전용이라 언어 토글을 두지 않는다 (en에서는 이 라우트가 404) */}
+            <Link href="/blog" className="relative py-1 text-[var(--color-accent)]">
+              {tNav('blog')}
               <span className="absolute -bottom-0.5 left-0 h-[2px] w-full bg-[var(--color-accent)] rounded-full" />
             </Link>
-            {showBlog && (
-              <Link
-                href="/blog"
-                className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
-              >
-                {tNav('blog')}
-              </Link>
-            )}
-            <LanguageToggle />
           </div>
         </div>
       </nav>

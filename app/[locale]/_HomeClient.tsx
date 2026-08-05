@@ -2,12 +2,15 @@
 
 import { Link } from '@/i18n/navigation';
 import { useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import LanguageToggle from '../_components/LanguageToggle';
 import ProjectsList from '../_components/ProjectsList';
 
 export default function HomeClient() {
   const [activeSection, setActiveSection] = useState('home');
+  const locale = useLocale();
+  // 블로그는 한국어 전용 — en에서는 라우트가 404라 링크를 숨긴다.
+  const showBlog = locale === 'ko';
   const tNav = useTranslations('nav');
   const tHero = useTranslations('hero');
   const tExp = useTranslations('experience');
@@ -155,6 +158,14 @@ export default function HomeClient() {
             >
               {tNav('caseStudies')}
             </Link>
+            {showBlog && (
+              <Link
+                href="/blog"
+                className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
+              >
+                {tNav('blog')}
+              </Link>
+            )}
             <a
               href="/showcase.html"
               aria-label="Open the flashy showcase version"

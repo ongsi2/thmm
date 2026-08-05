@@ -188,3 +188,264 @@
     background-size: 256px 256px;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   블로그 본문(prose) — 마크다운이 만든 순수 HTML에 스타일을 입힌다.
+   Tailwind 클래스를 못 붙이는 영역이라 여기서 태그 선택자로 처리.
+   코드 블록은 포트폴리오의 CodeBlock 컴포넌트와 같은 톤(#0b1120)으로 맞췄다.
+--------------------------------------------------------------------------- */
+@layer components {
+  .prose-thmm {
+    color: var(--color-text);
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  .prose-thmm > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .prose-thmm h2 {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--color-primary);
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-thmm h3 {
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-primary);
+    scroll-margin-top: 6rem;
+  }
+
+  /* rehype-autolink-headings가 heading 텍스트를 <a>로 감싼다.
+     링크처럼 보이면 안 되고, 호버할 때만 앵커라는 걸 알려준다. */
+  .prose-thmm .heading-anchor {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .prose-thmm .heading-anchor:hover {
+    color: var(--color-accent);
+  }
+
+  .prose-thmm .heading-anchor:hover::after {
+    content: '#';
+    margin-left: 0.4rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    opacity: 0.5;
+  }
+
+  .prose-thmm p {
+    color: var(--color-text);
+  }
+
+  .prose-thmm strong {
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .prose-thmm a:not(.heading-anchor) {
+    color: var(--color-accent-dark);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  .prose-thmm a:not(.heading-anchor):hover {
+    color: var(--color-accent);
+  }
+
+  .prose-thmm ul,
+  .prose-thmm ol {
+    padding-left: 1.35rem;
+    color: var(--color-text);
+  }
+
+  .prose-thmm ul {
+    list-style: disc;
+  }
+
+  .prose-thmm ol {
+    list-style: decimal;
+  }
+
+  .prose-thmm li + li {
+    margin-top: 0.4rem;
+  }
+
+  .prose-thmm li::marker {
+    color: var(--color-text-muted);
+  }
+
+  /* GFM 체크박스 목록은 마커를 지운다 */
+  .prose-thmm li:has(> input[type='checkbox']) {
+    list-style: none;
+    margin-left: -1.35rem;
+  }
+
+  .prose-thmm input[type='checkbox'] {
+    margin-right: 0.5rem;
+    accent-color: var(--color-accent);
+  }
+
+  .prose-thmm blockquote {
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    border-left: 3px solid var(--color-accent);
+    color: var(--color-text-muted);
+  }
+
+  .prose-thmm hr {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    border: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .prose-thmm img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+  }
+
+  /* 인라인 코드 */
+  .prose-thmm :not(pre) > code {
+    padding: 0.15rem 0.4rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.35rem;
+    background: var(--color-bg-off);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.86em;
+    color: var(--color-primary);
+    word-break: break-word;
+  }
+
+  /* 표 — 넓으면 가로 스크롤. 본문이 밀려나면 안 된다. */
+  .prose-thmm table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .prose-thmm th,
+  .prose-thmm td {
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .prose-thmm th {
+    background: var(--color-bg-off);
+    font-weight: 600;
+    color: var(--color-primary);
+    white-space: nowrap;
+  }
+
+  /* 코드 블록 */
+  .prose-thmm pre {
+    padding: 1.25rem;
+    overflow-x: auto;
+    border: 1px solid #262626;
+    border-radius: 0.75rem;
+    background: #0b1120;
+    color: #e5e5e5;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    tab-size: 4;
+  }
+
+  .prose-thmm pre code {
+    font-family: var(--font-mono, ui-monospace, monospace);
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+  }
+
+  .prose-thmm sup a {
+    text-decoration: none;
+  }
+
+  .prose-thmm .footnotes {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+}
+
+/* highlight.js 토큰 색 — CodeBlock 컴포넌트의 어두운 톤에 맞춘 최소 세트 */
+.hljs-comment,
+.hljs-quote {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-name {
+  color: #c084fc;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #6ee7b7;
+}
+
+.hljs-number,
+.hljs-built_in,
+.hljs-symbol,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #fbbf24;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-title.function_ {
+  color: #60a5fa;
+}
+
+.hljs-attr,
+.hljs-property {
+  color: #93c5fd;
+}
+
+.hljs-tag {
+  color: #e5e5e5;
+}
+
+.hljs-deletion {
+  color: #fca5a5;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}

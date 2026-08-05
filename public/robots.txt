@@ -6,6 +6,9 @@ Allow: /
 # Sitemap
 Sitemap: https://thmm.kr/sitemap.xml
 
+# RSS
+# https://thmm.kr/rss.xml
+
 # 크롤링 속도 조절
 Crawl-delay: 1
 

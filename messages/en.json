@@ -4,7 +4,8 @@
     "experience": "Experience",
     "projects": "Projects",
     "about": "About",
-    "caseStudies": "Case Studies"
+    "caseStudies": "Case Studies",
+    "blog": "Blog"
   },
   "hero": {
     "eyebrow": "FULL-STACK DEVELOPER",
@@ -134,6 +135,19 @@
       "viewDetail": "View detail"
     }
   },
+  "blog": {
+    "eyebrow": "BLOG",
+    "headingLine1": "Things that blocked me,",
+    "headingLine2": "written down after solving them",
+    "lead": "Short notes on problems I hit at work and how I got past them, plus things I read and tried. Too small for a case study, but the kind of thing I know I will look up again.",
+    "filterAll": "ALL",
+    "filterNote": "NOTE",
+    "filterLink": "MEMO",
+    "empty": "No posts yet.",
+    "readingSuffix": " min",
+    "backToList": "All posts",
+    "relatedHeading": "Related posts"
+  },
   "meta": {
     "root": {
       "titleSuffix": "Sungmoo Shin Portfolio"
@@ -145,6 +159,10 @@
     "portfolioIndex": {
       "title": "Case Studies | Sungmoo Shin Portfolio",
       "description": "A collection of case studies on real production-environment problems and how they were solved."
+    },
+    "blogIndex": {
+      "title": "Blog | Sungmoo Shin",
+      "description": "Short technical notes on problems hit in production and how they were solved."
     },
     "adminConsole": {
       "title": "Admin Console Shell Migration | Case Study",

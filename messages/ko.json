@@ -4,7 +4,8 @@
     "experience": "Experience",
     "projects": "Projects",
     "about": "About",
-    "caseStudies": "Case Studies"
+    "caseStudies": "Case Studies",
+    "blog": "블로그"
   },
   "hero": {
     "eyebrow": "FULLSTACK DEVELOPER",
@@ -134,6 +135,19 @@
       "viewDetail": "자세히 보기"
     }
   },
+  "blog": {
+    "eyebrow": "BLOG",
+    "headingLine1": "작업하다 막힌 것들,",
+    "headingLine2": "풀고 나서 적어둔 기록",
+    "lead": "실무에서 만난 문제와 해결 과정, 그리고 읽고 써본 것들을 짧게 남깁니다. 케이스 스터디로 묶기엔 짧지만 다음에 또 찾게 될 것 같은 내용 위주로.",
+    "filterAll": "ALL",
+    "filterNote": "NOTE",
+    "filterLink": "MEMO",
+    "empty": "아직 글이 없습니다.",
+    "readingSuffix": "분",
+    "backToList": "글 목록",
+    "relatedHeading": "관련 있는 글"
+  },
   "meta": {
     "root": {
       "titleSuffix": "신성무 포트폴리오"
@@ -145,6 +159,10 @@
     "portfolioIndex": {
       "title": "케이스 스터디 | 신성무 포트폴리오",
       "description": "실제 운영 환경에서 맞닥뜨린 문제와 해결 과정을 정리한 케이스 스터디 목록."
+    },
+    "blogIndex": {
+      "title": "블로그 | 신성무",
+      "description": "실무에서 만난 문제와 해결 과정을 짧게 정리한 기술 노트와 메모."
     },
     "adminConsole": {
       "title": "관리자 콘솔 셸 전환 | 케이스 스터디",
