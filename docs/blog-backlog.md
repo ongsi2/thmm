@@ -26,7 +26,7 @@
 | Oracle 전용 SQL을 PostgreSQL로 옮길 때 걸리는 것들 | `ROWNUM PostgreSQL`, `CONNECT BY 대체`, `DECODE PostgreSQL` | 80+ SQL 재작성 실측 | note |
 | SiteMesh 데코레이터를 리맵하지 않고 개조하는 법 | `SiteMesh3 데코레이터`, `sitemesh 매핑` | 106 매핑 무수정 재사용 | note |
 | eGovFrame에서 상용 그리드 걷어내기 | `전자정부 프레임워크 그리드`, `rMate 대체` | 80여 면 전환 | note |
-| 운영은 SVN, 개발은 Git — 두 개를 같이 쓰는 법 | `SVN Git 병행`, `svn git 동기화` | 공공 SI에서 매우 흔한데 글이 없다. snapshot 커밋 패턴 | note |
+| ~~운영은 SVN, 개발은 Git — 두 개를 같이 쓰는 법~~ | — | | ✅ 2026-08-06 |
 | 망분리 환경에서 서버 로그 보는 현실적인 방법 | `망분리 로그 확인`, `SSE 실시간 로그` | 부산 의존 제거 사례 | note |
 | KWCAG 2.2 — 표를 위젯으로 만들면 오히려 손해인 이유 | `KWCAG 웹접근성 grid`, `aria-sort 접근성` | 읽기=표 / 편집=위젯 이원 전략 | note |
 | 공공기관 웹취약점 점검 지적사항 실제로 조치하기 | `웹취약점 조치`, `시큐어코딩 점검 사유서` | 375건 조치 경험 | note |
