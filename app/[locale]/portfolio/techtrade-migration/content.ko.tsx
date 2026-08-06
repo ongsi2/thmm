@@ -204,7 +204,7 @@ export default function TechtradeMigrationContentKo() {
         organization={organizations['kimst-bdbis']}
         category="LEGACY MIGRATION"
         title="OTT 기술거래 시스템을 바다봄으로 이관"
-        subtitle="Oracle + MyBatis 기반의 외부 기술거래 플랫폼(OTT)을 PostgreSQL + iBATIS 환경인 바다봄으로 옮겼습니다. 87개 URL, 34개 JSP, 80여 개 SQL, 14개 테이블을 재작성한 이관 작업입니다."
+        subtitle="Oracle + MyBatis 기반의 외부 기술거래 플랫폼(OTT)을 PostgreSQL + iBATIS 환경인 바다봄으로 옮겼다. 87개 URL, 34개 JSP, 80여 개 SQL, 14개 테이블을 재작성한 이관 작업이다."
         meta={[
           { label: '이관 URL', value: '87개', hint: '사용자 50 / 관리자 37' },
           { label: 'DB', value: '14 테이블', hint: 'Oracle → PostgreSQL' },
@@ -230,10 +230,10 @@ export default function TechtradeMigrationContentKo() {
       >
         <p>
           기술거래 플랫폼(OTT)은 Oracle + MyBatis 3.x 조합의 외부 시스템이었는데, 옮겨 갈 바다봄은 전자정부 표준인
-          PostgreSQL + iBATIS 2.0 환경이었습니다. 이름만 보면 비슷한 계열이지만, 실제로는 단순 복사 붙여넣기로
-          붙지 않는 차이가 DB 엔진부터 영속성 프레임워크, UI 렌더링 방식까지 전반에 깔려 있었습니다. 특히 iBATIS
-          2.0은 바깥에선 거의 안 쓰는 레거시라, MyBatis 3.x에서 익숙했던 문법 중 상당수가 그냥 없습니다 — 거기에
-          맞춰 우회 패턴을 다시 찾아야 했습니다.
+          PostgreSQL + iBATIS 2.0 환경이었다. 이름만 보면 비슷한 계열이지만, 실제로는 단순 복사 붙여넣기로
+          붙지 않는 차이가 DB 엔진부터 영속성 프레임워크, UI 렌더링 방식까지 전반에 깔려 있었다. 특히 iBATIS
+          2.0은 바깥에선 거의 안 쓰는 레거시라, MyBatis 3.x에서 익숙했던 문법 중 상당수가 그냥 없다 — 거기에
+          맞춰 우회 패턴을 다시 찾아야 했다.
         </p>
         <InsightList
           items={[
@@ -267,9 +267,9 @@ export default function TechtradeMigrationContentKo() {
         accent="approach"
       >
         <p>
-          운영 DB에 직접 붙지 않고 <strong>로컬 Docker 파이프라인</strong>에서 모든 실험을 돌렸습니다.
+          운영 DB에 직접 붙지 않고 <strong>로컬 Docker 파이프라인</strong>에서 모든 실험을 돌렸다.
           Python 스크립트로 데이터 정제까지 자동화해 재실행 안전성을 확보했고, 마지막 검증은 Claude Code의{' '}
-          <strong>병렬 서브에이전트 5개</strong>로 교차검증해 단일 감사자의 놓침을 보완했습니다.
+          <strong>병렬 서브에이전트 5개</strong>로 교차검증해 단일 감사자의 놓침을 보완했다.
         </p>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-3 mt-4">
@@ -332,8 +332,8 @@ export default function TechtradeMigrationContentKo() {
               body: (
                 <p>
                   기술정보·상담·등록·마이페이지·관리자 다섯 영역을 훑으며 기능 인벤토리를 만들고, 이관 대상과 제외
-                  대상을 표로 명문화했습니다. 외부 API 의존(KIPRIS, Excel 일괄등록)과 Oracle 전용 통계(CONNECT
-                  BY), 라이브 스트리밍 등은 초반에 제외로 확정해서 작업 중간에 범위가 흔들리지 않도록 했습니다.
+                  대상을 표로 명문화했다. 외부 API 의존(KIPRIS, Excel 일괄등록)과 Oracle 전용 통계(CONNECT
+                  BY), 라이브 스트리밍 등은 초반에 제외로 확정해서 작업 중간에 범위가 흔들리지 않도록 했다.
                 </p>
               ),
             },
@@ -344,9 +344,9 @@ export default function TechtradeMigrationContentKo() {
                   <p>
                     운영 DB에 직접 붙지 않기 위해, OTT 원본 dmp는 Docker Oracle XE에 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">impdp</code>로
                     복원하고, 바다봄 쪽은 PostgreSQL 컨테이너로 동일 스키마를 띄워 이관 파이프라인을 로컬에서 반복
-                    실험할 수 있게 구성했습니다. 같은 과정을 docker-compose로 한 벌 묶어 둬서 다른 개발자도{' '}
+                    실험할 수 있게 구성했다. 같은 과정을 docker-compose로 한 벌 묶어 둬서 다른 개발자도{' '}
                     <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">docker compose up</code>{' '}
-                    한 번으로 환경을 띄울 수 있게 했습니다.
+                    한 번으로 환경을 띄울 수 있게 했다.
                   </p>
                   <CodeBlock filename="setup-migration-env.sh" language="bash" code={oracleDockerSetup} />
                 </>
@@ -357,12 +357,12 @@ export default function TechtradeMigrationContentKo() {
               body: (
                 <>
                   <p>
-                    DDL만으로 해결되지 않는 <strong>데이터 정제</strong> 작업이 많았습니다. 본문 요약이 OTT 에는
+                    DDL만으로 해결되지 않는 <strong>데이터 정제</strong> 작업이 많았다. 본문 요약이 OTT 에는
                     세 개 컬럼(tech_summary_1/2/3)에 쪼개져 있어서 바다봄의 단일 컬럼으로 통합해야 했고, Oracle
                     CLOB 필드는 cursor가 LOB locator를 반환해서 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">.read()</code>로 문자열 변환이 필요했고,
-                    한글 KSC5601 잔재도 UTF-8로 재인코딩해야 했습니다. Python 스크립트로 전부 묶어 500건 배치 +{' '}
+                    한글 KSC5601 잔재도 UTF-8로 재인코딩해야 했다. Python 스크립트로 전부 묶어 500건 배치 +{' '}
                     <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">ON CONFLICT DO UPDATE</code> upsert 패턴으로, 중단 후 재실행해도 정합성이 깨지지 않도록
-                    만들었습니다.
+                    만들었다.
                   </p>
                   <CodeBlock filename="migrate_tech_info.py" language="python" code={migrateScript} />
                 </>
@@ -374,14 +374,14 @@ export default function TechtradeMigrationContentKo() {
                 <p>
                   14개 테이블 DDL은 <strong>IF NOT EXISTS / ON CONFLICT DO NOTHING</strong> 조합으로 재실행 안전하게
                   만들고, 자주 쓰는 조회에는 <strong>partial index</strong>(WHERE 절 포함)와 <strong>INCLUDE 절</strong>로
-                  index-only scan을 유도했습니다. SQL은 ROWNUM→LIMIT/OFFSET, NVL→COALESCE, DECODE→CASE WHEN,
+                  index-only scan을 유도했다. SQL은 ROWNUM→LIMIT/OFFSET, NVL→COALESCE, DECODE→CASE WHEN,
                   CONNECT BY→재귀 CTE 같은 치환 규칙을 먼저 표로 정리한 뒤 80여 구문을 일괄 변환. iBATIS 2.0에서는{' '}
                   <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">&lt;foreach&gt;</code>가 없어{' '}
                   <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">&lt;iterate&gt; + #prop[]#</code>로 우회하고,{' '}
-                  <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">&lt;=</code> 연산자는 XML 파서가 깨뜨려서 CDATA로 감쌌습니다. UI는 OTT의 서버렌더{' '}
+                  <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">&lt;=</code> 연산자는 XML 파서가 깨뜨려서 CDATA로 감쌌다. UI는 OTT의 서버렌더{' '}
                   <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">&lt;table&gt;</code>을 바다봄의 rMateGridH5 Ajax-JSON 패턴으로 전환 — URL을{' '}
                   <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">/list/view.do</code>(HTML)와{' '}
-                  <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">/list/data.do</code>(JSON)로 분리해 34개 JSP 전체를 일관된 구조로 다시 작성했습니다.
+                  <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">/list/data.do</code>(JSON)로 분리해 34개 JSP 전체를 일관된 구조로 다시 작성했다.
                 </p>
               ),
             },
@@ -391,9 +391,9 @@ export default function TechtradeMigrationContentKo() {
                 <>
                   <p>
                     단순 CRUD에 머무르지 않고 등록 → 검토 → 승인/반려/사용중지 <strong>상태 전이(state machine)</strong>와
-                    <strong> 이력 테이블 기반 감사 추적</strong>을 붙였습니다. 본 테이블 UPDATE와 이력 INSERT는 같은
+                    <strong> 이력 테이블 기반 감사 추적</strong>을 붙였다. 본 테이블 UPDATE와 이력 INSERT는 같은
                     트랜잭션으로 묶어 중간 실패 시 롤백되도록 구성했고, 반대로 <strong>알림 발송은 트랜잭션 밖 개념</strong>이라
-                    의도적으로 try/catch로 격리 — 알림 실패가 승인 상태를 되돌리지 않도록 했습니다.
+                    의도적으로 try/catch로 격리 — 알림 실패가 승인 상태를 되돌리지 않도록 했다.
                   </p>
                   <CodeBlock
                     filename="AdmTechInfoMngServiceImpl.java"
@@ -408,17 +408,17 @@ export default function TechtradeMigrationContentKo() {
               body: (
                 <>
                   <p>
-                    80+ SQL, 34 JSP, 87 URL을 혼자서 훑으면 반드시 놓치는 곳이 생깁니다. 그래서{' '}
+                    80+ SQL, 34 JSP, 87 URL을 혼자서 훑으면 반드시 놓치는 곳이 생긴다. 그래서{' '}
                     <strong>Claude Code의 서브에이전트 5개를 병렬로</strong> 띄워 각각 다른 관점(스코프·DB·SQL 매퍼·
                     Controller/JSP·공통코드)으로 독립 검증을 돌리고, 메인 세션에서 리포트를 모아 서로 다른 주장을
-                    하는 지점만 골라냈습니다.
+                    하는 지점만 골라냈다.
                   </p>
                   <CodeBlock filename="verification-agents.md" language="markdown" code={agentBrief} />
                   <p>
                     이 과정에서 실제 DDL 불일치 3건(tt_tech_video 컬럼 누락, tt_last_event 스키마 불일치,
                     updateAdmVideo SQL의 uptr_id SET 누락)을 운영 배포 <em>전에</em> 잡아냈고, 단일 에이전트의
-                    거짓양성 3건도 교차검증으로 구분했습니다. 14,695건 실데이터 대조도 전부 일치. 혼자서는 반나절은
-                    더 걸렸을 검증이 수십 분에 끝났습니다.
+                    거짓양성 3건도 교차검증으로 구분했다. 14,695건 실데이터 대조도 전부 일치. 혼자서는 반나절은
+                    더 걸렸을 검증이 수십 분에 끝났다.
                   </p>
                 </>
               ),

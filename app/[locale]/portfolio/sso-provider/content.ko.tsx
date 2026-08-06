@@ -114,7 +114,7 @@ export default function SsoProviderContentKo() {
         organization={organizations['kimst-bdbis']}
         category="AUTH / SSO"
         title="외부 사이트용 SSO Provider 구축"
-        subtitle="이관 후에도 남아 있는 OTT 사이트에서 바다봄 계정으로 로그인할 수 있도록 Provider를 직접 만들었습니다. 일회용 UUID 토큰을 DB에 저장해 다중 WAS에서도 흔들림 없이 동작하게 하고, CI 기반 매핑으로 양쪽 사이트에 이미 흩어져 있던 계정을 자동으로 연결했습니다."
+        subtitle="이관 후에도 남아 있는 OTT 사이트에서 바다봄 계정으로 로그인할 수 있도록 Provider를 직접 만들었다. 일회용 UUID 토큰을 DB에 저장해 다중 WAS에서도 흔들림 없이 동작하게 하고, CI 기반 매핑으로 양쪽 사이트에 이미 흩어져 있던 계정을 자동으로 연결했다."
         meta={[
           { label: '통합 대상', value: 'OTT 등 외부', hint: '기관 사이트' },
           { label: '토큰', value: 'UUID + DB', hint: '일회용 · 1분 만료' },
@@ -135,30 +135,30 @@ export default function SsoProviderContentKo() {
       <CaseSection eyebrow="Problem" title="이관 후에도 남는 OTT 사이트, 그리고 흩어진 계정들" accent="problem">
         <p>
           OTT 기술거래 시스템의 기능 일부는 바다봄으로 이관됐지만, OTT 사이트 자체는 별도로 남아서 운영이 계속
-          됐습니다. 그 OTT에서 <strong>바다봄 계정</strong>으로 로그인할 수 있어야 한다는 요구가 붙었는데, 상용 SSO
-          솔루션을 따로 도입하기엔 비용·일정 부담이 컸습니다.
+          됐다. 그 OTT에서 <strong>바다봄 계정</strong>으로 로그인할 수 있어야 한다는 요구가 붙었는데, 상용 SSO
+          솔루션을 따로 도입하기엔 비용·일정 부담이 컸다.
         </p>
         <p>
-          게다가 두 사이트엔 이미 같은 사람이 각자 다른 ID로 가입해 있는 경우가 많았습니다. 시스템상으로는 서로
-          다른 계정으로 보이지만, CI(개인 공통 식별자) 기준으로는 사실 동일인입니다. 로그인을 연결한다면 이 "같은
-          사람인데 계정이 쪼개져 있는" 상황도 같이 해결해줘야 했습니다.
+          게다가 두 사이트엔 이미 같은 사람이 각자 다른 ID로 가입해 있는 경우가 많았다. 시스템상으로는 서로
+          다른 계정으로 보이지만, CI(개인 공통 식별자) 기준으로는 사실 동일인이다. 로그인을 연결한다면 이 "같은
+          사람인데 계정이 쪼개져 있는" 상황도 같이 해결해줘야 했다.
         </p>
         <InsightList
           items={[
             {
               title: '외부 사이트에서 바다봄 인증을 재사용해야 함',
               detail:
-                '이관 후에도 OTT 사이트는 따로 살아 있어서, 거기서 바다봄 계정으로 바로 로그인할 수 있는 경로가 있어야 했습니다.',
+                '이관 후에도 OTT 사이트는 따로 살아 있어서, 거기서 바다봄 계정으로 바로 로그인할 수 있는 경로가 있어야 했다.',
             },
             {
               title: '같은 사람이 양쪽에 별도 계정으로 존재',
               detail:
-                'OTT와 바다봄에 각각 가입한 사용자는 CI로는 동일인이지만 ID가 달랐습니다. 같은 사람인데 계정이 쪼개져 보이지 않도록 매핑해야 했습니다.',
+                'OTT와 바다봄에 각각 가입한 사용자는 CI로는 동일인이지만 ID가 달랐다. 같은 사람인데 계정이 쪼개져 보이지 않도록 매핑해야 했다.',
             },
             {
               title: '메모리 기반 토큰은 다중 WAS에서 깨짐',
               detail:
-                '로드밸런서 때문에 로그인한 WAS와 verify를 받는 WAS가 달라질 수 있어서, 메모리 Map으로 토큰을 보관하면 다른 노드에서는 "없는 토큰"이 돼 버립니다.',
+                '로드밸런서 때문에 로그인한 WAS와 verify를 받는 WAS가 달라질 수 있어서, 메모리 Map으로 토큰을 보관하면 다른 노드에서는 "없는 토큰"이 돼 버린다.',
             },
           ]}
         />
@@ -167,16 +167,16 @@ export default function SsoProviderContentKo() {
       <CaseSection eyebrow="Approach" title="경량 Provider 직접 구현 — UUID + DB + CI 매핑" accent="approach">
         <p>
           상용 솔루션을 도입하기엔 과했고, 연동 대상도 당분간은 OTT 한 곳이라 <strong>경량 Provider</strong>를
-          직접 만드는 쪽이 더 맞았습니다. 형태는 OAuth2 Implicit과 비슷하게 — 바다봄에서 로그인이 끝나면{' '}
+          직접 만드는 쪽이 더 맞았다. 형태는 OAuth2 Implicit과 비슷하게 — 바다봄에서 로그인이 끝나면{' '}
           <strong>일회용 UUID 토큰</strong>을 redirect URL에 붙여 돌려주고, OTT가 그 토큰을 verify 엔드포인트로
-          확인하면 즉시 소비해서 재사용을 막는 흐름입니다.
+          확인하면 즉시 소비해서 재사용을 막는 흐름이다.
         </p>
         <p>
-          토큰을 세션이나 메모리에 두지 않고 <strong>DB 테이블</strong>에 저장한 게 핵심입니다. 이렇게 하면 어느
-          WAS에서 발급해도 다른 WAS에서 verify가 가능하니까 다중 WAS 환경에서 깨지지 않습니다. 계정 매핑은{' '}
+          토큰을 세션이나 메모리에 두지 않고 <strong>DB 테이블</strong>에 저장한 게 핵심이다. 이렇게 하면 어느
+          WAS에서 발급해도 다른 WAS에서 verify가 가능하니까 다중 WAS 환경에서 깨지지 않는다. 계정 매핑은{' '}
           <strong>CI 기반</strong>으로 처리해서, OTT에 기존 계정이 있으면 자동으로 그 ID를 반환하고, 없으면 바다봄
-          ID로 새로 이어지도록 했습니다. 사용자는 "어느 쪽 계정이 맞는 거지?" 고민 없이 자연스럽게 넘어갈 수
-          있습니다.
+          ID로 새로 이어지도록 했다. 사용자는 "어느 쪽 계정이 맞는 거지?" 고민 없이 자연스럽게 넘어갈 수
+          있다.
         </p>
 
         <div className="mt-8">
@@ -264,12 +264,12 @@ export default function SsoProviderContentKo() {
               body: (
                 <>
                   <p>
-                    토큰을 메모리 Map에 두면 WAS가 두 대 이상일 때 발급/검증 노드가 달라 "없는 토큰"이 됩니다.{' '}
+                    토큰을 메모리 Map에 두면 WAS가 두 대 이상일 때 발급/검증 노드가 달라 "없는 토큰"이 된다.{' '}
                     <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">
                       SSO_USER_TOKEN
                     </code>{' '}
-                    테이블에 토큰·userId·만료시각을 저장해, 모든 WAS가 같은 저장소를 참조하도록 구성했습니다. 10회
-                    발급마다 만료 토큰을 정리하는 경량 GC도 같이 넣었습니다.
+                    테이블에 토큰·userId·만료시각을 저장해, 모든 WAS가 같은 저장소를 참조하도록 구성했다. 10회
+                    발급마다 만료 토큰을 정리하는 경량 GC도 같이 넣었다.
                   </p>
                   <CodeBlock filename="SsoController.java" language="java" code={generateTokenCode} />
                 </>
@@ -281,11 +281,11 @@ export default function SsoProviderContentKo() {
                 <>
                   <p>
                     같은 사람이 양쪽 사이트에 별도 가입돼 있는 경우, CI(개인 공통 식별자)로 동일인을 찾을 수
-                    있습니다. 바다봄의 암호화된 CI를 복호화해 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">
+                    있다. 바다봄의 암호화된 CI를 복호화해 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">
                       SSO_USER_MAPPING
-                    </code>에서 OTT ID를 조회, 매핑이 있으면 OTT ID를, 없으면 바다봄 ID를 그대로 반환합니다.
+                    </code>에서 OTT ID를 조회, 매핑이 있으면 OTT ID를, 없으면 바다봄 ID를 그대로 반환한다.
                     매핑이 없어도 로그인이 실패하지 않도록 fallback 처리를 두어, 신규 회원에게도 매끄럽게 동작하도록
-                    했습니다.
+                    했다.
                   </p>
                   <CodeBlock filename="SsoController.java" language="java" code={ciResolveCode} />
                 </>
@@ -298,8 +298,8 @@ export default function SsoProviderContentKo() {
                   <p>
                     OTT가 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">
                       /sso/verify.do
-                    </code>로 토큰을 확인하면, 검증 즉시 DB에서 토큰을 삭제해 재사용을 막습니다. 외부 도메인에서
-                    호출되므로 CORS 헤더도 같이 내려줬습니다.
+                    </code>로 토큰을 확인하면, 검증 즉시 DB에서 토큰을 삭제해 재사용을 막는다. 외부 도메인에서
+                    호출되므로 CORS 헤더도 같이 내려줬다.
                   </p>
                   <CodeBlock filename="SsoController.java" language="java" code={verifyCode} />
                 </>
@@ -312,8 +312,8 @@ export default function SsoProviderContentKo() {
                   <p>
                     토큰 탈취·피싱 대응으로 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">
                       redirect_uri
-                    </code>는 사전에 등록된 도메인만 허용했습니다. 미허용 도메인은 403으로 거부되고, 시도 기록은
-                    warn 로그로 남겨 이후 감사에 활용합니다.
+                    </code>는 사전에 등록된 도메인만 허용했다. 미허용 도메인은 403으로 거부되고, 시도 기록은
+                    warn 로그로 남겨 이후 감사에 활용한다.
                   </p>
                   <CodeBlock filename="SsoController.java" language="java" code={redirectWhitelistCode} />
                 </>
@@ -330,22 +330,22 @@ export default function SsoProviderContentKo() {
             {
               title: '외부 사이트와의 SSO 통합 완료',
               detail:
-                'OTT에서 바다봄 계정으로 로그인 후 토큰을 받아 OTT 세션을 생성하는 흐름이 다중 WAS 환경에서도 안정적으로 동작합니다.',
+                'OTT에서 바다봄 계정으로 로그인 후 토큰을 받아 OTT 세션을 생성하는 흐름이 다중 WAS 환경에서도 안정적으로 동작한다.',
             },
             {
               title: '양쪽 사이트 계정이 CI로 자동 연결',
               detail:
-                '기존 OTT 회원이 바다봄에 별도 가입해도 CI 매핑으로 동일 사용자로 인식됩니다. 사용자 입장에서 계정이 쪼개져 보이는 혼란이 사라졌습니다.',
+                '기존 OTT 회원이 바다봄에 별도 가입해도 CI 매핑으로 동일 사용자로 인식된다. 사용자 입장에서 계정이 쪼개져 보이는 혼란이 사라졌다.',
             },
             {
               title: '세션이 아닌 DB에 토큰을 두는 패턴 습득',
               detail:
-                '다중 WAS 환경에서 세션/메모리 기반 상태 공유가 깨지는 문제는 Redis 세션 클러스터링 때도 마주친 패턴입니다. "공유가 필요한 상태는 외부 저장소로" 원칙을 다시 확인했습니다.',
+                '다중 WAS 환경에서 세션/메모리 기반 상태 공유가 깨지는 문제는 Redis 세션 클러스터링 때도 마주친 패턴이다. "공유가 필요한 상태는 외부 저장소로" 원칙을 다시 확인했다.',
             },
             {
               title: 'redirect_uri는 무조건 화이트리스트',
               detail:
-                '문자열 일치 기반의 contains 체크는 간단해 보여도 취약할 수 있어, 실제 배포 시에는 host·scheme 파싱을 더 엄격하게 다듬을 여지가 있습니다. 다음 반복에서는 URL 파서를 사용해 검증 로직을 더 타이트하게 만들 예정입니다.',
+                '문자열 일치 기반의 contains 체크는 간단해 보여도 취약할 수 있어, 실제 배포 시에는 host·scheme 파싱을 더 엄격하게 다듬을 여지가 있다. 다음 반복에서는 URL 파서를 사용해 검증 로직을 더 타이트하게 만들 예정이다.',
             },
           ]}
         />

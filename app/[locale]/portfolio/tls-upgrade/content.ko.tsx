@@ -50,7 +50,7 @@ export default function TlsUpgradeContentKo() {
         organization={organizations['kpf-issga']}
         category="SECURITY / NETWORK"
         title="Nginx 리버스 프록시로 TLS 1.3 적용"
-        subtitle="공용 WebtoB SSL 설정을 건드리기 부담스러워서, 앞단에 Nginx를 세우고 거기서 TLS를 종단하도록 구조를 바꿨습니다. 기존 ERP 연동에 영향 없이 TLS 1.3을 적용했습니다."
+        subtitle="공용 WebtoB SSL 설정을 건드리기 부담스러워서, 앞단에 Nginx를 세우고 거기서 TLS를 종단하도록 구조를 바꿨다. 기존 ERP 연동에 영향 없이 TLS 1.3을 적용했다."
         meta={[
           { label: '적용 TLS', value: '1.0/1.1 → 1.3', hint: '보안 감사 요구 충족' },
           { label: '전략', value: 'SSL Termination', hint: 'Nginx 리버스 프록시' },
@@ -62,11 +62,11 @@ export default function TlsUpgradeContentKo() {
 
       <CaseSection eyebrow="Problem" title="TLS 지적은 받았는데, 건드릴 곳이 공용 SSL 뿐이었음" accent="problem">
         <p>
-          보안 감사에서 "TLS 1.0/1.1을 아직 쓰고 있다"는 지적을 받았습니다. 한 눈에 가장 쉬워 보이는 경로는
+          보안 감사에서 "TLS 1.0/1.1을 아직 쓰고 있다"는 지적을 받았다. 한 눈에 가장 쉬워 보이는 경로는
           클라우드 WAF에서 TLS 버전을 바꾸는 거였는데, 이걸 건드리면 내부 ERP와의 API 통신에 영향이 갈 수 있어서
-          바로 못 올리는 상황이었습니다. 다른 한쪽에는 WebtoB 공용 SSL이 있었는데 이게 더 까다로웠어요 — 여러 JEUS
+          바로 못 올리는 상황이었다. 다른 한쪽에는 WebtoB 공용 SSL이 있었는데 이게 더 까다로웠다 — 여러 JEUS
           컨테이너가 같은 SSL 설정을 공유하고 있어서, 전역으로 바꾸면 연결된 개발 서버들까지 전부 영향권에
-          들어갑니다. "이거 고치려다 다른 거 다 깨지는" 전형적인 구조였습니다.
+          들어간다. "이거 고치려다 다른 거 다 깨지는" 전형적인 구조였다.
         </p>
         <InsightList
           items={[
@@ -89,8 +89,8 @@ export default function TlsUpgradeContentKo() {
       <CaseSection eyebrow="Approach" title="Nginx 리버스 프록시 기반 SSL Termination" accent="approach">
         <p>
           전역 설정을 건드리는 대신 Nginx를 리버스 프록시로 세워서 <strong>SSL Termination</strong> 지점으로
-          썼습니다. 클라이언트 ↔ Nginx 구간은 TLS 1.2/1.3으로, Nginx ↔ WebtoB 구간은 내부 HTTP(8099)로
-          구성했습니다. 보안 요구사항은 충족하면서 기존 WebtoB/JEUS 구조는 그대로 두는 접근입니다.
+          썼다. 클라이언트 ↔ Nginx 구간은 TLS 1.2/1.3으로, Nginx ↔ WebtoB 구간은 내부 HTTP(8099)로
+          구성했다. 보안 요구사항은 충족하면서 기존 WebtoB/JEUS 구조는 그대로 두는 접근이다.
         </p>
 
         <div className="mt-8 grid md:grid-cols-2 gap-6">
@@ -152,8 +152,8 @@ export default function TlsUpgradeContentKo() {
 
         <p className="text-sm text-[var(--color-text-muted)] mt-6 leading-relaxed">
           WebtoB가 여러 JEUS 컨테이너와 하나의 SSL 설정을 공유하다 보니, TLS를 전역으로 바꿀 때 내부 API 통신에
-          문제가 생기면 연결된 개발 서버 전체가 영향을 받습니다. Nginx를 앞단에 두면 그 리스크를 격리할 수 있고,
-          도메인별로 TLS 정책을 따로 관리하기도 편합니다.
+          문제가 생기면 연결된 개발 서버 전체가 영향을 받는다. Nginx를 앞단에 두면 그 리스크를 격리할 수 있고,
+          도메인별로 TLS 정책을 따로 관리하기도 편한다.
         </p>
       </CaseSection>
 
@@ -166,8 +166,8 @@ export default function TlsUpgradeContentKo() {
                 <>
                   <p>
                     대상 서버에 Nginx를 설치하고 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">ssl_proxy.conf</code>에
-                    인증서 경로·TLS 버전·프록시 전달 헤더를 정의했습니다. <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">ssl_protocols</code>에는
-                    TLSv1.2·TLSv1.3만 남겨, 취약한 이전 버전은 아예 받지 않도록 했습니다.
+                    인증서 경로·TLS 버전·프록시 전달 헤더를 정의했다. <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">ssl_protocols</code>에는
+                    TLSv1.2·TLSv1.3만 남겨, 취약한 이전 버전은 아예 받지 않도록 했다.
                   </p>
                   <CodeBlock filename="ssl_proxy.conf" language="nginx" code={nginxConf} />
                 </>
@@ -179,7 +179,7 @@ export default function TlsUpgradeContentKo() {
                 <>
                   <p>
                     기존에 443으로 직접 받던 WebtoB 가상 서버의 포트를, Nginx가 프록시로 넘겨주는 내부 포트(8099)로
-                    바꿨습니다. SSL 종단은 Nginx가 맡고, WebtoB의 공용 SSL 설정은 그대로 두는 역할 분리 구조입니다.
+                    바꿨다. SSL 종단은 Nginx가 맡고, WebtoB의 공용 SSL 설정은 그대로 두는 역할 분리 구조다.
                   </p>
                   <CodeBlock filename="http.m" language="config" code={webtobConf} />
                 </>
@@ -190,7 +190,7 @@ export default function TlsUpgradeContentKo() {
               body: (
                 <p>
                   테스트 도메인부터 TLS 버전을 올린 뒤 내부 ERP 주요 API(조회·등록·수정)가 정상 동작하는지 확인했고,
-                  문제 없는 걸 확인한 다음 운영 서버에 TLS 1.3 적용을 완료했습니다.
+                  문제 없는 걸 확인한 다음 운영 서버에 TLS 1.3 적용을 완료했다.
                 </p>
               ),
             },
@@ -205,12 +205,12 @@ export default function TlsUpgradeContentKo() {
             {
               title: '기존 서비스 영향 없이 TLS 1.3 적용',
               detail:
-                'WebtoB 공용 SSL 설정을 건드리지 않고 Nginx 계층에서 TLS를 종단하는 구조로 바꿔, 보안 감사 요구(TLS 1.2 이상)는 충족하면서 기존 서비스에는 영향이 없었습니다.',
+                'WebtoB 공용 SSL 설정을 건드리지 않고 Nginx 계층에서 TLS를 종단하는 구조로 바꿔, 보안 감사 요구(TLS 1.2 이상)는 충족하면서 기존 서비스에는 영향이 없었다.',
             },
             {
               title: '도메인별로 TLS 정책을 따로 관리 가능',
               detail:
-                '특정 도메인만 암호화 스위트나 인증서를 바꾸거나 테스트해야 할 때, 다른 서비스를 건드리지 않고 작업할 수 있는 구조가 됐습니다.',
+                '특정 도메인만 암호화 스위트나 인증서를 바꾸거나 테스트해야 할 때, 다른 서비스를 건드리지 않고 작업할 수 있는 구조가 됐다.',
             },
           ]}
         />

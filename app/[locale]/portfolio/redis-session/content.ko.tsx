@@ -63,7 +63,7 @@ export default function RedisSessionContentKo() {
         organization={organizations['kpf-issga']}
         category="INFRA / SESSION"
         title="Redis 기반 세션 클러스터링"
-        subtitle="JEUS Standard Edition에서는 세션 클러스터링 기능을 쓸 수 없어서, Redis를 외부 세션 저장소로 두고 우회했습니다. 그 결과 레거시 환경에서도 WAS 순차 재기동이 가능해졌습니다."
+        subtitle="JEUS Standard Edition에서는 세션 클러스터링 기능을 쓸 수 없어서, Redis를 외부 세션 저장소로 두고 우회했다. 그 결과 레거시 환경에서도 WAS 순차 재기동이 가능해졌다."
         meta={[
           { label: '핵심 효과', value: '무중단 배포', hint: 'WAS 순차 재기동 가능' },
           { label: '세션 지연', value: '밀리초', hint: 'UX 영향 없음' },
@@ -83,10 +83,10 @@ export default function RedisSessionContentKo() {
 
       <CaseSection eyebrow="Problem" title="WAS 하나만 재기동해도 로그인·입력이 날아감" accent="problem">
         <p>
-          WAS가 여러 대 있는데 세션은 서버마다 제각각 들고 있는 구조였습니다. 그래서 서버 한 대만 재기동해도 거기
-          붙어 있던 사용자는 로그아웃됐고, 뭔가 작성 중이었다면 그 내용도 그대로 날아갔습니다. JEUS가 세션 클러스터링
+          WAS가 여러 대 있는데 세션은 서버마다 제각각 들고 있는 구조였다. 그래서 서버 한 대만 재기동해도 거기
+          붙어 있던 사용자는 로그아웃됐고, 뭔가 작성 중이었다면 그 내용도 그대로 날아갔다. JEUS가 세션 클러스터링
           기능을 지원하긴 하지만 Enterprise 라이선스에만 들어 있었고, 우리 쪽 환경은 Standard라 공식 경로로는 해결할
-          방법이 없었습니다.
+          방법이 없었다.
         </p>
         <InsightList
           items={[
@@ -108,9 +108,9 @@ export default function RedisSessionContentKo() {
 
       <CaseSection eyebrow="Approach" title="Redis 외부 세션 저장소로 우회" accent="approach">
         <p>
-          라이선스 업그레이드는 비용이 크니까, 대신 애플리케이션 쪽에서 세션을 외부 저장소로 빼내는 방향을 골랐습니다.
+          라이선스 업그레이드는 비용이 크니까, 대신 애플리케이션 쪽에서 세션을 외부 저장소로 빼내는 방향을 골랐다.
           Spring Session이 Redis와 바로 붙어 있어 코드는 건드리지 않고 설정만 추가하면 됐고, Redis는 응답이 밀리초
-          단위라 사용자 경험에도 영향이 거의 없을 거라고 봤습니다.
+          단위라 사용자 경험에도 영향이 거의 없을 거라고 봤다.
         </p>
 
         <div className="mt-8 grid md:grid-cols-2 gap-6">
@@ -145,8 +145,8 @@ export default function RedisSessionContentKo() {
               body: (
                 <>
                   <p>
-                    공용 Docker 호스트에 Redis 7.4 컨테이너를 올렸습니다. 비밀번호, 영속 볼륨, 자동 재시작 정책을 같이
-                    설정했고, 애플리케이션에서 쓸 호스트·포트·패스워드는 프로퍼티 파일로 분리했습니다.
+                    공용 Docker 호스트에 Redis 7.4 컨테이너를 올렸다. 비밀번호, 영속 볼륨, 자동 재시작 정책을 같이
+                    설정했고, 애플리케이션에서 쓸 호스트·포트·패스워드는 프로퍼티 파일로 분리했다.
                   </p>
                   <CodeBlock filename="install-redis.sh" language="bash" code={dockerCmd} />
                   <CodeBlock filename="redis.properties" language="properties" code={redisProps} />
@@ -159,7 +159,7 @@ export default function RedisSessionContentKo() {
                 <>
                   <p>
                     전자정부 프레임워크 프로젝트의 pom.xml에 Spring Session / Spring Data Redis / Lettuce를
-                    추가했습니다. 서블릿 세션을 외부 저장소로 위임하기 위한 준비 단계입니다.
+                    추가했다. 서블릿 세션을 외부 저장소로 위임하기 위한 준비 단계다.
                   </p>
                   <CodeBlock filename="pom.xml" language="xml" code={pomXml} />
                 </>
@@ -171,7 +171,7 @@ export default function RedisSessionContentKo() {
                 <>
                   <p>
                     <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">context-redis.xml</code>에 LettuceConnectionFactory와 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">RedisHttpSessionConfiguration</code>을
-                    선언했습니다. HTTP 세션이 자동으로 Redis에 저장되도록 매핑한 거라, 애플리케이션 코드 수정은 없습니다.
+                    선언했다. HTTP 세션이 자동으로 Redis에 저장되도록 매핑한 거라, 애플리케이션 코드 수정은 없다.
                   </p>
                   <CodeBlock filename="context-redis.xml" language="xml" code={contextXml} />
                 </>
@@ -188,22 +188,22 @@ export default function RedisSessionContentKo() {
             {
               title: '무중단 배포가 가능해짐',
               detail:
-                'WAS를 순차 재기동해도 세션이 유지됩니다. 긴급 패치나 테스트 적용도 서비스 중단 없이 돌릴 수 있게 됐습니다.',
+                'WAS를 순차 재기동해도 세션이 유지된다. 긴급 패치나 테스트 적용도 서비스 중단 없이 돌릴 수 있게 됐다.',
             },
             {
               title: '로그인 끊김 문제 해결',
               detail:
-                '장애, 재배포, 장시간 운영 상황에서도 로그인이 끊기거나 입력 데이터가 날아가는 일이 없어졌습니다.',
+                '장애, 재배포, 장시간 운영 상황에서도 로그인이 끊기거나 입력 데이터가 날아가는 일이 없어졌다.',
             },
             {
               title: '라이선스 한계를 외부 저장소로 우회',
               detail:
-                '상위 라이선스를 구매하지 않고도 세션 클러스터링을 구현했습니다. 플랫폼 제약이 있어도 아키텍처로 돌아갈 길이 있다는 걸 직접 경험했습니다.',
+                '상위 라이선스를 구매하지 않고도 세션 클러스터링을 구현했다. 플랫폼 제약이 있어도 아키텍처로 돌아갈 길이 있다는 걸 직접 경험했다.',
             },
             {
               title: '다음부터는 호환성부터 확인',
               detail:
-                '전자정부 프레임워크 버전이 낮아서 Spring Session·Redis 호환성 확인에 시간이 생각보다 많이 들었습니다. 앞으로는 호환성부터 먼저 검증하고 진행할 계획입니다.',
+                '전자정부 프레임워크 버전이 낮아서 Spring Session·Redis 호환성 확인에 시간이 생각보다 많이 들었다. 앞으로는 호환성부터 먼저 검증하고 진행할 계획이다.',
             },
           ]}
         />

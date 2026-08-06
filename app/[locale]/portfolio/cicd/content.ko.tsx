@@ -62,7 +62,7 @@ export default function CicdContentKo() {
         organization={organizations['kpf-issga']}
         category="CI/CD"
         title="빌드·배포 프로세스 자동화"
-        subtitle="빌드부터 재기동까지 전부 수동으로 하던 개발 서버 배포를, Jenkins 파이프라인으로 자동화했습니다. GitLab에 푸시하면 알아서 빌드·배포가 돌아갑니다."
+        subtitle="빌드부터 재기동까지 전부 수동으로 하던 개발 서버 배포를, Jenkins 파이프라인으로 자동화했다. GitLab에 푸시하면 알아서 빌드·배포가 돌아간다."
         meta={[
           { label: '배포 시간', value: '20분 → 4분', hint: '약 80% 단축' },
           { label: '자동화 범위', value: '3단계', hint: 'Checkout · Build · Deploy' },
@@ -74,10 +74,10 @@ export default function CicdContentKo() {
 
       <CaseSection eyebrow="Problem" title="배포 한 번에 15~20분, 이력도 추적 불가" accent="problem">
         <p>
-          개발 서버 배포가 빌드부터 전송·재기동까지 전부 사람 손으로 돌아가고 있었습니다. 한 번 배포하는 데 15~20분
+          개발 서버 배포가 빌드부터 전송·재기동까지 전부 사람 손으로 돌아가고 있었다. 한 번 배포하는 데 15~20분
           — 그 시간 동안 다른 개발자들도 같이 눈치 보면서 기다렸고, 누가 언제 뭘 배포했는지 기록은 어디에도 안
-          남았습니다. 자주 배포하다 보면 명령어 오타나 환경 착각 같은 실수가 한 번씩 섞이고, 그럴 때마다 롤백·재배포
-          오버헤드가 덤으로 붙었습니다.
+          남았다. 자주 배포하다 보면 명령어 오타나 환경 착각 같은 실수가 한 번씩 섞이고, 그럴 때마다 롤백·재배포
+          오버헤드가 덤으로 붙었다.
         </p>
         <InsightList
           items={[
@@ -91,8 +91,8 @@ export default function CicdContentKo() {
 
       <CaseSection eyebrow="Approach" title="Jenkins 파이프라인 기반 CI/CD 구축" accent="approach">
         <p>
-          Jenkins Declarative Pipeline을 써서 빌드·배포 절차를 Jenkinsfile 하나에 정의했습니다. GitLab Webhook으로
-          특정 브랜치 푸시를 감지하고, Checkout → Build → Deploy 단계가 순차적으로 실행되도록 구성했습니다.
+          Jenkins Declarative Pipeline을 써서 빌드·배포 절차를 Jenkinsfile 하나에 정의했다. GitLab Webhook으로
+          특정 브랜치 푸시를 감지하고, Checkout → Build → Deploy 단계가 순차적으로 실행되도록 구성했다.
         </p>
 
         <div className="mt-8">
@@ -143,8 +143,8 @@ export default function CicdContentKo() {
               title: 'Jenkins를 Docker 컨테이너로 띄우기',
               body: (
                 <p>
-                  호스트 환경이 꼬이는 걸 피하려고 Jenkins를 Docker 컨테이너로 돌렸습니다. 작업·플러그인·자격증명은
-                  볼륨으로 분리해서 재기동해도 설정이 그대로 유지되도록 구성했습니다.
+                  호스트 환경이 꼬이는 걸 피하려고 Jenkins를 Docker 컨테이너로 돌렸다. 작업·플러그인·자격증명은
+                  볼륨으로 분리해서 재기동해도 설정이 그대로 유지되도록 구성했다.
                 </p>
               ),
             },
@@ -153,7 +153,7 @@ export default function CicdContentKo() {
               body: (
                 <p>
                   GitLab 저장소의 푸시 이벤트를 Jenkins로 넘겨받고, <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">regexpFilterExpression</code>으로
-                  devtest 브랜치 푸시만 걸러서 빌드가 돌아가도록 필터링했습니다.
+                  devtest 브랜치 푸시만 걸러서 빌드가 돌아가도록 필터링했다.
                 </p>
               ),
             },
@@ -163,8 +163,8 @@ export default function CicdContentKo() {
                 <>
                   <p>
                     Checkout → Build → Deploy 단계를 나눠 두어, 실패가 생기면 어느 단계에서 멈췄는지 바로 보이도록
-                    했습니다. Deploy는 SSH로 WAR 파일을 보낸 뒤 서버측 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">deploy.sh</code>를
-                    실행해서 WAS 재기동까지 한 번에 처리합니다.
+                    했다. Deploy는 SSH로 WAR 파일을 보낸 뒤 서버측 <code className="font-mono text-[13px] px-1.5 py-0.5 rounded bg-[var(--color-bg-off)] border border-[var(--color-border)]">deploy.sh</code>를
+                    실행해서 WAS 재기동까지 한 번에 처리한다.
                   </p>
                   <CodeBlock filename="Jenkinsfile" language="groovy" code={jenkinsfile} />
                 </>
@@ -175,7 +175,7 @@ export default function CicdContentKo() {
               body: (
                 <p>
                   빌드 결과를 GitLab 커밋 상태로 되돌려 줘서, GitLab에서 커밋을 보면 빌드 성공/실패/진행 중 여부를
-                  바로 확인할 수 있도록 했습니다.
+                  바로 확인할 수 있도록 했다.
                 </p>
               ),
             },
@@ -189,20 +189,20 @@ export default function CicdContentKo() {
           items={[
             {
               title: '배포 시간 20분 → 4분',
-              detail: '수동 15~20분 걸리던 작업이 자동 파이프라인으로 4분대까지 줄었습니다.',
+              detail: '수동 15~20분 걸리던 작업이 자동 파이프라인으로 4분대까지 줄었다.',
             },
             {
               title: '수동 작업 실수가 사라짐',
-              detail: '명령어 오타, 환경 착각처럼 사람이 개입해서 나던 실수들이 거의 없어졌습니다.',
+              detail: '명령어 오타, 환경 착각처럼 사람이 개입해서 나던 실수들이 거의 없어졌다.',
             },
             {
               title: '대기 시간 없이 다음 작업으로',
-              detail: '푸시하고 나면 파이프라인이 돌아가는 동안 개발자들은 바로 다음 작업으로 넘어갈 수 있습니다.',
+              detail: '푸시하고 나면 파이프라인이 돌아가는 동안 개발자들은 바로 다음 작업으로 넘어갈 수 있다.',
             },
             {
               title: 'Freestyle보다 Pipeline이 맞았다',
               detail:
-                '처음에는 Freestyle Job으로 시도했는데, 추적·재사용·확장 모두 Pipeline 쪽이 훨씬 편했습니다. 절차를 코드로 남기는 게 왜 중요한지 실감했습니다.',
+                '처음에는 Freestyle Job으로 시도했는데, 추적·재사용·확장 모두 Pipeline 쪽이 훨씬 편했다. 절차를 코드로 남기는 게 왜 중요한지 실감했다.',
             },
           ]}
         />
