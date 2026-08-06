@@ -39,7 +39,7 @@
       "tenure": "Aug 2020 - Dec 2025 (5y 4m)",
       "projectTitle": "GAIS — Government Advertising Integrated Support System",
       "bullets": [
-        "Built a Jenkins-based CI/CD pipeline, cutting deploy time from 30 min to 5 min",
+        "Built a Jenkins-based CI/CD pipeline, cutting deploy time from 15-20 min to about 4 min (~80%)",
         "Designed a high-availability infrastructure on NCP (session clustering, zero-downtime deploys)",
         "Set up real-time monitoring and alerting, and led incident response",
         "Integrated BizTalk's KakaoTalk AlimTalk notifications and ePapyrus PDF solutions"
@@ -174,7 +174,7 @@
     },
     "cicd": {
       "title": "CI/CD Pipeline Build-out | Case Study",
-      "description": "Building a Jenkins-based CI/CD pipeline that cut deploy time from around 20 minutes to 4."
+      "description": "Building a Jenkins-based CI/CD pipeline that cut deploy time from 15-20 minutes to about 4."
     },
     "grandbaie": {
       "title": "Grand-Baie Static Site | Case Study",
