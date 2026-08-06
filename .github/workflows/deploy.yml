@@ -82,7 +82,10 @@ jobs:
           HOST_PORT: ${{ vars.HOST_PORT || '3002' }}
           GIT_SHA: ${{ github.sha }}
         run: |
-          ssh -i ~/.ssh/id_deploy -o BatchMode=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
+          # IdentitiesOnly=yes — 지정한 키 외에 agent/기본경로 키로 폴백하지 않는다.
+          # 없어도 러너에는 다른 키가 없어 지금은 같게 동작하지만, 명시해 두면
+          # 나중에 agent를 쓰는 스텝이 끼어들어도 "어느 키로 붙었는지" 가 안 흔들린다.
+          ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o BatchMode=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" \
             "DEPLOY_PATH='$DEPLOY_PATH' COMPOSE_DIR='$COMPOSE_DIR' COMPOSE_SERVICE='$COMPOSE_SERVICE' CONTAINER_NAME='$CONTAINER_NAME' HOST_PORT='$HOST_PORT' GIT_SHA='$GIT_SHA' bash -s" <<'REMOTE'
           set -euo pipefail
 
