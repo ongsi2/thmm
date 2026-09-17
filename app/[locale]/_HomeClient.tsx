@@ -1,5 +1,7 @@
 'use client';
 
+import SiteNavigation from '@/app/_components/SiteNavigation';
+
 import { Link } from '@/i18n/navigation';
 import { useState, useEffect } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
@@ -125,15 +127,14 @@ export default function HomeClient() {
       </nav>
 
       {/* Navigation - Glass */}
-      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/[0.06]">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a
+      <SiteNavigation logo={
+        <a
             href="#home"
             className="text-lg font-bold tracking-tight text-[var(--color-primary)] hover:text-[var(--color-accent)] spring"
           >
             THMM
           </a>
-          <div className="flex gap-5 sm:gap-8 text-sm font-medium">
+      }>
             {sections.map((item) => (
               <a
                 key={item.id}
@@ -175,9 +176,7 @@ export default function HomeClient() {
               <span>Showcase</span>
             </a>
             <LanguageToggle />
-          </div>
-        </div>
-      </nav>
+      </SiteNavigation>
 
       {/* Hero Section */}
       <section id="home" className="min-h-[100dvh] flex items-center px-6 pt-24 pb-20 relative overflow-hidden">

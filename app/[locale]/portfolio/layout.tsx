@@ -1,3 +1,4 @@
+import SiteNavigation from '@/app/_components/SiteNavigation';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import LanguageToggle from '@/app/_components/LanguageToggle';
@@ -12,15 +13,14 @@ export default async function PortfolioLayout({
 
   return (
     <div className="min-h-[100dvh] bg-[var(--color-bg-light)] noise-overlay">
-      <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/[0.06]">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <Link
+      <SiteNavigation logo={
+        <Link
             href="/"
             className="text-lg font-bold tracking-tight text-[var(--color-primary)] hover:text-[var(--color-accent)] spring"
           >
             THMM
           </Link>
-          <div className="flex gap-5 sm:gap-8 text-sm font-medium">
+      }>
             <Link
               href="/#experience"
               className="relative py-1 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] spring"
@@ -49,9 +49,7 @@ export default async function PortfolioLayout({
               </Link>
             )}
             <LanguageToggle />
-          </div>
-        </div>
-      </nav>
+      </SiteNavigation>
       {children}
       <footer className="py-10 text-center border-t border-[var(--color-border)]">
         <p className="text-[var(--color-text-muted)] text-xs">{tFooter('text')}</p>
