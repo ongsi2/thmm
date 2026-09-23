@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import HomeClient from './_HomeClient';
+import { ogImage } from '@/lib/og';
 
 export async function generateMetadata({
   params,
@@ -22,6 +23,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      images: [ogImage],
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
       alternateLocale: locale === 'ko' ? 'en_US' : 'ko_KR',
       title: t('title'),
@@ -31,6 +33,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
+      images: [ogImage.url],
       title: t('title'),
       description: t('description'),
     },

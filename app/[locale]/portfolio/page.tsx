@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { casesByOrganization } from './_components/cases';
+import { ogImage } from '@/lib/og';
 
 type Locale = 'ko' | 'en';
 
@@ -26,6 +27,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      images: [ogImage],
       locale: locale === 'ko' ? 'ko_KR' : 'en_US',
       alternateLocale: locale === 'ko' ? 'en_US' : 'ko_KR',
       title: t('title'),
@@ -35,6 +37,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
+      images: [ogImage.url],
       title: t('title'),
       description: t('description'),
     },

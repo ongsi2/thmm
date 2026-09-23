@@ -9,6 +9,7 @@ import {
   getRelatedPosts,
   type PostType,
 } from '@/lib/posts';
+import { ogImage } from '@/lib/og';
 
 const BLOG_LOCALE = 'ko';
 const SITE_URL = 'https://thmm.kr';
@@ -46,6 +47,7 @@ export async function generateMetadata({
     robots: post.draft ? { index: false, follow: false } : undefined,
     alternates: { canonical: url },
     openGraph: {
+      images: [ogImage],
       locale: 'ko_KR',
       title: post.title,
       description: post.summary,
@@ -56,6 +58,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
+      images: [ogImage.url],
       title: post.title,
       description: post.summary,
     },

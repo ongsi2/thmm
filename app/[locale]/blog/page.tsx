@@ -3,6 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { getPublishedPosts } from '@/lib/posts';
 import PostList from './_components/PostList';
+import { ogImage } from '@/lib/og';
 
 /** 블로그는 한국어 전용. en 로케일에서는 라우트 자체를 노출하지 않는다. */
 const BLOG_LOCALE = 'ko';
@@ -25,6 +26,7 @@ export async function generateMetadata({
       types: { 'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://thmm.kr'}/rss.xml` },
     },
     openGraph: {
+      images: [ogImage],
       locale: 'ko_KR',
       title: t('title'),
       description: t('description'),
@@ -33,6 +35,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
+      images: [ogImage.url],
       title: t('title'),
       description: t('description'),
     },
